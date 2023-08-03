@@ -2,9 +2,9 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LIBDIR = ./libft
 LIBFT = libft.a
-MLXDIR = ./minilibx_mms_20200219
-LIBMLX = libmlx.dylib
-LDFLAGS = -lft -lmlx -L$(LIBDIR) -L$(MLXDIR) -framework OpenGL -framework AppKit
+MLXDIR = ./mlx
+LIBMLX = libmlx.a
+LDFLAGS = -lft -lmlx -L$(LIBDIR) -L$(MLXDIR)
 NAME = so_long
 SRCS =	check_map_free.c \
 		check_map_setting.c \
@@ -26,14 +26,12 @@ $(LIBFT) :
 
 $(LIBMLX) :
 	make -C $(MLXDIR)
-	install_name_tool -id $(MLXDIR)/$(LIBMLX) $(MLXDIR)/$(LIBMLX)
 
 clean:
 	rm -f $(LIBDIR)/$(LIBFT) $(OBJS)
 	cd $(MLXDIR) && $(MAKE) clean
 
 fclean: clean
-	cd $(MLXDIR) && $(MAKE) fclean
 	rm -f $(NAME)
 
 re:
