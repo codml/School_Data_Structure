@@ -13,7 +13,7 @@
 #include <fcntl.h>
 #include "check_map.h"
 #include "draw_map.h"
-#include <mlx.h>
+#include "mlx/mlx.h"
 
 void	make_map_list(t_list **head, char *str)
 {
@@ -68,20 +68,6 @@ char	**read_map(char *file_name)
 	return (pptr);
 }
 
-void	check_screen_size(t_vars *vars)
-{
-	int	x;
-	int	y;
-
-	mlx_get_screen_size(vars->mlx, &x, &y);
-	if (vars->width * PHOTO_SIZE > x || vars->height * PHOTO_SIZE > y)
-	{
-		free_vars(vars);
-		write(2, "Error\n", 6);
-		exit(1);
-	}
-}
-
 int	main(int argc, char *argv[])
 {
 	t_vars	vars;
@@ -92,7 +78,6 @@ int	main(int argc, char *argv[])
 		exit(1);
 	}
 	set_vars(&vars, read_map(argv[1]));
-	check_screen_size(&vars);
 	mlx_key_hook(vars.win, close_win, &vars);
 	mlx_hook(vars.win, 17, 0, destory_win, &vars);
 	mlx_loop_hook(vars.mlx, render_next_frame, &vars);

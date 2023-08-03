@@ -18,7 +18,7 @@ int	ft_cntlen(unsigned long long nb, unsigned long long len)
 	int		cnt;
 
 	cnt = 0;
-	if (nb >= 0 && nb <= len - 1)
+	if (nb <= len - 1)
 		return (1);
 	while (nb > 0)
 	{

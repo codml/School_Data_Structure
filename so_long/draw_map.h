@@ -14,7 +14,7 @@
 # define DRAW_MAP_H
 # include "check_map.h"
 # include "libft/libft.h"
-# include <mlx.h>
+# include "mlx/mlx.h"
 # define PHOTO_SIZE 50
 
 typedef struct s_data
