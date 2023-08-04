@@ -16,9 +16,12 @@ public:
 	void		setData(T data);
 	T			getData();
 	void		setLeft(Node *node);
-	Node<T>	*getLeft();
+	Node<T>		*getLeft();
 	void		setRight(Node *node);
-	Node<T>	*getRight();
+	Node<T>		*getRight();
 };
 
+class Tree
+{
+};
 #endif
