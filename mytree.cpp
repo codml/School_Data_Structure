@@ -1,51 +1,96 @@
 #include "mytree.h"
 
-template <class T>
-Node<T>::Node(T data)
+int		OpNode::numOp(char op, int num1, int num2)
 {
-    this->data = data;
-    this->left = 0;
-    this->right = 0;
+	if (op == '+')
+		return num1 + num2;
+	else if (op == '-')
+		return num1 - num2;
+	else if (op == '*')
+		return num1 * num2;
+	else
+	{
+		if (num2 == 0)
+		{
+			throw "can't devide by zero";
+			return 0;
+		}
+		else
+			return num1 / num2;
+	}
 }
 
-template <class T>
-Node<T>::~Node()
+OpNode::OpNode(char op)
 {
-	data = 0;
+	this->op = op;
+	left = 0;
+	right = 0;
+	leftNum = 0;
+	rightNum = 0;
 }
 
-template <class T>
-void	Node<T>::setData(T data)
+OpNode::OpNode(char op, int left, int right)
 {
-	this->data = data;
+	this->op = op;
+	this->leftNum = left;
+	this->rightNum = right;
+	left = 0;
+	right = 0;
 }
 
-template <class T>
-T		Node<T>::getData()
+void	OpNode::setOp(char op)
 {
-	return data;
+	this->op = op;
 }
 
-template <class T>
-void	Node<T>::setLeft(Node *node)
+char	OpNode::getOp()
 {
-	this->left = node;
+	return op;
 }
 
-template <class T>
-Node<T>*	Node<T>::getLeft()
+void	OpNode::setLeft(OpNode *node)
 {
-	return (left);
+	left = node;
 }
 
-template <class T>
-void	Node<T>::setRight(Node *node)
+OpNode*	OpNode::getLeft()
 {
-	this->right = node;
+	return left;
 }
 
-template <class T>
-Node<T>*	Node<T>::getRight()
+void	OpNode::setRight(OpNode *node)
 {
-	return (right);
+	right = node;
+}
+
+OpNode*	OpNode::getRight()
+{
+	return right;
+}
+
+void	OpNode::setLeftNum()
+{
+	if (left)
+		numOp(left->getOp(), left->getLeftNum(), left->getRightNum());
+}
+
+int		OpNode::getLeftNum()
+{
+	return leftNum;
+}
+
+void	OpNode::setRightNum()
+{
+	if (right)
+		numOp(right->getOp(), right->getLeftNum(), right->getRightNum());
+}
+
+int		OpNode::getRightNum()
+{
+	return rightNum;
+}
+
+int		OpNode::getExp(void)
+{
+	return numOp(this->op, this->leftNum, this->rightNum);
 }
