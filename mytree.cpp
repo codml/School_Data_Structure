@@ -1,96 +1,86 @@
 #include "mytree.h"
 
-int		OpNode::numOp(char op, int num1, int num2)
+template <class T>
+Node<T>::Node(T data)
 {
-	if (op == '+')
-		return num1 + num2;
-	else if (op == '-')
-		return num1 - num2;
-	else if (op == '*')
-		return num1 * num2;
-	else
-	{
-		if (num2 == 0)
-		{
-			throw "can't devide by zero";
-			return 0;
-		}
-		else
-			return num1 / num2;
-	}
+	this->data = data;
 }
 
-OpNode::OpNode(char op)
+template <class T>
+void	Node<T>::setData(T data)
 {
-	this->op = op;
-	left = 0;
-	right = 0;
-	leftNum = 0;
-	rightNum = 0;
+	this->data = data;
 }
 
-OpNode::OpNode(char op, int left, int right)
+template <class T>
+T		Node<T>::getData()
 {
-	this->op = op;
-	this->leftNum = left;
-	this->rightNum = right;
-	left = 0;
-	right = 0;
+	return data;
 }
 
-void	OpNode::setOp(char op)
-{
-	this->op = op;
-}
-
-char	OpNode::getOp()
-{
-	return op;
-}
-
-void	OpNode::setLeft(OpNode *node)
+template <class T>
+void	Node<T>::setLeft(Node *node)
 {
 	left = node;
 }
 
-OpNode*	OpNode::getLeft()
+template <class T>
+Node<T>* Node<T>::getLeft()
 {
 	return left;
 }
 
-void	OpNode::setRight(OpNode *node)
+template <class T>
+void	Node<T>::setRight(Node *node)
 {
 	right = node;
 }
 
-OpNode*	OpNode::getRight()
+template <class T>
+Node<T>* Node<T>::getRight()
 {
 	return right;
 }
 
-void	OpNode::setLeftNum()
+ExpressionTree::ExpressionTree()
 {
-	if (left)
-		numOp(left->getOp(), left->getLeftNum(), left->getRightNum());
+	root = 0;
 }
 
-int		OpNode::getLeftNum()
+ExpressionTree::~ExpressionTree()
 {
-	return leftNum;
+
 }
 
-void	OpNode::setRightNum()
+void	ExpressionTree::makeTree()
 {
-	if (right)
-		numOp(right->getOp(), right->getLeftNum(), right->getRightNum());
+	int						num, ctrl;
+	Node<int>				*node;
+	std::stack<Node<int> *>	stack;
+
+	while (true)
+	{
+		std::cout << "choose input(0: break, 1: int, 2: op)\n";
+		std::cin >> ctrl;
+		if (ctrl == 0)
+			break;
+		std::cin >> num;
+		node = new Node<int>(num);
+		if (ctrl == 1)
+			stack.push(node);
+		else if (ctrl == 2)
+		{
+			node->setRight(stack.top());
+			stack.pop();
+			node->setLeft(stack.top());
+			stack.pop();
+			stack.push(node);
+		}
+	}
+	root = node;
 }
 
-int		OpNode::getRightNum()
+int		ExpressionTree::doOp()
 {
-	return rightNum;
-}
-
-int		OpNode::getExp(void)
-{
-	return numOp(this->op, this->leftNum, this->rightNum);
+	
 }
