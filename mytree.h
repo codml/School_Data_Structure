@@ -14,6 +14,7 @@ private:
 
 public:
 	Node(T data);
+	~Node();
 
 	void	setData(T data);
 	T		getData();
@@ -27,7 +28,8 @@ class ExpressionTree
 {
 	private:
 		Node<int> *root;
-		
+		void PostOrder_del(Node<int> * node);
+		int PostOrder_op(Node<int> *node);
 	public:
 		ExpressionTree();
 		~ExpressionTree();

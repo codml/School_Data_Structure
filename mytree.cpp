@@ -7,6 +7,12 @@ Node<T>::Node(T data)
 }
 
 template <class T>
+Node<T>::~Node()
+{
+	std::cout << "Node " << data << " is deleted\n"; 
+}
+
+template <class T>
 void	Node<T>::setData(T data)
 {
 	this->data = data;
@@ -42,6 +48,44 @@ Node<T>* Node<T>::getRight()
 	return right;
 }
 
+void ExpressionTree::PostOrder_del(Node<int> *node)
+{
+	if (node)
+	{
+		PostOrder_del(node->getLeft());
+		PostOrder_del(node->getRight());
+		delete node;
+	}
+}
+
+int ExpressionTree::PostOrder_op(Node<int> *node)
+{
+	int left, right;
+	int op;
+	if (node)
+	{
+		left = PostOrder_op(node->getLeft());
+		right = PostOrder_op(node->getRight());
+		if (node->getLeft())
+		{
+			op = node->getData();
+			switch (op)
+			{
+				case '+':
+					return left + right;
+				case '-':
+					return left - right;
+				case '*':
+					return left * right;
+				case '/':
+					return left / right;
+			}
+		}
+		return node->getData();
+	}
+	return (0);
+}
+
 ExpressionTree::ExpressionTree()
 {
 	root = 0;
@@ -49,7 +93,7 @@ ExpressionTree::ExpressionTree()
 
 ExpressionTree::~ExpressionTree()
 {
-
+	PostOrder_del(root);
 }
 
 void	ExpressionTree::makeTree()
@@ -82,5 +126,5 @@ void	ExpressionTree::makeTree()
 
 int		ExpressionTree::doOp()
 {
-	
+	return PostOrder_op(root);
 }
