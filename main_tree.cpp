@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "mytree.h"
 
 int main()

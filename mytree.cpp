@@ -62,6 +62,7 @@ int ExpressionTree::PostOrder_op(Node<int> *node)
 {
 	int left, right;
 	int op;
+
 	if (node)
 	{
 		left = PostOrder_op(node->getLeft());
@@ -99,20 +100,29 @@ ExpressionTree::~ExpressionTree()
 void	ExpressionTree::makeTree()
 {
 	int						num, ctrl;
+	char					ch;
 	Node<int>				*node;
 	std::stack<Node<int> *>	stack;
 
 	while (true)
 	{
-		std::cout << "choose input(0: break, 1: int, 2: op)\n";
+		std::cout << "choose input(break: -1, int: 0, op: 1)" << std::endl;
 		std::cin >> ctrl;
-		if (ctrl == 0)
+		if (ctrl == -1)
 			break;
-		std::cin >> num;
+		if (ctrl == 0)
+			std::cin >> num;
+		else if (ctrl == 1)
+		{
+			std::cin >> ch;
+			num = (int)ch;
+		}
+		else
+			continue;
 		node = new Node<int>(num);
-		if (ctrl == 1)
+		if (num < 42 || num > 47)
 			stack.push(node);
-		else if (ctrl == 2)
+		else
 		{
 			node->setRight(stack.top());
 			stack.pop();
