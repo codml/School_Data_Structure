@@ -4,6 +4,8 @@ template <class T>
 Node<T>::Node(T data)
 {
 	this->data = data;
+	this->left = 0;
+	this->right = 0;
 }
 
 template <class T>
@@ -99,30 +101,11 @@ ExpressionTree::~ExpressionTree()
 
 void	ExpressionTree::makeTree()
 {
-	int						num, ctrl;
-	char					ch;
 	Node<int>				*node;
 	std::stack<Node<int> *>	stack;
 
 	while (true)
 	{
-		std::cout << "choose input(break: -1, int: 0, op: 1)" << std::endl;
-		std::cin >> ctrl;
-		if (ctrl == -1)
-			break;
-		if (ctrl == 0)
-			std::cin >> num;
-		else if (ctrl == 1)
-		{
-			std::cin >> ch;
-			num = (int)ch;
-		}
-		else
-			continue;
-		node = new Node<int>(num);
-		if (num < 42 || num > 47)
-			stack.push(node);
-		else
 		{
 			node->setRight(stack.top());
 			stack.pop();
