@@ -171,6 +171,16 @@ void	ExpressionTree::makeTree()
 			i++;
 		}
 	}
+	while (!a.empty())
+	{
+		node = new Node<int>(a.top());
+		a.pop();
+		node->setRight(b.top());
+		b.pop();
+		node->setLeft(b.top());
+		b.pop();
+		b.push(node);
+	}
 	root = node;
 }
 
