@@ -116,7 +116,8 @@ void	ExpressionTree::makeTree()
 		{
 			node = new Node<int>(atoi(str + i));
 			b.push(node);
-			while (isdigit(str[i++]));
+			while (isdigit(str[i]))
+				i++;
 		}
 		else
 		{
