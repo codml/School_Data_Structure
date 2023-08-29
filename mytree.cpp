@@ -11,7 +11,10 @@ Node<T>::Node(T data)
 template <class T>
 Node<T>::~Node()
 {
-	std::cout << "Node " << data << " is deleted\n"; 
+	if (this->left)
+		std::cout << "Node " << (char)data << " is deleted\n"; 
+	else
+		std::cout << "Node " << data << " is deleted\n"; 
 }
 
 template <class T>
