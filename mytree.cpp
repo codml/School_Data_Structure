@@ -101,17 +101,74 @@ ExpressionTree::~ExpressionTree()
 
 void	ExpressionTree::makeTree()
 {
+	int						i;
+	char					str[1024];
 	Node<int>				*node;
-	std::stack<Node<int> *>	stack;
+	std::stack<char> 		a;
+	std::stack<Node<int> *>	b;
 
-	while (true)
+	std::cout << "Write expression: ";
+	std::cin >> str;
+	i = 0;
+	while (str[i])
 	{
+		if (isdigit(str[i]))
 		{
-			node->setRight(stack.top());
-			stack.pop();
-			node->setLeft(stack.top());
-			stack.pop();
-			stack.push(node);
+			node = new Node<int>(atoi(str + i));
+			b.push(node);
+			while (isdigit(str[i++]));
+		}
+		else
+		{
+			switch (str[i])
+			{
+			case '(':
+				a.push(str[i]);
+				break;
+			case ')':
+				while (!a.empty() && a.top() != '(')
+				{
+					node = new Node<int>(a.top());
+					a.pop();
+					node->setRight(b.top());
+					b.pop();
+					node->setLeft(b.top());
+					b.pop();
+					b.push(node);
+				}
+				if (!a.empty() && a.top() == '(')
+					a.pop();
+				break;
+			case '+':
+			case '-':
+				while (!a.empty() && a.top() != '(')
+				{
+					node = new Node<int>(a.top());
+					a.pop();
+					node->setRight(b.top());
+					b.pop();
+					node->setLeft(b.top());
+					b.pop();
+					b.push(node);
+				}
+				a.push(str[i]);
+				break;
+			case '*':
+			case '/':
+				while (!a.empty() && (a.top() == '*' || a.top() == '/'))
+				{
+					node = new Node<int>(a.top());
+					a.pop();
+					node->setRight(b.top());
+					b.pop();
+					node->setLeft(b.top());
+					b.pop();
+					b.push(node);
+				}
+				a.push(str[i]);
+				break;
+			}
+			i++;
 		}
 	}
 	root = node;

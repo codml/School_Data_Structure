@@ -2,6 +2,8 @@
 # define MY_TREE_H
 
 # include <stack>
+# include <cstdlib>
+# include <cctype>
 # include <iostream>
 
 template <class T>
