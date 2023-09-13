@@ -8,7 +8,7 @@ string infixToPostfix(string s)
 
     for (int i = 0; s[i]; i++)
     {
-        if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/')
+        if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/' || s[i] == '(' || s[i] == ')')
         {
             if (stack.isEmpty())
                 stack.push(s[i]);
@@ -43,7 +43,7 @@ string infixToPostfix(string s)
             }
         }
 		else
-			stack.push(s[i]);
+			postfixExpression.push_back(s[i]);
     }
 	while (!stack.isEmpty())
 		postfixExpression.push_back(stack.pop());
@@ -78,16 +78,16 @@ double calculatePostfix(string s)
 			}
 		}
 		else
-			stack.push(s[i]);
+			stack.push(s[i] - '0');
 	}
 	return stack.top();
 }
 
 int main()
 {
-	string s;
+	string s1;
 
-	cin >> s;
-	cout << "result is: " << calculatePostfix(infixToPostfix(s)) << endl;
+	cin >> s1;
+	cout << "result is: " << calculatePostfix(infixToPostfix(s1)) << endl;
 	return 0;
 }
