@@ -4,7 +4,9 @@
 class MemberQueue
 {
 private:
-
+	MemberQueueNode queue[101];
+	int				f;
+	int				r;
 
 public:
 	MemberQueue();
