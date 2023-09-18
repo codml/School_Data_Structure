@@ -2,14 +2,12 @@
 
 MemberQueue::MemberQueue()
 {
-	for (int i = 0; i < 101; i++)
-		queue[i] = 0;
 	f = 0;
 	r = 0;
 }
 MemberQueue::~MemberQueue()
 {
-	for (int i = 0; i < 101; i++)
+	for (int i = (f + 1) % 101; i != (r + 1) % 101; i = (i + 1) % 101)
 		delete queue[i];
 }
 
@@ -39,15 +37,15 @@ void MemberQueue::push(MemberQueueNode *pnode)
 	r = (r + 1) % 101;
 }
 
-MemberQueueNode MemberQueue::pop()
+MemberQueueNode *MemberQueue::pop()
 {
 	if (empty())
 		exit(1);
 	f = (f + 1) % 101;
-	return *(queue[f]);
+	return queue[f];
 }
 
-MemberQueueNode MemberQueue::front()
+MemberQueueNode *MemberQueue::front()
 {
-	return *(queue[f]);
+	return queue[f];
 }

@@ -12,7 +12,7 @@ public:
 
 	TermsBSTNode* getRoot();
 
-	// insert
-	// print
-	// delete
+	void	insert(TermsBSTNode* node);
+	void	print(ofstream fout);
+	void	nDelete(TermsBSTNode* node);
 };
