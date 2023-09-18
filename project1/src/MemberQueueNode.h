@@ -6,11 +6,16 @@ class MemberQueueNode
 private:
 	std::string	name;
 	int			age;
-	std::string	ex_date;
+	std::string	infor_date;
 	char		type;
 
 public:
-	MemberQueueNode() {}
+	MemberQueueNode(std::string n, int a, std::string i, char t): name(n), age(a),
+				infor_date(i), type(t) {}
 	~MemberQueueNode() {}
 
+	MemberQueueNode& operator=(const MemberQueueNode &cpnode)
+	{
+		
+	}
 };

@@ -4,7 +4,7 @@
 class MemberQueue
 {
 private:
-	MemberQueueNode queue[101];
+	MemberQueueNode *queue[101];
 	int				f;
 	int				r;
 
@@ -14,7 +14,7 @@ public:
 
 	bool empty();
 	bool full();
-	void push();
+	void push(MemberQueueNode *pnode);
 	MemberQueueNode pop();
 	MemberQueueNode front();
 };
