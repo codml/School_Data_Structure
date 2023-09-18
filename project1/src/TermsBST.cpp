@@ -6,7 +6,7 @@ TermsBST::TermsBST() : root(nullptr)
 }
 TermsBST::~TermsBST()
 {
-	delete root;
+
 }
 
 
