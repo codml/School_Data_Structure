@@ -31,8 +31,6 @@ void MemberQueue::push(MemberQueueNode *pnode)
 {
 	if (full())
 		exit(1);
-	if (queue[(r + 1) % 101])
-		delete queue[(r + 1) % 101];
 	queue[(r + 1) % 101] = pnode;
 	r = (r + 1) % 101;
 }

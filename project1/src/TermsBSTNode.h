@@ -23,5 +23,8 @@ public:
 	void setLeft (TermsBSTNode* left)	{ this->left = left; }
 	void setRight(TermsBSTNode* right)	{ this->right = right; }
 
+	std::string		getName() { return name; }
+	int				getAge() { return age; }
+	std::string		getInfor_date() { return infor_date; }
 	std::string		getEx_date() { return ex_date; }
 };

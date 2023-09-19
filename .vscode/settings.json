@@ -46,7 +46,8 @@
         "typeinfo": "cpp",
         "fstream": "cpp",
         "optional": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "cstring": "cpp"
     },
     "C_Cpp.default.compilerPath": "/usr/bin/cpp"
 }
