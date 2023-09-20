@@ -18,5 +18,5 @@ public:
 
 	void	insert(TermsBSTNode* node);
 	void	print(std::ofstream &fout);
-	void	nDelete(TermsBSTNode* node);
+	bool	nDelete(std::string data);
 };
