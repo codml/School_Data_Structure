@@ -83,17 +83,17 @@ void			NameBST::print(std::ofstream &fout)
 	in_print(root, fout);
 }
 
-bool			NameBST::nDelete(std::string data)
+bool			NameBST::nDelete(std::string name)
 {
 	NameBSTNode *p, *pp;
 	NameBSTNode *ppv, *pv, *cur;
 
 	p = root;
 	pp = 0;
-	while (p)
+	while (p && p->getName().compare(name) != 0)
 	{
 		pp = p;
-		if (p->getEx_date().compare(data) > 0)
+		if (p->getEx_date().compare(name) > 0)
 			p = p->getLeft();
 		else
 			p = p->getRight();
