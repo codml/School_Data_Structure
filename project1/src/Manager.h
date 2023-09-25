@@ -3,6 +3,7 @@
 #include "TermsList.h"
 #include "TermsBST.h"
 #include "NameBST.h"
+#include <string>
 #include <fstream>
 using namespace std;
 
@@ -23,10 +24,10 @@ public:
 	void PrintSuccess(const char* cmd);
 	void PrintErrorCode(int num);
 
-	// LOAD
-	// ADD
-	// QPOP
-	// SEARCH
-	// PRINT
-	// DELETE
+	void load();
+	void add(string vars);
+	void qpop();
+	void search(string name);
+	void print(string data);
+	void delete_data(string vars);
 };

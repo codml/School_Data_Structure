@@ -18,5 +18,5 @@ public:
 	void			insert(NameBSTNode* node);
 	NameBSTNode*	search(std::string name);
 	void			print(std::ofstream &fout);
-	bool			nDelete(std::string data);
+	bool			nDelete(std::string name);
 };

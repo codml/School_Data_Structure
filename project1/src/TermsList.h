@@ -13,7 +13,7 @@ public:
 
 	TermsListNode* getHead();
 
-	// insert
-	// search
-	// delete
+	void	insert(TermsListNode *node);
+	TermsListNode*	search(char type);
+	void	nDelete(TermsListNode *node);
 };

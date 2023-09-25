@@ -11,6 +11,8 @@ Manager::~Manager()
 
 void Manager::run(const char* command)
 {
+    string	cmd;
+	int		i;
     // Open command & log file
     fcmd.open(command);
     flog.open("log.txt");
@@ -21,7 +23,10 @@ void Manager::run(const char* command)
     }
 
     // Run command
-
+	while (1)
+	{
+		getline(fcmd, cmd);
+	}
 
     fcmd.close();
     flog.close();
@@ -41,14 +46,32 @@ void Manager::PrintErrorCode(int num)
     flog << "===============" << endl << endl;
 }
 
-// LOAD
+void Manager::load()
+{
 
-// ADD
+}
 
-// QPOP
+void Manager::add(string vars)
+{
 
-// SEARCH
+}
 
-// PRINT
+void Manager::qpop()
+{
 
-// DELETE
+}
+
+void Manager::search(string name)
+{
+
+}
+
+void Manager::print(string data)
+{
+
+}
+
+void Manager::delete_data(string vars)
+{
+
+}
