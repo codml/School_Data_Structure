@@ -213,25 +213,31 @@ bool Manager::qpop()
 				prev = now;
 				now = now->getNext();
 			}
-			if (!now)
+			if (!list.getHead())
 				list.setHead(listnode);
 			else
 				prev->setNext(listnode);
-		}
-		now = list.getHead();
-		while (now)
-		{
-			now->getBST()->print(flog);
-			now = now->getNext();
 		}
 		delete queuenode;
 	}
 	return true;
 }
 
-bool Manager::search(string name)
+bool Manager::search(string data)
 {
-	return true;
+	string		name(data.substr(7));
+	NameBSTNode	*node;
+
+	if (node = bst.search(name))
+	{
+		flog << "===== " << "SEARCH" << " =====" << endl;
+		flog << node->getName() << "/" << node->getAge() << "/"
+			<< node->getInfor_date() << "/" << node->getEx_date() << endl;
+		flog << "===============" << endl << endl;
+		return true;
+	}
+	else
+		return false;
 }
 
 bool Manager::print(string data)

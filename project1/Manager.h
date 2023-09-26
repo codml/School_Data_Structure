@@ -30,7 +30,7 @@ public:
 	bool load();
 	bool add(string vars);
 	bool qpop();
-	bool search(string name);
+	bool search(string data);
 	bool print(string data);
 	bool delete_data(string vars);
 };
