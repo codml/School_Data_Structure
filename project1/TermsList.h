@@ -11,7 +11,8 @@ public:
 	TermsLIST();
 	~TermsLIST();
 
-	TermsListNode* getHead();
+	void			setHead(TermsListNode* node);
+	TermsListNode*	getHead();
 
 	void	insert(TermsListNode *node);
 	TermsListNode*	search(char type);

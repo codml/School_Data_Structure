@@ -17,6 +17,11 @@ TermsLIST::~TermsLIST()
 	}
 }
 
+void	TermsLIST::setHead(TermsListNode* node)
+{
+	head = node;
+}
+
 TermsListNode* TermsLIST::getHead()
 {
 	return head;

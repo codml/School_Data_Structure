@@ -1,5 +1,40 @@
 #include "Manager.h"
 
+void	Manager::make_ex_date(string const &date, string &ex, char type)
+{
+	string	tmp;
+	int		month;
+	int		year;
+
+	ex = date;
+	switch (type)
+	{
+	case 'A':
+		month = stoi(date.substr(5, 2)) + 6;
+		if (month > 12)
+		{
+			month -= 12;
+			year = stoi(date.substr(0, 4)) + 1;
+			ex.replace(0, 4, to_string(year));
+		}
+		tmp = to_string(month);
+		if (month < 10)
+			tmp.insert(0, 1, '0');
+		ex.replace(5, 2, tmp);
+		break;
+
+	case 'B':
+	case 'C':
+	case 'D':
+		year = stoi(date.substr(0, 4)) + (type - 'A');
+		ex.replace(0, 4, to_string(year));
+		break;
+
+	default:
+		break;
+	}
+}
+
 Manager::Manager()
 {
 
@@ -40,22 +75,22 @@ void Manager::run(const char* command)
 			if (qpop())
 				PrintSuccess("QPOP");
 			else
-				PrintErrorCode(100);
+				PrintErrorCode(300);
         }
 		else if ((cmd.substr(0, 6)).compare("SEARCH") == 0)
         {
 			if (!search(cmd))
-				PrintErrorCode(200);
+				PrintErrorCode(400);
         }
 		else if ((cmd.substr(0, 5)).compare("PRINT") == 0)
         {
 			if (!print(cmd))
-				PrintErrorCode(200);
+				PrintErrorCode(500);
         }
 		else if ((cmd.substr(0, 6)).compare("DELETE") == 0)
         {
 			if (!delete_data(cmd))
-				PrintErrorCode(200);
+				PrintErrorCode(600);
         }
 		else if (cmd.compare("EXIT") == 0)
 		{
@@ -144,12 +179,55 @@ bool Manager::add(string vars)
 bool Manager::qpop()
 {
 	MemberQueueNode *queuenode;
-	TermsListNode	*listnode;
+	TermsListNode	*listnode, *now, *prev;
 	TermsBSTNode	*termsbstnode;
 	NameBSTNode		*namebstnode;
+	string			ex_date;
 
 	if (queue.empty())
 		return false;
+	while (!queue.empty())
+	{
+		queuenode = queue.pop();
+		ex_date = "";
+		make_ex_date(queuenode->getInfor_date(), ex_date, queuenode->getType());
+		namebstnode = new NameBSTNode(queuenode->getName(), queuenode->getAge(), queuenode->getInfor_date(),
+			ex_date, queuenode->getType());
+		bst.insert(namebstnode);
+		termsbstnode = new TermsBSTNode(queuenode->getName(), queuenode->getAge(), queuenode->getInfor_date(),
+			ex_date);
+		if (listnode = list.search(queuenode->getType()))
+		{
+			listnode->setNum(listnode->getNum() + 1);
+			listnode->getBST()->insert(termsbstnode);
+		}
+		else
+		{
+			listnode = new TermsListNode(queuenode->getType());
+			listnode->setNum(listnode->getNum() + 1);
+			listnode->getBST()->insert(termsbstnode);
+			now = list.getHead();
+			prev = 0;
+			while (now)
+			{
+				prev = now;
+				now = now->getNext();
+			}
+			if (!now)
+				list.setHead(listnode);
+			else
+				prev->setNext(listnode);
+		}
+		delete queuenode;
+	}
+	now = list.getHead();
+	prev = 0;
+	while (now)
+	{
+		now->getBST()->print(flog);
+		prev = now;
+		now = now->getNext();
+	}
 	return true;
 }
 
@@ -160,6 +238,27 @@ bool Manager::search(string name)
 
 bool Manager::print(string data)
 {
+	TermsListNode	*listnode;
+
+	if (data.substr(6).compare("NAME") == 0)
+	{
+		flog << "===== " << "PRINT" << " =====" << endl;
+		flog << "Name_BST" << endl;
+		bst.print(flog);
+		flog << "===============" << endl << endl;
+	}
+	else
+	{
+		if (listnode = list.search(data.at(6)))
+		{
+			flog << "===== " << "PRINT" << " =====" << endl;
+			flog << "Terms_BST " << data.at(6) << endl;
+			listnode->getBST()->print(flog);
+			flog << "===============" << endl << endl;
+		}
+		else
+			return false;
+	}
 	return true;
 }
 

@@ -17,7 +17,7 @@ private:
 	MemberQueue queue;
 	NameBST		bst;
 	TermsLIST	list;
-
+	void		make_ex_date(string const &date, string& ex, char type);
 public:
 	Manager();
 	~Manager();
