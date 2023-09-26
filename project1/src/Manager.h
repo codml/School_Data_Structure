@@ -4,6 +4,8 @@
 #include "TermsBST.h"
 #include "NameBST.h"
 #include <string>
+#include <sstream>
+#include <vector>
 #include <fstream>
 using namespace std;
 
