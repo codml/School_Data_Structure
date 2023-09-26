@@ -89,7 +89,7 @@ bool Manager::load()
 {
 	ifstream		fdata;
 	string			data, tmp;
-	istringstream	stream;
+	stringstream	stream;
 	vector<string>	v;
 	MemberQueueNode *node;
 	MemberQueueNode *ptr;
@@ -101,22 +101,21 @@ bool Manager::load()
 		return false;
 	while (getline(fdata, data))
     {
-		stream.str(data);
-		while (getline(stream, tmp, ' '))
-		{
-			flog << tmp << endl;
+		stream << data;
+		while (stream >> tmp)
 			v.push_back(tmp);
-		}
 		if (v.size() != 4)
 			return false;
 		node = new MemberQueueNode(v.at(0), stoi(v.at(1)), v.at(2), (v.at(3)).at(0));
 		queue.push(node);
 		v.clear();
+		stream.clear();
     }
 	while (!queue.empty())
 	{
 		ptr = queue.pop();
-		flog << ptr->getName() << "/" << ptr->getAge() << "/" << ptr->getInfor_date() << "/" << ptr->getType() << endl;
+		flog << ptr->getName() << "/" << ptr->getAge() << "/"
+			<< ptr->getInfor_date() << "/" << ptr->getType() << endl;
 	}
 	return true;
 }
