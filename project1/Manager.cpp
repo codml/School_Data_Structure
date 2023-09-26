@@ -103,7 +103,10 @@ bool Manager::load()
     {
 		stream.str(data);
 		while (getline(stream, tmp, ' '))
+		{
+			flog << tmp << endl;
 			v.push_back(tmp);
+		}
 		if (v.size() != 4)
 			return false;
 		node = new MemberQueueNode(v.at(0), stoi(v.at(1)), v.at(2), (v.at(3)).at(0));
