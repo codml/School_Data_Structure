@@ -89,12 +89,9 @@ bool Manager::load()
 {
 	ifstream		fdata;
 	string			data, tmp;
-	stringstream	stream;
+	istringstream	stream;
 	vector<string>	v;
-    string			name;
-	int				age;
-	string			infor_date;
-	char			type;
+	MemberQueueNode *node;
 	MemberQueueNode *ptr;
 
 	fdata.open("data.txt");
@@ -109,12 +106,9 @@ bool Manager::load()
 			v.push_back(tmp);
 		if (v.size() != 4)
 			return false;
-		name = v.at(0);
-		age = stoi(v.at(1));
-		infor_date = v.at(2);
-		type = (v.at(3)).at(0);
-		MemberQueueNode node(name, age, infor_date, type);
-		queue.push(&node);
+		node = new MemberQueueNode(v.at(0), stoi(v.at(1)), v.at(2), (v.at(3)).at(0));
+		queue.push(node);
+		v.clear();
     }
 	while (!queue.empty())
 	{

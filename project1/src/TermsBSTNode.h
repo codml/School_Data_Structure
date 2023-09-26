@@ -13,7 +13,7 @@ private:
 
 
 public:
-	TermsBSTNode(std::string n, int a, std::string i, std::string e): name(n), age(a),
+	TermsBSTNode(std::string &n, int a, std::string &i, std::string &e): name(n), age(a),
 		infor_date(i), ex_date(e) {left = right = 0;}
 	~TermsBSTNode() {}
 

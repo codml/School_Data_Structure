@@ -14,7 +14,7 @@ private:
 	
 
 public:
-	NameBSTNode(std::string n, int a, std::string i, std::string e, char t): name(n), age(a),
+	NameBSTNode(std::string &n, int a, std::string &i, std::string &e, char t): name(n), age(a),
 		infor_date(i), ex_date(e), type(t) {left = right = 0;}
 	~NameBSTNode() {}
 
