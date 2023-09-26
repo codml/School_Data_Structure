@@ -23,9 +23,48 @@ void Manager::run(const char* command)
     }
 
     // Run command
-	while (1)
+	while (getline(fcmd, cmd))
 	{
-		getline(fcmd, cmd);
+        if (cmd.compare("LOAD") == 0)
+        {
+			if (load())
+				PrintSuccess("LOAD");
+			else
+				PrintErrorCode(100);
+        }
+        else if ((cmd.substr(0, 3)).compare("ADD") == 0)
+        {
+
+        }
+		else if (cmd.compare("QPOP") == 0)
+        {
+			if (qpop())
+				PrintSuccess("QPOP");
+			else
+				PrintErrorCode(100);
+        }
+		else if ((cmd.substr(0, 6)).compare("SEARCH") == 0)
+        {
+
+        }
+		else if ((cmd.substr(0, 5)).compare("PRINT") == 0)
+        {
+
+        }
+		else if ((cmd.substr(0, 6)).compare("DELETE") == 0)
+        {
+
+        }
+		else if (cmd.compare("EXIT") == 0)
+		{
+			PrintSuccess("EXIT");
+			break;
+		}
+		else
+		{
+			PrintErrorCode(1000);
+			break;
+		}
 	}
 
     fcmd.close();
@@ -46,32 +85,40 @@ void Manager::PrintErrorCode(int num)
     flog << "===============" << endl << endl;
 }
 
-void Manager::load()
+bool Manager::load()
+{
+	ifstream	fdata;
+	string		data;
+	char		*pdata;
+	
+	fdata.open("data.txt");
+    if (!fdata)
+		return false;
+	
+	return true;
+}
+
+bool Manager::add(string vars)
 {
 
 }
 
-void Manager::add(string vars)
+bool Manager::qpop()
 {
 
 }
 
-void Manager::qpop()
+bool Manager::search(string name)
 {
 
 }
 
-void Manager::search(string name)
+bool Manager::print(string data)
 {
 
 }
 
-void Manager::print(string data)
-{
-
-}
-
-void Manager::delete_data(string vars)
+bool Manager::delete_data(string vars)
 {
 
 }

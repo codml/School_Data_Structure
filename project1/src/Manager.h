@@ -10,10 +10,11 @@ using namespace std;
 class Manager
 {
 private:
-
 	ifstream	fcmd;
 	ofstream	flog;
-
+	MemberQueue queue;
+	NameBST		bst;
+	TermsLIST	list;
 
 public:
 	Manager();
@@ -24,10 +25,10 @@ public:
 	void PrintSuccess(const char* cmd);
 	void PrintErrorCode(int num);
 
-	void load();
-	void add(string vars);
-	void qpop();
-	void search(string name);
-	void print(string data);
-	void delete_data(string vars);
+	bool load();
+	bool add(string vars);
+	bool qpop();
+	bool search(string name);
+	bool print(string data);
+	bool delete_data(string vars);
 };
