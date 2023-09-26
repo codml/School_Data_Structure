@@ -218,15 +218,13 @@ bool Manager::qpop()
 			else
 				prev->setNext(listnode);
 		}
+		now = list.getHead();
+		while (now)
+		{
+			now->getBST()->print(flog);
+			now = now->getNext();
+		}
 		delete queuenode;
-	}
-	now = list.getHead();
-	prev = 0;
-	while (now)
-	{
-		now->getBST()->print(flog);
-		prev = now;
-		now = now->getNext();
 	}
 	return true;
 }
