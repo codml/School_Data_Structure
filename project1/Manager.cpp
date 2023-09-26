@@ -27,14 +27,13 @@ void Manager::run(const char* command)
 	{
         if (cmd.compare("LOAD") == 0)
         {
-			if (load())
-				PrintSuccess("LOAD");
-			else
+			if (!load())
 				PrintErrorCode(100);
         }
         else if ((cmd.substr(0, 3)).compare("ADD") == 0)
         {
-
+			if (!add(cmd))
+				PrintErrorCode(200);
         }
 		else if (cmd.compare("QPOP") == 0)
         {
@@ -45,15 +44,18 @@ void Manager::run(const char* command)
         }
 		else if ((cmd.substr(0, 6)).compare("SEARCH") == 0)
         {
-
+			if (!search(cmd))
+				PrintErrorCode(200);
         }
 		else if ((cmd.substr(0, 5)).compare("PRINT") == 0)
         {
-
+			if (!print(cmd))
+				PrintErrorCode(200);
         }
 		else if ((cmd.substr(0, 6)).compare("DELETE") == 0)
         {
-
+			if (!delete_data(cmd))
+				PrintErrorCode(200);
         }
 		else if (cmd.compare("EXIT") == 0)
 		{
@@ -99,34 +101,55 @@ bool Manager::load()
 		return false;
 	if (!queue.empty())
 		return false;
+	flog << "===== " << "LOAD" << " =====" << endl;
 	while (getline(fdata, data))
     {
 		stream << data;
 		while (stream >> tmp)
 			v.push_back(tmp);
-		if (v.size() != 4)
-			return false;
+		// if (v.size() != 4)
+		// 	return false;
 		node = new MemberQueueNode(v.at(0), stoi(v.at(1)), v.at(2), (v.at(3)).at(0));
+		flog << node->getName() << "/" << node->getAge() << "/"
+			<< node->getInfor_date() << "/" << node->getType() << endl;
 		queue.push(node);
 		v.clear();
 		stream.clear();
     }
-	while (!queue.empty())
-	{
-		ptr = queue.pop();
-		flog << ptr->getName() << "/" << ptr->getAge() << "/"
-			<< ptr->getInfor_date() << "/" << ptr->getType() << endl;
-	}
+	flog << "===============" << endl << endl;
 	return true;
 }
 
 bool Manager::add(string vars)
 {
+	stringstream	stream;
+	vector<string>	v;
+	string			tmp;
+	MemberQueueNode	*node;
+
+	stream << vars;
+	while (stream >> tmp)
+		v.push_back(tmp);
+	if (v.size() != 5)
+		return false;
+	flog << "===== " << "ADD" << " =====" << endl;
+	node = new MemberQueueNode(v.at(1), stoi(v.at(2)), v.at(3), (v.at(4)).at(0));
+	flog << node->getName() << "/" << node->getAge() << "/"
+			<< node->getInfor_date() << "/" << node->getType() << endl;
+	queue.push(node);
+	flog << "===============" << endl << endl;
 	return true;
 }
 
 bool Manager::qpop()
 {
+	MemberQueueNode *queuenode;
+	TermsListNode	*listnode;
+	TermsBSTNode	*termsbstnode;
+	NameBSTNode		*namebstnode;
+
+	if (queue.empty())
+		return false;
 	return true;
 }
 
