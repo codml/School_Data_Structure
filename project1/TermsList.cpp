@@ -54,7 +54,7 @@ TermsListNode*	TermsLIST::search(char type)
 	return now;
 }
 
-void	TermsLIST::nDelete(TermsListNode *node)
+void	TermsLIST::Delete(TermsListNode *node)
 {
 	TermsListNode *now, *prev;
 
@@ -67,6 +67,9 @@ void	TermsLIST::nDelete(TermsListNode *node)
 	}
 	if (!now)
 		return ;
-	prev->setNext(now->getNext());
+	if (!prev)
+		head = now->getNext();
+	else
+		prev->setNext(now->getNext());
 	delete now;
 }

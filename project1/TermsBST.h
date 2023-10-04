@@ -18,5 +18,6 @@ public:
 
 	void	insert(TermsBSTNode* node);
 	void	print(std::ofstream &fout);
-	bool	nDelete(std::string data);
+	bool	default_delete(std::string date);
+	bool	name_delete(std::string name);
 };

@@ -16,5 +16,5 @@ public:
 
 	void	insert(TermsListNode *node);
 	TermsListNode*	search(char type);
-	void	nDelete(TermsListNode *node);
+	void	Delete(TermsListNode *node);
 };

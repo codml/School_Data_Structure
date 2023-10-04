@@ -83,7 +83,7 @@ void			NameBST::print(std::ofstream &fout)
 	in_print(root, fout);
 }
 
-bool			NameBST::nDelete(std::string name)
+bool			NameBST::default_delete(std::string name)
 {
 	NameBSTNode *p, *pp;
 	NameBSTNode *ppv, *pv, *cur;
@@ -93,7 +93,7 @@ bool			NameBST::nDelete(std::string name)
 	while (p && p->getName().compare(name) != 0)
 	{
 		pp = p;
-		if (p->getEx_date().compare(name) > 0)
+		if (p->getName().compare(name) > 0)
 			p = p->getLeft();
 		else
 			p = p->getRight();
@@ -113,7 +113,7 @@ bool			NameBST::nDelete(std::string name)
 	}
 	if (p->getLeft() == 0)
 	{
-		if (pp = 0)
+		if (pp == 0)
 			root = p->getRight();
 		else if (pp->getLeft() == p)
 			pp->setLeft(p->getRight());
@@ -124,7 +124,7 @@ bool			NameBST::nDelete(std::string name)
 	}
 	if (p->getRight() == 0)
 	{
-		if (pp = 0)
+		if (pp == 0)
 			root = p->getLeft();
 		else if (pp->getLeft() == p)
 			pp->setLeft(p->getLeft());
@@ -142,11 +142,20 @@ bool			NameBST::nDelete(std::string name)
 		pv = cur;
 		cur = cur->getLeft();
 	}
-	*p = *pv;
+	p->setName(pv->getName());
+	p->setAge(pv->getAge());
+	p->setInfor_date(pv->getInfor_date());
+	p->setEx_date(pv->getEx_date());
+	p->setType(pv->getType());
 	if (ppv == p)
 		ppv->setRight(pv->getRight());
 	else
 		ppv->setLeft(pv->getRight());
 	delete pv;
 	return true;
+}
+
+bool	NameBST::date_delete(std::string date)
+{
+
 }

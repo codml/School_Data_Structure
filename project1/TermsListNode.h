@@ -19,6 +19,7 @@ public:
 	TermsBST*		getBST() { return bst; }
 	TermsListNode*	getNext()		 { return next; }
 
-	void setNum(int n) { num = n; }
+	void increaseNum() { num++; }
+	void decreaseNum() { num--; }
 	void setNext(TermsListNode* next)	 { this->next = next; }
 };

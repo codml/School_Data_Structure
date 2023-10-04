@@ -32,5 +32,5 @@ public:
 	bool qpop();
 	bool search(string data);
 	bool print(string data);
-	bool delete_data(string vars);
+	bool Delete(string vars);
 };

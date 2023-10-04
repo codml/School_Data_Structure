@@ -89,7 +89,9 @@ void Manager::run(const char* command)
         }
 		else if ((cmd.substr(0, 6)).compare("DELETE") == 0)
         {
-			if (!delete_data(cmd))
+			if (Delete(cmd))
+				PrintSuccess("DELETE");
+			else
 				PrintErrorCode(600);
         }
 		else if (cmd.compare("EXIT") == 0)
@@ -198,13 +200,13 @@ bool Manager::qpop()
 			ex_date);
 		if (listnode = list.search(queuenode->getType()))
 		{
-			listnode->setNum(listnode->getNum() + 1);
+			listnode->increaseNum();
 			listnode->getBST()->insert(termsbstnode);
 		}
 		else
 		{
 			listnode = new TermsListNode(queuenode->getType());
-			listnode->setNum(listnode->getNum() + 1);
+			listnode->increaseNum();
 			listnode->getBST()->insert(termsbstnode);
 			now = list.getHead();
 			prev = 0;
@@ -251,7 +253,7 @@ bool Manager::print(string data)
 		bst.print(flog);
 		flog << "===============" << endl << endl;
 	}
-	else
+	else if (data.at(6) >= 'A' && data.at(6) <= 'D')
 	{
 		if (listnode = list.search(data.at(6)))
 		{
@@ -263,10 +265,49 @@ bool Manager::print(string data)
 		else
 			return false;
 	}
+	else
+		return false;
 	return true;
 }
 
-bool Manager::delete_data(string vars)
+bool Manager::Delete(string vars)
 {
-	return true;
+	stringstream	stream;
+	vector<string>	v;
+	string			tmp;
+	TermsListNode	*node, *temp;
+	bool			flag;
+
+	flag = false;
+	stream << vars;
+	while (stream >> tmp)
+		v.push_back(tmp);
+	if (v.size() != 3)
+		return false;
+	if (v.at(1) == "DATE")
+	{
+		node = list.getHead();
+		while (node)
+		{
+			temp = node;
+			while(node->getBST()->default_delete(v.at(2)))
+			{
+				flag = true;
+				node->decreaseNum();
+			}
+			node = node->getNext();
+			if (temp->getNum() == 0)
+				list.Delete(temp);
+		}
+	}
+	else if (v.at(1) == "NAME")
+	{
+		return (bst.default_delete(v.at(2)));
+	}
+	else
+		return false;
+	if (flag)
+		return true;
+	else
+		return false;
 }

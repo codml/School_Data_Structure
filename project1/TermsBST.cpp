@@ -67,20 +67,17 @@ void	TermsBST::print(std::ofstream &fout)
 	in_print(root, fout);
 }
 
-bool	TermsBST::nDelete(std::string date)
+bool	TermsBST::default_delete(std::string date)
 {
 	TermsBSTNode *p, *pp;
 	TermsBSTNode *ppv, *pv, *cur;
 
 	p = root;
 	pp = 0;
-	while (p && p->getEx_date().compare(date) != 0)
+	while (p && p->getEx_date().compare(date) >= 0)
 	{
 		pp = p;
-		if (p->getEx_date().compare(date) > 0) // need to change
-			p = p->getLeft();
-		else
-			p = p->getRight();
+		p = p->getLeft();
 	}
 	if (p == 0)
 		return false;
@@ -97,7 +94,7 @@ bool	TermsBST::nDelete(std::string date)
 	}
 	if (p->getLeft() == 0)
 	{
-		if (pp = 0)
+		if (pp == 0)
 			root = p->getRight();
 		else if (pp->getLeft() == p)
 			pp->setLeft(p->getRight());
@@ -108,7 +105,7 @@ bool	TermsBST::nDelete(std::string date)
 	}
 	if (p->getRight() == 0)
 	{
-		if (pp = 0)
+		if (pp == 0)
 			root = p->getLeft();
 		else if (pp->getLeft() == p)
 			pp->setLeft(p->getLeft());
@@ -126,11 +123,19 @@ bool	TermsBST::nDelete(std::string date)
 		pv = cur;
 		cur = cur->getLeft();
 	}
-	*p = *pv;
+	p->setName(pv->getName());
+	p->setAge(pv->getAge());
+	p->setInfor_date(pv->getInfor_date());
+	p->setEx_date(pv->getEx_date());
 	if (ppv == p)
 		ppv->setRight(pv->getRight());
 	else
 		ppv->setLeft(pv->getRight());
 	delete pv;
 	return true;
+}
+
+bool	name_delete(std::string name)
+{
+
 }
