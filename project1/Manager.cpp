@@ -315,6 +315,7 @@ bool Manager::Delete(string vars)
 				if (temp->getNum() == 0)
 					list.Delete(temp);
 			}
+			return true;
 		}
 		else
 			return false;
