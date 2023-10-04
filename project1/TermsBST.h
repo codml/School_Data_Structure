@@ -8,6 +8,7 @@ class TermsBST
 private:
 	TermsBSTNode* root;
 	void	post_destructor(TermsBSTNode* node);
+	void	post_delete(TermsBSTNode* p, TermsBSTNode* pp, std::string name);
 	void	in_print(TermsBSTNode* node, std::ofstream &fout);
 
 public:

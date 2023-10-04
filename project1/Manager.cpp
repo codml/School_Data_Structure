@@ -276,6 +276,7 @@ bool Manager::Delete(string vars)
 	vector<string>	v;
 	string			tmp;
 	TermsListNode	*node, *temp;
+	TermsBSTNode	*del;
 	bool			flag;
 
 	flag = false;
@@ -302,12 +303,29 @@ bool Manager::Delete(string vars)
 	}
 	else if (v.at(1) == "NAME")
 	{
-		return (bst.default_delete(v.at(2)));
+		if (bst.default_delete(v.at(2)))
+		{
+			node = list.getHead();
+			while (node)
+			{
+				temp = node;
+				while(node->getBST()->name_delete(v.at(2)))
+					node->decreaseNum();
+				node = node->getNext();
+				if (temp->getNum() == 0)
+					list.Delete(temp);
+			}
+		}
+		else
+			return false;
 	}
 	else
 		return false;
 	if (flag)
+	{
+		bst.date_delete(v.at(2));
 		return true;
+	}
 	else
 		return false;
 }
