@@ -13,8 +13,8 @@ public:
 	MemberQueueNode(std::string &n, int a, std::string &i, char t): name(n), age(a),
 				infor_date(i), type(t) {}
 	~MemberQueueNode() {}
-	std::string getName() {return name;}
+	std::string &getName() {return name;}
 	int	getAge() {return age;}
-	std::string getInfor_date() {return infor_date;}
+	std::string &getInfor_date() {return infor_date;}
 	char getType() {return type;}
 };

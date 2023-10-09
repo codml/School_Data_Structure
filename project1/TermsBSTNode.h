@@ -23,10 +23,10 @@ public:
 	void setLeft (TermsBSTNode* left)	{ this->left = left; }
 	void setRight(TermsBSTNode* right)	{ this->right = right; }
 
-	void	setName(std::string n) { name = n; }
+	void	setName(std::string const &n) { name = n; }
 	void	setAge(int a) { age = a; }
-	void	setInfor_date(std::string i) { infor_date = i; }
-	void	setEx_date(std::string e) { ex_date = e; }
+	void	setInfor_date(std::string const &i) { infor_date = i; }
+	void	setEx_date(std::string const &e) { ex_date = e; }
 
 	std::string		&getName() { return name; }
 	int				getAge() { return age; }

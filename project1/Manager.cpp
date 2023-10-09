@@ -144,8 +144,8 @@ bool Manager::load()
 		stream << data;
 		while (stream >> tmp)
 			v.push_back(tmp);
-		// if (v.size() != 4)
-		// 	return false;
+		if (v.size() != 4)
+			return false;
 		node = new MemberQueueNode(v.at(0), stoi(v.at(1)), v.at(2), (v.at(3)).at(0));
 		flog << node->getName() << "/" << node->getAge() << "/"
 			<< node->getInfor_date() << "/" << node->getType() << endl;
@@ -278,7 +278,9 @@ bool Manager::Delete(string vars)
 	TermsListNode	*node, *temp;
 	TermsBSTNode	*del;
 	bool			flag;
+	int				cnt;
 
+	cnt = 0;
 	flag = false;
 	stream << vars;
 	while (stream >> tmp)
@@ -309,8 +311,12 @@ bool Manager::Delete(string vars)
 			while (node)
 			{
 				temp = node;
-				while(node->getBST()->name_delete(v.at(2)))
+				node->getBST()->name_delete(v.at(2), cnt);
+				while (cnt)
+				{
 					node->decreaseNum();
+					cnt--;
+				}
 				node = node->getNext();
 				if (temp->getNum() == 0)
 					list.Delete(temp);

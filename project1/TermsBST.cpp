@@ -10,16 +10,17 @@ void	TermsBST::post_destructor(TermsBSTNode* node)
 	}
 }
 
-void	TermsBST::post_delete(TermsBSTNode* p, TermsBSTNode* pp, std::string name)
+void	TermsBST::post_delete(TermsBSTNode* p, TermsBSTNode* pp, std::string name, int &num)
 {
 	TermsBSTNode *ppv, *pv, *cur;
 
 	if (p)
 	{
-		post_delete(p->getLeft(), p, name);
-		post_delete(p->getRight(), p, name);
+		post_delete(p->getLeft(), p, name, num);
+		post_delete(p->getRight(), p, name, num);
 		if (p->getName().compare(name) == 0)
 		{
+			num++;
 			if (p->getLeft() == 0 && p->getRight() == 0)
 			{
 				if (pp == 0)
@@ -72,7 +73,6 @@ void	TermsBST::post_delete(TermsBSTNode* p, TermsBSTNode* pp, std::string name)
 				delete pv;
 			}
 		}
-		
 	}
 }
 
@@ -201,25 +201,7 @@ bool	TermsBST::default_delete(std::string date)
 	return true;
 }
 
-bool	TermsBST::name_delete(std::string name)
+void	TermsBST::name_delete(std::string name, int &num)
 {
-	TermsBSTNode *p;
-
-	p = root;
-	while (p)
-	{
-		if (p->getName().compare(name) > 0)
-			p = p->getLeft();
-		else if (p->getName().compare(name) < 0)
-			p = p->getRight();
-		else
-			break;
-	}
-	if (p)
-	{
-		post_delete(root, 0, name);
-		return true;
-	}
-	else
-		return false;
+	post_delete(root, 0, name, num);
 }
