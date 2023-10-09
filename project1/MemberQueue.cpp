@@ -30,7 +30,7 @@ bool MemberQueue::full()
 void MemberQueue::push(MemberQueueNode *pnode)
 {
 	if (full())
-		exit(1);
+		exit(-1);
 	queue[(r + 1) % 101] = pnode;
 	r = (r + 1) % 101;
 }
@@ -38,7 +38,7 @@ void MemberQueue::push(MemberQueueNode *pnode)
 MemberQueueNode *MemberQueue::pop()
 {
 	if (empty())
-		exit(1);
+		exit(-1);
 	f = (f + 1) % 101;
 	return queue[f];
 }
