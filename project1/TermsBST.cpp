@@ -156,9 +156,8 @@ bool	TermsBST::default_delete(std::string date)
 		else
 			pp->setRight(0);
 		delete p;
-		return true;
 	}
-	if (p->getLeft() == 0)
+	else if (p->getLeft() == 0)
 	{
 		if (pp == 0)
 			root = p->getRight();
@@ -167,9 +166,8 @@ bool	TermsBST::default_delete(std::string date)
 		else
 			pp->setRight(p->getRight());
 		delete p;
-		return true;
 	}
-	if (p->getRight() == 0)
+	else if (p->getRight() == 0)
 	{
 		if (pp == 0)
 			root = p->getLeft();
@@ -178,26 +176,28 @@ bool	TermsBST::default_delete(std::string date)
 		else
 			pp->setRight(p->getLeft());
 		delete p;
-		return true;
 	}
-	ppv = p;
-	pv = p->getRight();
-	cur = p->getRight()->getLeft();
-	while (cur)
-	{
-		ppv = pv;
-		pv = cur;
-		cur = cur->getLeft();
-	}
-	p->setName(pv->getName());
-	p->setAge(pv->getAge());
-	p->setInfor_date(pv->getInfor_date());
-	p->setEx_date(pv->getEx_date());
-	if (ppv == p)
-		ppv->setRight(pv->getRight());
 	else
-		ppv->setLeft(pv->getRight());
-	delete pv;
+	{
+		ppv = p;
+		pv = p->getRight();
+		cur = p->getRight()->getLeft();
+		while (cur)
+		{
+			ppv = pv;
+			pv = cur;
+			cur = cur->getLeft();
+		}
+		p->setName(pv->getName());
+		p->setAge(pv->getAge());
+		p->setInfor_date(pv->getInfor_date());
+		p->setEx_date(pv->getEx_date());
+		if (ppv == p)
+			ppv->setRight(pv->getRight());
+		else
+			ppv->setLeft(pv->getRight());
+		delete pv;
+	}
 	return true;
 }
 
