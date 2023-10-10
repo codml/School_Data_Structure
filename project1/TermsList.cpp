@@ -1,14 +1,15 @@
 #include "TermsList.h"
 
-TermsLIST::TermsLIST(): head(nullptr)
+TermsLIST::TermsLIST(): head(nullptr) // initiate head to null
 {
 
 }
-TermsLIST::~TermsLIST()
+
+TermsLIST::~TermsLIST() // delete nodes in list
 {
 	TermsListNode *now, *tmp;
 
-	now = head;
+	now = head; // from head, delete all node
 	while (now)
 	{
 		tmp = now;
@@ -33,15 +34,15 @@ void	TermsLIST::insert(TermsListNode *node)
 
 	now = head;
 	prev = 0;
-	while (now)
+	while (now) // now start from head, reach null next to last node
 	{
 		prev = now;
 		now = now->getNext();
-	}
-	if (!head)
-		head = node;
+	} // prev will be last node in list
+	if (!head) // if head is null
+		head = node; // node will be new head
 	else
-		prev->setNext(node);
+		prev->setNext(node); // insert node next to last node
 }
 
 TermsListNode*	TermsLIST::search(char type)
@@ -49,9 +50,9 @@ TermsListNode*	TermsLIST::search(char type)
 	TermsListNode *now;
 
 	now = head;
-	while (now && now->getType() != type)
+	while (now && now->getType() != type) // if now is null or find node, break
 		now = now->getNext();
-	return now;
+	return now; // if failed to find, return null
 }
 
 void	TermsLIST::Delete(TermsListNode *node)
@@ -60,14 +61,14 @@ void	TermsLIST::Delete(TermsListNode *node)
 
 	now = head;
 	prev = 0;
-	while (now && now != node)
+	while (now && now != node) // find node to delete
 	{
 		prev = now;
 		now = now->getNext();
 	}
-	if (!now)
+	if (!now) // can't find node to delete
 		return ;
-	if (!prev)
+	if (!prev) // delete head node
 		head = now->getNext();
 	else
 		prev->setNext(now->getNext());

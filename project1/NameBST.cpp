@@ -166,7 +166,7 @@ bool	NameBST::default_delete(std::string name)
 			p = p->getRight();
 	} // search node to delete
 	if (p == 0) // if node that has the name doesn't exists
-		return false; // return null
+		return false; // return false
 	if (p->getLeft() == 0 && p->getRight() == 0) // if node is leaf
 	{
 		if (pp == 0)

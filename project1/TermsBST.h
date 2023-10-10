@@ -7,18 +7,18 @@ class TermsBST
 {
 private:
 	TermsBSTNode* root;
-	void	post_destructor(TermsBSTNode* node);
-	void	post_delete(TermsBSTNode* p, TermsBSTNode* pp, std::string name, int &num);
-	void	in_print(TermsBSTNode* node, std::ofstream &fout);
+	void	post_destructor(TermsBSTNode* node); // post-order delete
+	void	post_delete(TermsBSTNode* p, TermsBSTNode* pp, std::string name, int &num); // post-order delete
+	void	in_print(TermsBSTNode* node, std::ofstream &fout); // in-order
 
 public:
 	TermsBST();
 	~TermsBST();
 
-	TermsBSTNode* getRoot();
+	TermsBSTNode* getRoot(); // return root node
 
-	void	insert(TermsBSTNode* node);
-	void	print(std::ofstream &fout);
-	bool	default_delete(std::string date);
-	void	name_delete(std::string name, int &num);
+	void	insert(TermsBSTNode* node); // insert node
+	void	print(std::ofstream &fout); // in-order print
+	bool	default_delete(std::string date); // date delete
+	void	name_delete(std::string name, int &num); // name delete
 };

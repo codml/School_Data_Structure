@@ -11,15 +11,15 @@ private:
 
 
 public:
-	TermsListNode(char t): type(t), num(0), bst(new TermsBST), next(0) {}
-	~TermsListNode() { delete bst; }
+	TermsListNode(char t): type(t), num(0), bst(new TermsBST), next(0) {} // constructor
+	~TermsListNode() { delete bst; } // destructor: none
 
 	char			getType() { return type; }
 	int				getNum() { return num; }
 	TermsBST*		getBST() { return bst; }
-	TermsListNode*	getNext()		 { return next; }
+	TermsListNode*	getNext()		 { return next; } // getter
 
 	void increaseNum() { num++; }
-	void decreaseNum() { num--; }
-	void setNext(TermsListNode* next)	 { this->next = next; }
+	void decreaseNum() { num--; } // change num variable
+	void setNext(TermsListNode* next)	 { this->next = next; } // setter
 };

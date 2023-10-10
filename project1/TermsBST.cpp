@@ -8,20 +8,20 @@ void	TermsBST::post_destructor(TermsBSTNode* node)
 		post_destructor(node->getRight());
 		delete node;
 	}
-}
+} // post order: visit child nodes first and visit parent 
 
 void	TermsBST::post_delete(TermsBSTNode* p, TermsBSTNode* pp, std::string name, int &num)
 {
 	TermsBSTNode *ppv, *pv, *cur;
 
-	if (p)
+	if (p) // post order: visit child nodes first and visit parent 
 	{
 		post_delete(p->getLeft(), p, name, num);
 		post_delete(p->getRight(), p, name, num);
-		if (p->getName().compare(name) == 0)
+		if (p->getName().compare(name) == 0) // if node needs to delete
 		{
-			num++;
-			if (p->getLeft() == 0 && p->getRight() == 0)
+			num++; // count nodes that be deleted
+			if (p->getLeft() == 0 && p->getRight() == 0) // if node is leaf
 			{
 				if (pp == 0)
 					root = 0;
@@ -31,7 +31,7 @@ void	TermsBST::post_delete(TermsBSTNode* p, TermsBSTNode* pp, std::string name, 
 					pp->setRight(0);
 				delete p;
 			}
-			else if (p->getLeft() == 0)
+			else if (p->getLeft() == 0) // if node has only right child
 			{
 				if (pp == 0)
 					root = p->getRight();
@@ -41,7 +41,7 @@ void	TermsBST::post_delete(TermsBSTNode* p, TermsBSTNode* pp, std::string name, 
 					pp->setRight(p->getRight());
 				delete p;
 			}
-			else if (p->getRight() == 0)
+			else if (p->getRight() == 0) // if node has only left child
 			{
 				if (pp == 0)
 					root = p->getLeft();
@@ -51,17 +51,17 @@ void	TermsBST::post_delete(TermsBSTNode* p, TermsBSTNode* pp, std::string name, 
 					pp->setRight(p->getLeft());
 				delete p;
 			}
-			else
+			else // if node has two child
 			{
 				ppv = p;
 				pv = p->getRight();
 				cur = p->getRight()->getLeft();
-				while (cur)
+				while (cur) // pv node will have the earliest ex_date in p's right subtree 
 				{
 					ppv = pv;
 					pv = cur;
 					cur = cur->getLeft();
-				}
+				} // pv node will replace informations with p(need to delete) node
 				p->setName(pv->getName());
 				p->setAge(pv->getAge());
 				p->setInfor_date(pv->getInfor_date());
@@ -84,17 +84,17 @@ void	TermsBST::in_print(TermsBSTNode* node, std::ofstream &fout)
 		fout << node->getName() << "/" << node->getAge() << "/"
 			<< node->getInfor_date() << "/" << node->getEx_date() << std::endl;
 		in_print(node->getRight(), fout);
-	}
+	} // in-order: visit left child -> parent -> right child
 }
 
-TermsBST::TermsBST() : root(nullptr)
+TermsBST::TermsBST() : root(nullptr) // initiate root variable
 {
 
 }
 
 TermsBST::~TermsBST()
 {
-	post_destructor(root);
+	post_destructor(root);// post-order delete node from root -> delete all nodes in tree
 }
 
 TermsBSTNode* TermsBST::getRoot()
@@ -109,7 +109,7 @@ void	TermsBST::insert(TermsBSTNode* node)
 
 	p = root;
 	pp = 0;
-	while (p)
+	while (p) // search the place into which insert node
 	{
 		pp = p;
 		if (p->getEx_date().compare(node->getEx_date()) > 0)
@@ -117,23 +117,23 @@ void	TermsBST::insert(TermsBSTNode* node)
 		else
 			p = p->getRight();
 	}
-	if (root)
+	if (root) // if root exists
 	{
 		if (pp->getEx_date().compare(node->getEx_date()) > 0)
 			pp->setLeft(node);
 		else
 			pp->setRight(node);
 	}
-	else
+	else // root is null
 		root = node;
 }
 
 void	TermsBST::print(std::ofstream &fout)
 {
-	in_print(root, fout);
+	in_print(root, fout); // in-order print from root
 }
 
-bool	TermsBST::default_delete(std::string date)
+bool	TermsBST::default_delete(std::string date) // just delete one node
 {
 	TermsBSTNode *p, *pp;
 	TermsBSTNode *ppv, *pv, *cur;
@@ -144,10 +144,10 @@ bool	TermsBST::default_delete(std::string date)
 	{
 		pp = p;
 		p = p->getLeft();
-	}
-	if (p == 0)
+	} // search node to delete
+	if (p == 0) // there is no node to delete
 		return false;
-	if (p->getLeft() == 0 && p->getRight() == 0)
+	if (p->getLeft() == 0 && p->getRight() == 0) // if node is leaf
 	{
 		if (pp == 0)
 			root = 0;
@@ -157,7 +157,7 @@ bool	TermsBST::default_delete(std::string date)
 			pp->setRight(0);
 		delete p;
 	}
-	else if (p->getLeft() == 0)
+	else if (p->getLeft() == 0) // if node has only right child
 	{
 		if (pp == 0)
 			root = p->getRight();
@@ -167,7 +167,7 @@ bool	TermsBST::default_delete(std::string date)
 			pp->setRight(p->getRight());
 		delete p;
 	}
-	else if (p->getRight() == 0)
+	else if (p->getRight() == 0) // if node has only left child
 	{
 		if (pp == 0)
 			root = p->getLeft();
@@ -177,7 +177,7 @@ bool	TermsBST::default_delete(std::string date)
 			pp->setRight(p->getLeft());
 		delete p;
 	}
-	else
+	else // if node has two child
 	{
 		ppv = p;
 		pv = p->getRight();
@@ -203,5 +203,5 @@ bool	TermsBST::default_delete(std::string date)
 
 void	TermsBST::name_delete(std::string name, int &num)
 {
-	post_delete(root, 0, name, num);
+	post_delete(root, 0, name, num); // search from root and delete
 }
