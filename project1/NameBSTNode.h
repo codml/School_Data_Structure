@@ -15,8 +15,8 @@ private:
 
 public:
 	NameBSTNode(std::string const &n, int a, std::string const &i, std::string const &e, char t): name(n), age(a),
-		infor_date(i), ex_date(e), type(t) {left = right = 0;}
-	~NameBSTNode() {}
+		infor_date(i), ex_date(e), type(t) {left = right = 0;} // constructor
+	~NameBSTNode() {} // destructor: none
 
 	NameBSTNode*	getLeft()			{ return left; }
 	NameBSTNode*	getRight()			{ return right; }
@@ -34,5 +34,5 @@ public:
 	int				getAge() { return age; }
 	std::string&	getInfor_date() { return infor_date; }
 	std::string&	getEx_date() { return ex_date; }
-	char			getType() { return type; }
+	char			getType() { return type; } // getter & setter
 };
