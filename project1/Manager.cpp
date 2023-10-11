@@ -248,6 +248,8 @@ bool Manager::print(string data)
 
 	if (data.substr(6).compare("NAME") == 0) // name-ordered print
 	{
+		if (bst.getRoot() == nullptr)
+			return false;
 		flog << "===== " << "PRINT" << " =====" << endl;
 		flog << "Name_BST" << endl;
 		bst.print(flog); // print() in NameBST
