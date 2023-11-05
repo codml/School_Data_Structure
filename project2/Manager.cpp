@@ -54,7 +54,7 @@ bool Manager::DELETE()
 
 void Manager::printErrorCode(int n) {				//ERROR CODE PRINT
 	flog << "=======================" << endl;
-	flog << "ERROR " << n << << endl;
+	flog << "ERROR " << n << endl;
 	flog << "=======================" << endl << endl;
 }
 
