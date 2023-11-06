@@ -1,7 +1,7 @@
 #include "LoanBookHeap.h"
 
 void LoanBookHeap::heapifyUp(LoanBookHeapNode* pN) {
-    LoanBookData        *tmp;
+    LoanBookData	*tmp;
     
     if (pN == root || pN->getBookData()->getName() > pN->getParent()->getBookData()->getName())
         return;
@@ -12,7 +12,23 @@ void LoanBookHeap::heapifyUp(LoanBookHeapNode* pN) {
 }
 
 void LoanBookHeap::heapifyDown(LoanBookHeapNode* pN) {
+    LoanBookData	*tmp;
+	LoanBookHeapNode *left, *right, *child;
 
+	left = pN->getLeftChild();
+	right = pN->getRightChild();
+	if (left == NULL)
+		return;
+	if (right && left->getBookData()->getName() > right->getBookData()->getName())
+		child = right;
+	else
+		child = left;
+	if (child->getBookData()->getName() > pN->getBookData()->getName())
+		return;
+	tmp = pN->getBookData();
+	pN->setBookData(child->getBookData());
+	child->setBookData(tmp);
+	heapifyDown(child);
 }
 
 bool LoanBookHeap::Insert(LoanBookData* data) {

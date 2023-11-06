@@ -4,12 +4,16 @@
 
 #include <fstream>
 #include <iostream>
+#include <vector>
+
+using namespace std;
 
 class SelectionTree
 {
 private:
     SelectionTreeNode* root;
     ofstream* fout;
+    vector <SelectionTreeNode *> v;
 
 public:
     SelectionTree(ofstream* fout) {
