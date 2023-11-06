@@ -19,6 +19,7 @@ public:
     SelectionTree(ofstream* fout) {
         this->root = NULL;
         this->fout = fout;
+        this->v.push_back(NULL);
     }
     ~SelectionTree() {
 
@@ -26,6 +27,8 @@ public:
 
     void setRoot(SelectionTreeNode* pN) { this->root = pN; }
     SelectionTreeNode* getRoot() { return root; }
+
+    bool Setting();
 
     bool Insert(LoanBookData* newData);
     bool Delete();
