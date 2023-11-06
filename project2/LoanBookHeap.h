@@ -15,9 +15,14 @@ private:
 public:
     LoanBookHeap() {
         this->root = NULL;
+        this->v.push_back(NULL);
     };
     ~LoanBookHeap() {
-        // destructor
+        int size;
+
+		size = v.size();
+		for (int i = 0; i < size; i++)
+			delete v.at(i);
     }
     
     void setRoot(LoanBookHeapNode* pN) { this->root = pN; }

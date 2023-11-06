@@ -7,4 +7,3 @@ int main() {
 	manager.run("command.txt");
 	return 0;
 }
-

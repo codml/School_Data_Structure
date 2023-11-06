@@ -9,7 +9,6 @@ private:
 	char* cmd;
 	BpTree* bptree;
 	SelectionTree* stree;
-	BpTree* bptree;
 public:
 	Manager(int bpOrder)	//constructor
 	{
