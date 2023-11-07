@@ -25,6 +25,8 @@ LoanBookData* SelectionTree::reSort(SelectionTreeNode* node)
 {
     LoanBookData *left, *right;
 
+    if (node == NULL)
+        return NULL;
     left = reSort(node->getLeftChild());
     right = reSort(node->getRightChild());
     if (node->getHeap())
@@ -62,7 +64,6 @@ bool SelectionTree::Insert(LoanBookData* newData) {
     }
     else
         v.at(idx)->getHeap()->Insert(newData);
-    v.at(idx)->setBookData(v.at(idx)->getHeap()->getRoot()->getBookData());
     reSort(root);
     // for (int i = 7; i >= 1; i--)
     // {
@@ -103,8 +104,21 @@ bool SelectionTree::Delete() {
 
 bool SelectionTree::printBookData(int bookCode) {
     int idx;
-    LoanBookHeapNode *copyRoot;
+    vector <LoanBookHeapNode *> *pv;
 
     idx = bookCode / 100 + 8;
-    copyRoot = v.at(idx)->deepCopy(v.at(idx)->getHeap()->getRoot());
+    if (v.at(idx)->getHeap() == NULL)
+        return false;
+    pv = v.at(idx)->getHeap()->sortV();
+    cout << endl << endl;
+    for (int i = 1; i < pv->size(); i++)
+    {
+        // *fout
+        cout << pv->at(i)->getBookData()->getName() << "/" << pv->at(i)->getBookData()->getCode() << "/"
+            << pv->at(i)->getBookData()->getAuthor() << "/" << pv->at(i)->getBookData()->getYear() << "/"
+            << pv->at(i)->getBookData()->getLoanCount() << endl;
+    }
+    cout << endl << endl;
+    delete pv;
+    return true;
 }

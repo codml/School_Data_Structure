@@ -17,7 +17,7 @@ void LoanBookHeap::heapifyDown(LoanBookHeapNode* pN) {
 
     if (pN == root)
     {
-        if (v.size()-1 == 1)
+        if (v.size() - 1 == 1)
         {
             delete root;
             root = 0;
@@ -46,6 +46,23 @@ void LoanBookHeap::heapifyDown(LoanBookHeapNode* pN) {
 	pN->setBookData(child->getBookData());
 	child->setBookData(tmp);
 	heapifyDown(child);
+}
+
+bool compare(LoanBookHeapNode *a, LoanBookHeapNode *b)
+{
+    if (a == NULL)
+        return true;
+    if (b == NULL)
+        return false;
+    return a->getBookData()->getName() < b->getBookData()->getName();
+}
+
+vector <LoanBookHeapNode *> *LoanBookHeap::sortV()
+{
+    vector <LoanBookHeapNode *> *cpV = new vector <LoanBookHeapNode *> (this->v);
+
+    sort(cpV->begin(), cpV->end(), compare);
+    return cpV;
 }
 
 bool LoanBookHeap::Insert(LoanBookData* data) {

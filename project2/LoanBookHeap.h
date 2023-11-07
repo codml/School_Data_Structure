@@ -3,6 +3,8 @@
 #include "LoanBookData.h"
 #include "LoanBookHeapNode.h"
 #include <vector>
+#include <fstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -11,6 +13,8 @@ class LoanBookHeap
 private:
     LoanBookHeapNode* root;
     vector <LoanBookHeapNode *> v;
+
+    //bool compare(LoanBookHeapNode* a, LoanBookHeapNode* b);
 
 public:
     LoanBookHeap() {
@@ -30,6 +34,8 @@ public:
     
     void setRoot(LoanBookHeapNode* pN) { this->root = pN; }
     LoanBookHeapNode* getRoot() { return root; }
+
+    vector <LoanBookHeapNode *> *sortV();
 
     void heapifyUp(LoanBookHeapNode* pN);
     void heapifyDown(LoanBookHeapNode* pN);
