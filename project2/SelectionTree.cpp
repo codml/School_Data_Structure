@@ -21,6 +21,34 @@ bool SelectionTree::Setting() {
     return true;
 }
 
+LoanBookData* SelectionTree::reSort(SelectionTreeNode* node)
+{
+    LoanBookData *left, *right;
+
+    left = reSort(node->getLeftChild());
+    right = reSort(node->getRightChild());
+    if (node->getHeap())
+    {
+        node->setBookData(node->getHeap()->getRoot()->getBookData());
+        return node->getBookData();
+    }
+    if (!left || !right)
+    {
+        if (left && right)
+        {
+            if (left->getName() < right->getName())
+                node->setBookData(left);
+            else
+                node->setBookData(right);
+        }
+        else if (!right) // only left exists
+            node->setBookData(left);
+        else    // only right exists
+            node->setBookData(right);
+    }
+    return node->getBookData();
+}
+
 bool SelectionTree::Insert(LoanBookData* newData) {
     int idx;
     LoanBookHeap *tmp;
@@ -35,28 +63,33 @@ bool SelectionTree::Insert(LoanBookData* newData) {
     else
         v.at(idx)->getHeap()->Insert(newData);
     v.at(idx)->setBookData(v.at(idx)->getHeap()->getRoot()->getBookData());
-    for (int i = 7; i >= 1; i--)
-    {
-        int j = 2*i;
-        if (v.at(j)->getBookData() != NULL || v.at(j + 1)->getBookData() != NULL)
-        {
-            if (v.at(j)->getBookData() != NULL && v.at(j + 1)->getBookData() != NULL)
-            {
-                if (v.at(j)->getBookData()->getName() < v.at(j + 1)->getBookData()->getName())
-                    v.at(i)->setBookData(v.at(j)->getBookData());
-                else
-                    v.at(i)->setBookData(v.at(j + 1)->getBookData());
-            }
-            else if (v.at(j)->getBookData() == NULL)
-                v.at(i)->setBookData(v.at(j + 1)->getBookData());
-            else
-                v.at(i)->setBookData(v.at(j)->getBookData());
-        }
-    }
+    reSort(root);
+    // for (int i = 7; i >= 1; i--)
+    // {
+    //     int j = 2*i;
+    //     if (v.at(j)->getBookData() != NULL || v.at(j + 1)->getBookData() != NULL)
+    //     {
+    //         if (v.at(j)->getBookData() != NULL && v.at(j + 1)->getBookData() != NULL)
+    //         {
+    //             if (v.at(j)->getBookData()->getName() < v.at(j + 1)->getBookData()->getName())
+    //                 v.at(i)->setBookData(v.at(j)->getBookData());
+    //             else
+    //                 v.at(i)->setBookData(v.at(j + 1)->getBookData());
+    //         }
+    //         else if (v.at(j)->getBookData() == NULL)
+    //             v.at(i)->setBookData(v.at(j + 1)->getBookData());
+    //         else
+    //             v.at(i)->setBookData(v.at(j)->getBookData());
+    //     }
+    // }
 }
 
 bool SelectionTree::Delete() {
-
+    int idx;
+    
+    idx = (root->getBookData()->getCode() / 100) + 8;
+    v.at(idx)->getHeap()->heapifyDown(v.at(idx)->getHeap()->getRoot());
+    reSort(root); // heap alloc first and root == NULL OR heap == NULL and alloc and free!!!
 }
 
 bool SelectionTree::printBookData(int bookCode) {

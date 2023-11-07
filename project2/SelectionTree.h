@@ -29,6 +29,7 @@ public:
     SelectionTreeNode* getRoot() { return root; }
 
     bool Setting();
+    LoanBookData* reSort(SelectionTreeNode* node);
 
     bool Insert(LoanBookData* newData);
     bool Delete();

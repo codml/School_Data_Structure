@@ -15,6 +15,23 @@ void LoanBookHeap::heapifyDown(LoanBookHeapNode* pN) {
     LoanBookData	*tmp;
 	LoanBookHeapNode *left, *right, *child;
 
+    if (pN == root)
+    {
+        if (v.size()-1 == 1)
+        {
+            delete root;
+            root = 0;
+            v.pop_back();
+            return;
+        }
+        delete root->getBookData();
+        root->setBookData(v.at(v.size()-1)->getBookData());
+        if ((v.size() - 1) % 2)
+            v.at((v.size() - 1) / 2)->setRightChild(NULL);
+        else
+            v.at((v.size() - 1) / 2)->setLeftChild(NULL);
+        v.pop_back();
+    }
 	left = pN->getLeftChild();
 	right = pN->getRightChild();
 	if (left == NULL)
