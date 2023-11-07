@@ -38,7 +38,12 @@ public:
         LoanBookHeapNode* copy = new LoanBookHeapNode();
         copy->setLeftChild(deepCopy(root->getLeftChild()));
         copy->setRightChild(deepCopy(root->getLeftChild()));
-
+        
+        LoanBookData *tmp = new LoanBookData();
+        tmp->setBookData(root->getBookData()->getName(), root->getBookData()->getCode(),
+            root->getBookData()->getAuthor(), root->getBookData()->getYear());
+        copy->setBookData(tmp);
+        copy->setParent(root->getParent());
         return copy;
     } 
 

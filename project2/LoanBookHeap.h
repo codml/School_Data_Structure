@@ -22,7 +22,10 @@ public:
 
 		size = v.size();
 		for (int i = 0; i < size; i++)
-			delete v.at(i);
+        {
+            if (v.at(i))
+                delete v.at(i);
+        }
     }
     
     void setRoot(LoanBookHeapNode* pN) { this->root = pN; }

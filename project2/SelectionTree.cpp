@@ -82,16 +82,29 @@ bool SelectionTree::Insert(LoanBookData* newData) {
     //             v.at(i)->setBookData(v.at(j)->getBookData());
     //     }
     // }
+    return true;
 }
 
 bool SelectionTree::Delete() {
     int idx;
     
+    if (root->getBookData() == NULL)
+        return false;
     idx = (root->getBookData()->getCode() / 100) + 8;
     v.at(idx)->getHeap()->heapifyDown(v.at(idx)->getHeap()->getRoot());
-    reSort(root); // heap alloc first and root == NULL OR heap == NULL and alloc and free!!!
+    if (v.at(idx)->getHeap()->getRoot() == NULL)
+    {
+        delete v.at(idx)->getHeap();
+        v.at(idx)->setHeap(NULL);
+    }
+    reSort(root);
+    return true;
 }
 
 bool SelectionTree::printBookData(int bookCode) {
+    int idx;
+    LoanBookHeapNode *copyRoot;
 
+    idx = bookCode / 100 + 8;
+    copyRoot = v.at(idx)->deepCopy(v.at(idx)->getHeap()->getRoot());
 }
