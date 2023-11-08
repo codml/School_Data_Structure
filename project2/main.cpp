@@ -14,10 +14,11 @@ int main()
 	SelectionTree seltree(&fout);
 	LoanBookData *tmp;
 	string name;
-	int code;
+	int code, num;
 
 	seltree.Setting();
-	for (int i = 0; i < 10; i++)
+	cin >> num;
+	for (int i = 0; i < num; i++)
 	{
 		cin >> name >> code;
 		tmp = new LoanBookData;
@@ -75,6 +76,11 @@ int main()
 		cout << "failed" << endl;
 	if (!(seltree.printBookData(700)))
 		cout << "failed" << endl;
+	seltree.Delete();
+	seltree.Delete();
+	seltree.Delete();
+	seltree.Delete();
+	seltree.Delete();
 	seltree.Delete();
 	seltree.Delete();
 	if (!(seltree.printBookData(000)))

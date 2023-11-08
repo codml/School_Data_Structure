@@ -30,7 +30,7 @@ void LoanBookHeap::heapifyDown(LoanBookHeapNode* pN) {
             v.at((v.size() - 1) / 2)->setRightChild(NULL);
         else
             v.at((v.size() - 1) / 2)->setLeftChild(NULL);
-        // delete v.at(v.size() - 1)
+        // delete v.at(v.size() - 1);
         v.pop_back();
     }
 	left = pN->getLeftChild();
