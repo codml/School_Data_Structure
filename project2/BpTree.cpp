@@ -20,7 +20,12 @@ void BpTree::splitDataNode(BpTreeNode* pDataNode) {
 }
 
 void BpTree::splitIndexNode(BpTreeNode* pIndexNode) {
-	
+	auto begin = pIndexNode->getIndexMap()->begin();
+	auto mid = ++(pIndexNode->getIndexMap()->begin());
+	auto end = pIndexNode->getIndexMap()->end();
+
+	string key = mid->first;
+	BpTreeNode* pair = pIndexNode->getIndexMap()->at(key);
 }
 
 BpTreeNode* BpTree::searchDataNode(string name) {
