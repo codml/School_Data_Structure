@@ -21,10 +21,7 @@ public:
         this->v.push_back(NULL);
     };
     ~LoanBookHeap() {
-        int size;
-
-		size = v.size();
-		for (int i = 0; i < size; i++)
+		for (int i = 1; i < v.size(); i++)
         {
             if (v.at(i))
                 delete v.at(i);

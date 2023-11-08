@@ -1,10 +1,8 @@
 #include "SelectionTree.h"
 
-bool SelectionTree::Setting() {
+void SelectionTree::Setting() {
     SelectionTreeNode *node;
 
-    if (root != NULL)
-        return false;
     node = new SelectionTreeNode;
     root = node;
     v.push_back(node);
@@ -18,7 +16,6 @@ bool SelectionTree::Setting() {
         node->setParent(v.at(v.size() / 2));
         v.push_back(node);
     }
-    return true;
 }
 
 void SelectionTree::reSort(SelectionTreeNode* node) // need to fix!!!
@@ -32,20 +29,19 @@ void SelectionTree::reSort(SelectionTreeNode* node) // need to fix!!!
             sib = cur->getParent()->getRightChild();
         else
             sib = cur->getParent()->getLeftChild();
-        if (cur->getBookData() || sib->getBookData())
+        if (!(cur->getBookData()) && !(sib->getBookData()))
+            cur->getParent()->setBookData(NULL);
+        else if (cur->getBookData() && sib->getBookData())
         {
-            if (cur->getBookData() && sib->getBookData())
-            {
-                if (cur->getBookData()->getName() < sib->getBookData()->getName())
-                    cur->getParent()->setBookData(cur->getBookData());
-                else
-                    sib->getParent()->setBookData(sib->getBookData());
-            }
-            else if (cur->getBookData())
+            if (cur->getBookData()->getName() < sib->getBookData()->getName())
                 cur->getParent()->setBookData(cur->getBookData());
             else
                 sib->getParent()->setBookData(sib->getBookData());
         }
+        else if (cur->getBookData())
+            cur->getParent()->setBookData(cur->getBookData());
+        else
+            sib->getParent()->setBookData(sib->getBookData());
         cur = cur->getParent();
     }
 }

@@ -16,7 +16,7 @@ int main()
 	string name;
 	int code, num;
 
-	seltree.Setting();
+	cout << "num: ";
 	cin >> num;
 	for (int i = 0; i < num; i++)
 	{
