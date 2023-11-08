@@ -3,7 +3,6 @@
 #include "LoanBookData.h"
 #include "LoanBookHeapNode.h"
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
@@ -12,8 +11,6 @@ class LoanBookHeap
 private:
     LoanBookHeapNode* root;
     vector <LoanBookHeapNode *> v;
-
-    //bool compare(LoanBookHeapNode* a, LoanBookHeapNode* b);
 
 public:
     LoanBookHeap() {

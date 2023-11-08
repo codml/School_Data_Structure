@@ -50,20 +50,23 @@ void LoanBookHeap::heapifyDown(LoanBookHeapNode* pN) {
 	heapifyDown(child);
 }
 
-bool compare(LoanBookHeapNode *a, LoanBookHeapNode *b)
-{
-    if (a == NULL)
-        return true;
-    if (b == NULL)
-        return false;
-    return a->getBookData()->getName() < b->getBookData()->getName();
-}
-
 vector <LoanBookHeapNode *> *LoanBookHeap::sortV()
 {
     vector <LoanBookHeapNode *> *cpV = new vector <LoanBookHeapNode *> (this->v);
+    LoanBookHeapNode *tmp;
 
-    sort(cpV->begin(), cpV->end(), compare);
+    for (int i = 0; i < cpV->size() - 1; i++)
+    {
+        for (int j = 1; j < cpV->size() - 1 - i; j++)
+        {
+            if (cpV->at(j)->getBookData()->getName() > cpV->at(j + 1)->getBookData()->getName())
+            {
+                tmp = cpV->at(j);
+                (*cpV)[j] = cpV->at(j + 1);
+                (*cpV)[j + 1] = tmp;
+            }
+        }
+    }
     return cpV;
 }
 
