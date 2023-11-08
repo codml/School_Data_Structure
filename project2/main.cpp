@@ -41,11 +41,40 @@ int main()
 	if (!(seltree.printBookData(700)))
 		cout << "failed" << endl;
 	seltree.Delete();
+	if (!(seltree.printBookData(000)))
+		cout << "failed" << endl;
+	if (!(seltree.printBookData(100)))
+		cout << "failed" << endl;
+	if (!(seltree.printBookData(200)))
+		cout << "failed" << endl;
+	if (!(seltree.printBookData(300)))
+		cout << "failed" << endl;
+	if (!(seltree.printBookData(400)))
+		cout << "failed" << endl;
+	if (!(seltree.printBookData(500)))
+		cout << "failed" << endl;
+	if (!(seltree.printBookData(600)))
+		cout << "failed" << endl;
+	if (!(seltree.printBookData(700)))
+		cout << "failed" << endl;
 	seltree.Delete();
 	seltree.Delete();
-	seltree.Delete();
-	seltree.Delete();
-	seltree.Delete();
+	if (!(seltree.printBookData(000)))
+		cout << "failed" << endl;
+	if (!(seltree.printBookData(100)))
+		cout << "failed" << endl;
+	if (!(seltree.printBookData(200)))
+		cout << "failed" << endl;
+	if (!(seltree.printBookData(300)))
+		cout << "failed" << endl;
+	if (!(seltree.printBookData(400)))
+		cout << "failed" << endl;
+	if (!(seltree.printBookData(500)))
+		cout << "failed" << endl;
+	if (!(seltree.printBookData(600)))
+		cout << "failed" << endl;
+	if (!(seltree.printBookData(700)))
+		cout << "failed" << endl;
 	seltree.Delete();
 	seltree.Delete();
 	if (!(seltree.printBookData(000)))

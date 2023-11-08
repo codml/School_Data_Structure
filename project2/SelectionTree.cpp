@@ -34,7 +34,7 @@ LoanBookData* SelectionTree::reSort(SelectionTreeNode* node) // need to fix!!!
         node->setBookData(node->getHeap()->getRoot()->getBookData());
         return node->getBookData();
     }
-    if (!left || !right)
+    if (left || right)
     {
         if (left && right)
         {
