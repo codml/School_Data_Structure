@@ -2,10 +2,27 @@
 
 void SelectionTree::Setting() {
     SelectionTreeNode *node;
+    pair <SelectionTreeNode *, SelectionTreeNode* > p;
+    queue <pair <SelectionTreeNode*, SelectionTreeNode* > > q;
 
-    node = new SelectionTreeNode;
-
-    
+    root = new SelectionTreeNode;
+    for (int i = 2; i < 32; i++)
+    {
+        node = new SelectionTreeNode;
+        p = {NULL, root};
+        while (p.second)
+        {
+            q.push(make_pair(p.second, p.second->getLeftChild()));
+            q.push(make_pair(p.second, p.second->getRightChild()));
+            p = q.front();
+            q.pop();
+        }
+        if (p.first->getLeftChild())
+            p.first->setRightChild(node);
+        else
+            p.first->setLeftChild(node);
+        node->setParent(p.first);
+    }
     // root = node;
     // v.push_back(node);
     // for (int i = 2; i < 16; i++)
@@ -18,6 +35,31 @@ void SelectionTree::Setting() {
     //     node->setParent(v.at(v.size() / 2));
     //     v.push_back(node);
     // }
+}
+
+SelectionTreeNode* SelectionTree::returnIdx(int code)
+{
+    switch (code)
+    {
+    case 0:
+        return root->getLeftChild()->getLeftChild()->getLeftChild();
+    case 100:
+        return root->getLeftChild()->getLeftChild()->getRightChild();
+    case 200:
+        return root->getLeftChild()->getRightChild()->getLeftChild();
+    case 300:
+        return root->getLeftChild()->getRightChild()->getRightChild();
+    case 400:
+        return root->getRightChild()->getLeftChild()->getLeftChild();
+    case 500:
+        return root->getRightChild()->getLeftChild()->getRightChild();
+    case 600:
+        return root->getRightChild()->getRightChild()->getLeftChild();
+    case 700:
+        return root->getRightChild()->getRightChild()->getRightChild();
+    default:
+        return NULL;
+    }
 }
 
 void SelectionTree::reSort(SelectionTreeNode* node) // need to fix!!!
@@ -49,59 +91,59 @@ void SelectionTree::reSort(SelectionTreeNode* node) // need to fix!!!
 }
 
 bool SelectionTree::Insert(LoanBookData* newData) {
-    int idx;
-    LoanBookHeap *tmp;
+    LoanBookHeap        *tmp;
+    SelectionTreeNode   *idx;
 
-    idx = (newData->getCode() / 100) + 8;
-    if (v.at(idx)->getHeap() == NULL)
+    idx = returnIdx(newData->getCode());
+    if (idx->getHeap() == NULL)
     {
         tmp = new LoanBookHeap;
         tmp->Insert(newData);
-        v.at(idx)->setHeap(tmp);
+        idx->setHeap(tmp);
     }
     else
-        v.at(idx)->getHeap()->Insert(newData);
-    v.at(idx)->setBookData(v.at(idx)->getHeap()->getRoot()->getBookData());
-    reSort(v.at(idx));
+        idx->getHeap()->Insert(newData);
+    idx->setBookData(idx->getHeap()->getRoot()->getBookData());
+    reSort(idx);
     return true;
 }
 
 bool SelectionTree::Delete() {
-    int idx;
+    SelectionTreeNode   *idx;
     
     if (root->getBookData() == NULL)
         return false;
-    idx = (root->getBookData()->getCode() / 100) + 8;
-    v.at(idx)->getHeap()->heapifyDown(v.at(idx)->getHeap()->getRoot());
-    if (v.at(idx)->getHeap()->getRoot() == NULL)
+    idx = returnIdx(root->getBookData()->getCode());
+    idx->getHeap()->heapifyDown(idx->getHeap()->getRoot());
+    if (idx->getHeap()->getRoot() == NULL)
     {
-        delete v.at(idx)->getHeap();
-        v.at(idx)->setBookData(NULL);
-        v.at(idx)->setHeap(NULL);
+        delete idx->getHeap();
+        idx->setBookData(NULL);
+        idx->setHeap(NULL);
     }
     else
-        v.at(idx)->setBookData(v.at(idx)->getHeap()->getRoot()->getBookData());
-    reSort(v.at(idx));
+        idx->setBookData(idx->getHeap()->getRoot()->getBookData());
+    reSort(idx);
     return true;
 }
 
 bool SelectionTree::printBookData(int bookCode) {
-    int idx;
-    vector <LoanBookHeapNode *> *pv;
+    map <string, LoanBookData *> copyHeap;
+    SelectionTreeNode   *idx;
 
-    idx = bookCode / 100 + 8;
-    if (v.at(idx)->getHeap() == NULL)
+    idx = returnIdx(bookCode);
+    if (idx->getHeap() == NULL)
         return false;
-    pv = v.at(idx)->getHeap()->sortV();
+    PreorderHeap(idx->getHeap()->getRoot(), copyHeap);
     cout << endl << endl;
-    for (int i = 1; i < pv->size(); i++)
+    for (auto itr = copyHeap.begin(); itr != copyHeap.end(); itr++)
     {
         // *fout
-        cout << pv->at(i)->getBookData()->getName() << "/" << pv->at(i)->getBookData()->getCode() << "/"
-            << pv->at(i)->getBookData()->getAuthor() << "/" << pv->at(i)->getBookData()->getYear() << "/"
-            << pv->at(i)->getBookData()->getLoanCount() << endl;
+        cout << itr->second->getName() << "/" << itr->second->getCode() << "/"
+            << itr->second->getAuthor() << "/" << itr->second->getYear() << "/"
+            << itr->second->getLoanCount() << endl;
+        // ====SEARCH ST==== exception, 000 exception need!!!
     }
     cout << endl << endl;
-    delete pv;
     return true;
 }

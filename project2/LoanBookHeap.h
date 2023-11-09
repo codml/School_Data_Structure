@@ -2,7 +2,6 @@
 #define _LOANBOOKHEAP_H_
 #include "LoanBookData.h"
 #include "LoanBookHeapNode.h"
-#include <vector>
 #include <queue>
 #include <utility>
 
@@ -12,25 +11,26 @@ class LoanBookHeap
 {
 private:
     LoanBookHeapNode* root;
-    vector <LoanBookHeapNode *> v;
+    void    PostorderDelete(LoanBookHeapNode *node)
+    {
+        if (node)
+        {
+            PostorderDelete(node->getLeftChild());
+            PostorderDelete(node->getRightChild());
+            delete node;
+        }
+    }
 
 public:
     LoanBookHeap() {
         this->root = NULL;
-        this->v.push_back(NULL);
     };
     ~LoanBookHeap() {
-		for (int i = 1; i < v.size(); i++)
-        {
-            if (v.at(i))
-                delete v.at(i);
-        }
+		PostorderDelete(root);
     }
     
     void setRoot(LoanBookHeapNode* pN) { this->root = pN; }
     LoanBookHeapNode* getRoot() { return root; }
-
-    vector <LoanBookHeapNode *> *sortV();
 
     void heapifyUp(LoanBookHeapNode* pN);
     void heapifyDown(LoanBookHeapNode* pN);

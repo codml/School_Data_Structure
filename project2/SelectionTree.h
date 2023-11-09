@@ -4,7 +4,8 @@
 
 #include <fstream>
 #include <iostream>
-#include <vector>
+#include <map>
+#include <utility>
 
 using namespace std;
 
@@ -13,23 +14,37 @@ class SelectionTree
 private:
     SelectionTreeNode* root;
     ofstream* fout;
-    vector <SelectionTreeNode *> v;
+
     void Setting();
+    SelectionTreeNode* returnIdx(int code);
     void reSort(SelectionTreeNode* node);
+    void PreorderHeap(LoanBookHeapNode* node, map <string, LoanBookData *> &heap)
+    {
+        if (node)
+        {
+            heap.insert(map<string, LoanBookData*>::value_type(node->getBookData()->getName(), node->getBookData()));
+            PreorderHeap(node->getLeftChild(), heap);
+            PreorderHeap(node->getRightChild(), heap);
+        }
+    }
+    void    PostorderDelete(SelectionTreeNode *node)
+    {
+        if (node)
+        {
+            PostorderDelete(node->getLeftChild());
+            PostorderDelete(node->getRightChild());
+            delete node;
+        }
+    }
 
 public:
     SelectionTree(ofstream* fout) {
         this->root = NULL;
         this->fout = fout;
-        this->v.push_back(NULL);
         Setting();
     }
     ~SelectionTree() {
-		for (int i = 1; i < v.size(); i++)
-        {
-            if (v.at(i))
-                delete v.at(i);
-        }
+		PostorderDelete(root);
     }
 
     void setRoot(SelectionTreeNode* pN) { this->root = pN; }

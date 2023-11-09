@@ -12,27 +12,37 @@ void LoanBookHeap::heapifyUp(LoanBookHeapNode* pN) {
 }
 
 void LoanBookHeap::heapifyDown(LoanBookHeapNode* pN) {
-    LoanBookData	*tmp;
-	LoanBookHeapNode *left, *right, *child;
+    LoanBookData                *tmp;
+	LoanBookHeapNode            *left, *right, *child;
+    LoanBookHeapNode            *last, *parent;
+    queue<LoanBookHeapNode *>   q;
 
     if (pN == root)
     {
-        if (v.size() - 1 == 1)
+        if (root->getLeftChild() == NULL && root->getRightChild() == NULL)
         {
             delete root;
             root = 0;
-            v.pop_back();
             return;
         }
+        last = root;
+        while (last)
+        {
+            q.push(last->getLeftChild());
+            q.push(last->getRightChild());
+            if (!q.front())
+                break;
+            last = q.front();
+            q.pop();
+        }
         tmp = root->getBookData();
-        root->setBookData(v.at(v.size() - 1)->getBookData());
-        v.at(v.size() - 1)->setBookData(tmp);
-        if ((v.size() - 1) % 2)
-            v.at((v.size() - 1) / 2)->setRightChild(NULL);
+        root->setBookData(last->getBookData());
+        last->setBookData(tmp);
+        if (last->getParent()->getRightChild())
+            last->getParent()->setRightChild(NULL);
         else
-            v.at((v.size() - 1) / 2)->setLeftChild(NULL);
-        delete v.at(v.size() - 1);
-        v.pop_back();
+            last->getParent()->setLeftChild(NULL);
+        delete last;
     }
 	left = pN->getLeftChild();
 	right = pN->getRightChild();
@@ -48,26 +58,6 @@ void LoanBookHeap::heapifyDown(LoanBookHeapNode* pN) {
 	pN->setBookData(child->getBookData());
 	child->setBookData(tmp);
 	heapifyDown(child);
-}
-
-vector <LoanBookHeapNode *> *LoanBookHeap::sortV()
-{
-    vector <LoanBookHeapNode *> *cpV = new vector <LoanBookHeapNode *> (this->v);
-    LoanBookHeapNode *tmp;
-
-    for (int i = 0; i < cpV->size() - 1; i++)
-    {
-        for (int j = 1; j < cpV->size() - 1 - i; j++)
-        {
-            if (cpV->at(j)->getBookData()->getName() > cpV->at(j + 1)->getBookData()->getName())
-            {
-                tmp = cpV->at(j);
-                (*cpV)[j] = cpV->at(j + 1);
-                (*cpV)[j + 1] = tmp;
-            }
-        }
-    }
-    return cpV;
 }
 
 // bool LoanBookHeap::Insert(LoanBookData* data) {
@@ -93,7 +83,8 @@ vector <LoanBookHeapNode *> *LoanBookHeap::sortV()
 
 bool LoanBookHeap::Insert(LoanBookData* data) {
     LoanBookHeapNode    *node;
-    queue <pair <LoanBookData *, LoanBookData* > > q;
+    queue <pair <LoanBookHeapNode *, LoanBookHeapNode * > > q;
+    pair <LoanBookHeapNode*, LoanBookHeapNode *> p;
 
     node = new LoanBookHeapNode;
     node->setBookData(data);
@@ -102,7 +93,19 @@ bool LoanBookHeap::Insert(LoanBookData* data) {
         root = node;
         return true;
     }
-    
+    p = {NULL, root};
+    while (p.second)
+    {
+        q.push(make_pair(p.second, p.second->getLeftChild()));
+        q.push(make_pair(p.second, p.second->getRightChild()));
+        p = q.front();
+        q.pop();
+    }
+    if (p.first->getLeftChild())
+        p.first->setRightChild(node);
+    else
+        p.first->setLeftChild(node);
+    node->setParent(p.first);
     heapifyUp(node);
     return true;
 }
