@@ -7,8 +7,6 @@
 #include <fstream>
 #include <iostream>
 
-#include <typeinfo>
-
 using namespace std;
 
 class BpTree {
