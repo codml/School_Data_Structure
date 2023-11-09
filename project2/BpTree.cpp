@@ -5,11 +5,8 @@ bool BpTree::Insert(LoanBookData* newData) {
 
 	if (root == NULL)
 	{
-		root = new BpTreeIndexNode;
-		BpTreeNode *data = new BpTreeDataNode;
-		data->setParent(root);
-		data->insertDataMap(newData->getName(), newData);
-		root->insertIndexMap(newData->getName(), data);
+		root = new BpTreeDataNode;
+		root->insertDataMap(newData->getName(), newData);
 		return true;
 	}
 	for (ptr = root; ptr->getMostLeftChild(); ptr = next)
@@ -26,11 +23,11 @@ bool BpTree::Insert(LoanBookData* newData) {
 	{
 		splitDataNode(ptr);
 		ptr = ptr->getParent();
-	}
-	while (excessIndexNode(ptr))
-	{
-		splitIndexNode(ptr);
-		ptr = ptr->getParent();
+		while (excessIndexNode(ptr))
+		{
+			splitIndexNode(ptr);
+			ptr = ptr->getParent();
+		}
 	}
 	return true;
 }
@@ -53,6 +50,13 @@ void BpTree::splitDataNode(BpTreeNode* pDataNode) {
 	BpTreeNode *third = new BpTreeDataNode;
 	third->insertDataMap(mid->first, mid->second);
 	third->insertDataMap(end->first, end->second);
+	if (!pDataNode->getParent())
+	{
+		BpTreeNode *parent = new BpTreeIndexNode;
+		parent->setMostLeftChild(pDataNode);
+		pDataNode->setParent(parent);
+		root = parent;
+	}
 	third->setParent(pDataNode->getParent());
 	pDataNode->getParent()->insertIndexMap(mid->first, third);
 
@@ -73,31 +77,98 @@ void BpTree::splitIndexNode(BpTreeNode* pIndexNode) {
 	mid->second->setParent(third);
 	third->insertIndexMap(end->first, end->second);
 	end->second->setParent(third);
-	if (pIndexNode->getParent())
-		pIndexNode->getParent()->insertIndexMap(mid->first, third);
-	else
+	if (!pIndexNode->getParent())
 	{
 		BpTreeNode *parent = new BpTreeIndexNode;
 		parent->setMostLeftChild(pIndexNode);
 		pIndexNode->setParent(parent);
-		parent->insertIndexMap(mid->first, third);
 		root = parent; // think twice...
 	}
+	pIndexNode->getParent()->insertIndexMap(mid->first, third);
 	third->setParent(pIndexNode->getParent());
+	
 	pIndexNode->deleteMap(mid->first);
 	pIndexNode->deleteMap(end->first);
 }
 
 BpTreeNode* BpTree::searchDataNode(string name) {
 	BpTreeNode* pCur = root;
-	
-	return pCur;
+	BpTreeNode* next;
+
+	for (pCur = root; pCur->getMostLeftChild(); pCur = next)
+	{
+		if (pCur->getIndexMap()->begin()->first > name)
+			next = pCur->getMostLeftChild();
+		else if (pCur->getIndexMap()->rbegin()->first <= name)
+			next = pCur->getIndexMap()->rbegin()->second;
+		else
+			next = pCur->getIndexMap()->begin()->second;
+	}
+	if (pCur->getDataMap()->find(name) != pCur->getDataMap()->end())
+		return pCur;
+	else
+		return NULL;
 }
 
 bool BpTree::searchBook(string name) {
+	BpTreeNode* pCur = root;
+	BpTreeNode* next;
 
+	for (pCur = root; pCur->getMostLeftChild(); pCur = next)
+	{
+		if (pCur->getIndexMap()->begin()->first > name)
+			next = pCur->getMostLeftChild();
+		else if (pCur->getIndexMap()->rbegin()->first <= name)
+			next = pCur->getIndexMap()->rbegin()->second;
+		else
+			next = pCur->getIndexMap()->begin()->second;
+	}
+	if (pCur->getDataMap()->find(name) != pCur->getDataMap()->end())
+	{
+		cout << pCur->getDataMap()->find(name)->second->getName() << "/"
+			<< pCur->getDataMap()->find(name)->second->getCode() << "/"
+			<< pCur->getDataMap()->find(name)->second->getAuthor() << "/"
+			<< pCur->getDataMap()->find(name)->second->getYear() << "/"
+			<< pCur->getDataMap()->find(name)->second->getLoanCount() << endl;
+		return true;
+	}
+	else
+		return false;
 }
 
 bool BpTree::searchRange(string start, string end) {
-	
+	BpTreeNode* pCur = root;
+	BpTreeNode* next;
+	bool flag = false;
+
+	for (pCur = root; pCur->getMostLeftChild(); pCur = next)
+	{
+		if (pCur->getIndexMap()->begin()->first > start)
+			next = pCur->getMostLeftChild();
+		else if (pCur->getIndexMap()->rbegin()->first <= start)
+			next = pCur->getIndexMap()->rbegin()->second;
+		else
+			next = pCur->getIndexMap()->begin()->second;
+	}
+	for (auto itr = pCur->getDataMap()->begin(); itr == pCur->getDataMap()->end() || itr->first <= end; itr++)
+	{
+		if (itr == pCur->getDataMap()->end())
+		{
+			pCur = pCur->getNext();
+			if (!pCur)
+				break;
+			itr = pCur->getDataMap()->begin();
+		}
+		if (itr->first >= start && itr->first <= end)
+		{
+			cout << itr->second->getName() << "/"
+			<< itr->second->getCode() << "/"
+			<< itr->second->getAuthor() << "/"
+			<< itr->second->getYear() << "/"
+			<< itr->second->getLoanCount() << endl;
+			if (!flag)
+				flag = true;
+		}
+	}
+	return flag;
 }

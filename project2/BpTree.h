@@ -7,6 +7,10 @@
 #include <fstream>
 #include <iostream>
 
+#include <typeinfo>
+
+using namespace std;
+
 class BpTree {
 private:
 	BpTreeNode* root;
@@ -18,7 +22,10 @@ public:
 		this->order = order;
 		this->fout = fout;
 	}
-	~BpTree();
+	~BpTree()
+	{
+
+	}
 	/* essential */
 	bool		Insert(LoanBookData* newData);
 	bool		excessDataNode(BpTreeNode* pDataNode);

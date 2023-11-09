@@ -11,93 +11,26 @@ using namespace std;
 int main()
 {
 	ofstream fout;
-	SelectionTree seltree(&fout);
-	LoanBookData *tmp;
-	string name;
-	int code, num;
+	BpTree btree(&fout);
+	string name, author;
+	int code, year, num;
 
-	cout << "num: ";
+	cout << "test num: ";
 	cin >> num;
 	for (int i = 0; i < num; i++)
 	{
-		cin >> name >> code;
-		tmp = new LoanBookData;
-		tmp->setBookData(name, code, "a", 2000);
-		seltree.Insert(tmp);
+		cin >> name >> code >> author >> year;
+		LoanBookData *tmp = new LoanBookData;
+		tmp->setBookData(name, code, author, year);
+		btree.Insert(tmp);
 	}
-	if (!(seltree.printBookData(000)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(100)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(200)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(300)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(400)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(500)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(600)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(700)))
-		cout << "failed" << endl;
-	seltree.Delete();
-	if (!(seltree.printBookData(000)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(100)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(200)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(300)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(400)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(500)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(600)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(700)))
-		cout << "failed" << endl;
-	seltree.Delete();
-	seltree.Delete();
-	if (!(seltree.printBookData(000)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(100)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(200)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(300)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(400)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(500)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(600)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(700)))
-		cout << "failed" << endl;
-	seltree.Delete();
-	seltree.Delete();
-	seltree.Delete();
-	seltree.Delete();
-	seltree.Delete();
-	seltree.Delete();
-	seltree.Delete();
-	if (!(seltree.printBookData(000)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(100)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(200)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(300)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(400)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(500)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(600)))
-		cout << "failed" << endl;
-	if (!(seltree.printBookData(700)))
-		cout << "failed" << endl;
+	do
+	{
+		cout << "search name: ";
+		cin >> name;
+	} while (btree.searchBook(name));
+	cout << "search range(insert two people's name): ";
+	cin >> name >> author;
+	btree.searchRange(name, author);
 	return 0;
 }
