@@ -4,18 +4,20 @@ void SelectionTree::Setting() {
     SelectionTreeNode *node;
 
     node = new SelectionTreeNode;
-    root = node;
-    v.push_back(node);
-    for (int i = 2; i < 16; i++)
-    {
-        node = new SelectionTreeNode;
-        if (v.size() % 2)
-            v.at(v.size() / 2)->setRightChild(node);
-        else
-            v.at(v.size() / 2)->setLeftChild(node);
-        node->setParent(v.at(v.size() / 2));
-        v.push_back(node);
-    }
+
+    
+    // root = node;
+    // v.push_back(node);
+    // for (int i = 2; i < 16; i++)
+    // {
+    //     node = new SelectionTreeNode;
+    //     if (v.size() % 2)
+    //         v.at(v.size() / 2)->setRightChild(node);
+    //     else
+    //         v.at(v.size() / 2)->setLeftChild(node);
+    //     node->setParent(v.at(v.size() / 2));
+    //     v.push_back(node);
+    // }
 }
 
 void SelectionTree::reSort(SelectionTreeNode* node) // need to fix!!!

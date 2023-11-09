@@ -3,6 +3,8 @@
 #include "LoanBookData.h"
 #include "LoanBookHeapNode.h"
 #include <vector>
+#include <queue>
+#include <utility>
 
 using namespace std;
 
