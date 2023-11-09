@@ -53,33 +53,57 @@ int main()
 		tmp->setBookData(name, code, "taewanki", 2000);
 		st.Insert(tmp);
 	}
-	st.printBookData(0);
-	st.printBookData(100);
-	st.printBookData(200);
-	st.printBookData(300);
-	st.printBookData(400);
-	st.printBookData(500);
-	st.printBookData(600);
-	st.printBookData(700);
+	if (!st.printBookData(0))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(100))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(200))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(300))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(400))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(500))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(600))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(700))
+		cout << endl << endl << "NONE" << endl << endl;
 	st.Delete();
-	st.printBookData(0);
-	st.printBookData(100);
-	st.printBookData(200);
-	st.printBookData(300);
-	st.printBookData(400);
-	st.printBookData(500);
-	st.printBookData(600);
-	st.printBookData(700);
+	if (!st.printBookData(0))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(100))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(200))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(300))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(400))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(500))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(600))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(700))
+		cout << endl << endl << "NONE" << endl << endl;
 	st.Delete();
 	st.Delete();
-	st.printBookData(0);
-	st.printBookData(100);
-	st.printBookData(200);
-	st.printBookData(300);
-	st.printBookData(400);
-	st.printBookData(500);
-	st.printBookData(600);
-	st.printBookData(700);
+	if (!st.printBookData(0))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(100))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(200))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(300))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(400))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(500))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(600))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(700))
+		cout << endl << endl << "NONE" << endl << endl;
 	st.Delete();
 	st.Delete();
 	st.Delete();
@@ -88,13 +112,21 @@ int main()
 	st.Delete();
 	st.Delete();
 	st.Delete();
-	st.printBookData(0);
-	st.printBookData(100);
-	st.printBookData(200);
-	st.printBookData(300);
-	st.printBookData(400);
-	st.printBookData(500);
-	st.printBookData(600);
-	st.printBookData(700);
+	if (!st.printBookData(0))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(100))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(200))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(300))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(400))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(500))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(600))
+		cout << endl << endl << "NONE" << endl << endl;
+	if (!st.printBookData(700))
+		cout << endl << endl << "NONE" << endl << endl;
 	return 0;
 }

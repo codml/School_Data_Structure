@@ -3,13 +3,13 @@
 void SelectionTree::Setting() {
     SelectionTreeNode *node;
     pair <SelectionTreeNode *, SelectionTreeNode* > p;
-    queue <pair <SelectionTreeNode*, SelectionTreeNode* > > q;
 
     root = new SelectionTreeNode;
-    for (int i = 2; i < 32; i++)
+    for (int i = 2; i < 16; i++)
     {
         node = new SelectionTreeNode;
         p = {NULL, root};
+        queue <pair <SelectionTreeNode*, SelectionTreeNode* > > q;
         while (p.second)
         {
             q.push(make_pair(p.second, p.second->getLeftChild()));
