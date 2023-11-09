@@ -24,8 +24,19 @@ void BpTree::splitIndexNode(BpTreeNode* pIndexNode) {
 	auto mid = ++(pIndexNode->getIndexMap()->begin());
 	auto end = pIndexNode->getIndexMap()->end();
 
-	string key = mid->first;
-	BpTreeNode* pair = pIndexNode->getIndexMap()->at(key);
+	BpTreeNode *third = new BpTreeIndexNode;
+	third->setMostLeftChild(mid->second);
+	third->insertIndexMap(end->first, end->second);
+	third->setParent(pIndexNode->getParent());
+	if (pIndexNode->getParent())
+		pIndexNode->getParent()->insertIndexMap(mid->first, third);
+	else
+	{
+		BpTreeNode *parent = new BpTreeIndexNode;
+		parent->setMostLeftChild(pIndexNode);
+		parent->insertIndexMap(mid->first, third); // need to fix
+	}
+	third->setParent(pIndexNode->getParent());
 }
 
 BpTreeNode* BpTree::searchDataNode(string name) {
