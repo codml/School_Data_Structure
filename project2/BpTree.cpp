@@ -125,11 +125,13 @@ bool BpTree::searchBook(string name) {
 	}
 	if (pCur->getDataMap()->find(name) != pCur->getDataMap()->end())
 	{
+		*fout << "========SEARCH_BP========" << endl;
 		*fout << pCur->getDataMap()->find(name)->second->getName() << "/"
 			<< pCur->getDataMap()->find(name)->second->getCode() << "/"
 			<< pCur->getDataMap()->find(name)->second->getAuthor() << "/"
 			<< pCur->getDataMap()->find(name)->second->getYear() << "/"
 			<< pCur->getDataMap()->find(name)->second->getLoanCount() << endl;
+		*fout << "========================" << endl;
 		return true;
 	}
 	else
@@ -158,7 +160,7 @@ bool BpTree::searchRange(string start, string end) {
 		{
 			if (!flagS)
 			{
-				*fout << "========SEARCH" << start << " " << end << "========" << endl;
+				*fout << "========SEARCH_BP========" << endl;
 				flagS = true;
 			}	
 			*fout << itr->second->getName() << "/"

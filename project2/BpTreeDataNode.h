@@ -15,7 +15,8 @@ public:
 		pPrev = NULL;
 	}
 	virtual ~BpTreeDataNode() {
-
+		for (auto itr = mapData.begin(); itr != mapData.end(); itr++)
+			delete itr->second;
 	}
 
 	void setNext(BpTreeNode* pN) { pNext = pN; }
