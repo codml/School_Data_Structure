@@ -23,18 +23,6 @@ void SelectionTree::Setting() {
             p.first->setLeftChild(node);
         node->setParent(p.first);
     }
-    // root = node;
-    // v.push_back(node);
-    // for (int i = 2; i < 16; i++)
-    // {
-    //     node = new SelectionTreeNode;
-    //     if (v.size() % 2)
-    //         v.at(v.size() / 2)->setRightChild(node);
-    //     else
-    //         v.at(v.size() / 2)->setLeftChild(node);
-    //     node->setParent(v.at(v.size() / 2));
-    //     v.push_back(node);
-    // }
 }
 
 SelectionTreeNode* SelectionTree::returnIdx(int code)
@@ -62,7 +50,7 @@ SelectionTreeNode* SelectionTree::returnIdx(int code)
     }
 }
 
-void SelectionTree::reSort(SelectionTreeNode* node) // need to fix!!!
+void SelectionTree::reSort(SelectionTreeNode* node)
 {
     SelectionTreeNode *sib, *cur;
 
@@ -72,7 +60,7 @@ void SelectionTree::reSort(SelectionTreeNode* node) // need to fix!!!
         if (cur->getParent()->getLeftChild() == cur)
             sib = cur->getParent()->getRightChild();
         else
-            sib = cur->getParent()->getLeftChild();
+            sib = cur->getParent()->getLeftChild(); // choose sibling which is cur's rival
         if (!(cur->getBookData()) && !(sib->getBookData()))
             cur->getParent()->setBookData(NULL);
         else if (cur->getBookData() && sib->getBookData())
@@ -135,15 +123,22 @@ bool SelectionTree::printBookData(int bookCode) {
     if (idx->getHeap() == NULL)
         return false;
     PreorderHeap(idx->getHeap()->getRoot(), copyHeap);
-    cout << endl << endl;
+    *fout << "========PRINT_ST========" << endl;
     for (auto itr = copyHeap.begin(); itr != copyHeap.end(); itr++)
     {
-        // *fout
-        cout << itr->second->getName() << "/" << itr->second->getCode() << "/"
+        if (itr->second->getCode())
+        {
+            *fout << itr->second->getName() << "/" << itr->second->getCode() << "/"
             << itr->second->getAuthor() << "/" << itr->second->getYear() << "/"
             << itr->second->getLoanCount() << endl;
-        // ====SEARCH ST==== exception, 000 exception need!!!
+        }
+        else
+        {
+            *fout << itr->second->getName() << "/" << "000" << "/"
+            << itr->second->getAuthor() << "/" << itr->second->getYear() << "/"
+            << itr->second->getLoanCount() << endl;
+        }
     }
-    cout << endl << endl;
+    *fout << "========================" << endl;
     return true;
 }

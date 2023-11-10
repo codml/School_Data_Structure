@@ -9,7 +9,7 @@ private:
 
 public:
 	BpTreeIndexNode() {};
-	~BpTreeIndexNode() {
+	virtual ~BpTreeIndexNode() {
 
 	};
 

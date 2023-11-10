@@ -14,7 +14,7 @@ public:
 		pNext = NULL;
 		pPrev = NULL;
 	}
-	~BpTreeDataNode() {
+	virtual ~BpTreeDataNode() {
 
 	}
 

@@ -16,7 +16,7 @@ public:
 		pParent = NULL;
 		pMostLeftChild = NULL;
 	}
-	~BpTreeNode() {
+	virtual ~BpTreeNode() {
 
 	}
 

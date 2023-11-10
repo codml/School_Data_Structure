@@ -14,6 +14,21 @@ private:
 	BpTreeNode* root;
 	int			order;		// m children
 	ofstream* fout;
+
+	void    PostorderDelete(BpTreeNode *node)
+    {
+        if (node)
+        {
+            PostorderDelete(node->getMostLeftChild());
+			if (node->getMostLeftChild())
+			{
+				for (auto itr = node->getIndexMap()->begin(); itr != node->getIndexMap()->end(); itr++)
+					PostorderDelete(itr->second);
+			}
+            delete node;
+        }
+    }
+
 public:
 	BpTree(ofstream *fout, int order = 3) {
 		root = NULL;
@@ -22,7 +37,7 @@ public:
 	}
 	~BpTree()
 	{
-
+		PostorderDelete(root);
 	}
 	/* essential */
 	bool		Insert(LoanBookData* newData);

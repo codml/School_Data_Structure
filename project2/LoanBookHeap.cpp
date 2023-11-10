@@ -60,27 +60,6 @@ void LoanBookHeap::heapifyDown(LoanBookHeapNode* pN) {
 	heapifyDown(child);
 }
 
-// bool LoanBookHeap::Insert(LoanBookData* data) {
-//     LoanBookHeapNode    *node;
-
-//     node = new LoanBookHeapNode;
-//     node->setBookData(data);
-//     if (root == NULL)
-//     {
-//         root = node;
-//         v.push_back(node);
-//         return true;
-//     }
-//     if (v.size() % 2)
-//         v.at(v.size() / 2)->setRightChild(node);
-//     else
-//         v.at(v.size() / 2)->setLeftChild(node);
-//     node->setParent(v.at(v.size() / 2));
-//     v.push_back(node);
-//     heapifyUp(node);
-//     return true;
-// }
-
 bool LoanBookHeap::Insert(LoanBookData* data) {
     LoanBookHeapNode    *node;
     queue <pair <LoanBookHeapNode *, LoanBookHeapNode * > > q;
