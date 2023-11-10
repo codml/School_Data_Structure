@@ -60,6 +60,11 @@ void BpTree::splitDataNode(BpTreeNode* pDataNode) {
 	third->setParent(pDataNode->getParent());
 	pDataNode->getParent()->insertIndexMap(mid->first, third);
 
+	if (pDataNode->getNext())
+	{
+		pDataNode->getNext()->setPrev(third);
+		third->setNext(pDataNode->getNext());
+	}
 	pDataNode->setNext(third);
 	third->setPrev(pDataNode);
 

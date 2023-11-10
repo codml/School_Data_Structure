@@ -33,6 +33,7 @@ int main()
 	cout << "search range(insert two people's name): ";
 	cin >> name >> author;
 	btree.searchRange(name, author);
+	fout.close();
 	return 0;
 }
 
