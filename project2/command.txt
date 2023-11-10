@@ -1,1 +1,13 @@
 LOAD
+ADD	oloo	600	Uy	2060
+ADD	hodi	200	Js Hz Ut	1995
+ADD	eskl	0	Ic Rk	2144
+SEARCH_BP	oloo
+SEARCH_BP 	hodi
+SEARCH_BP 	eskl
+SEARCH_BP 	lhtw uvcr
+SEARCH_BP 	bzwn ubqr
+SEARCH_BP 	a	i
+SEARCH_BP 	x	z
+PRINT_BP
+EXIT

@@ -12,9 +12,8 @@ void Manager::run(const char* command)
 		flog << "File Open Error" << endl;
 		return;
 	}
-	while (!fin.eof())
+	while (getline(fin, oneCmd))
 	{
-		getline(fin, oneCmd);
 		if (*oneCmd.rbegin() == '\r')
 			oneCmd.pop_back();
 		if (oneCmd == "LOAD")
@@ -98,9 +97,8 @@ bool Manager::LOAD()
 		return false;
 	if (bptree->getRoot())
 		return false;
-	while (!floan.eof())
+	while (getline(floan, line))
 	{
-		getline(floan, line);
 		if (*line.rbegin() == '\r')
 			line.pop_back();
 		ss << line;
@@ -133,11 +131,15 @@ bool Manager::ADD(string data)
 	ss << data;
 	while(getline(ss, buf, '\t'))
 		v.push_back(buf);
-	if (v.size() != 6)
+	if (v.size() != 5)
 		return false;
 	pdata = new LoanBookData;
-	pdata->setBookData(v.at(1), stoi(v.at(2)), v.at(3), stoi(v.at(4)), stoi(v.at(5)));
+	pdata->setBookData(v.at(1), stoi(v.at(2)), v.at(3), stoi(v.at(4)), 0);
 	bptree->Insert(pdata);
+	flog << "========ADD========" << endl;
+	flog << pdata->getName() << "/" << pdata->getCode() << "/" << pdata->getAuthor()
+		<< "/" << pdata->getYear() << endl;
+	flog << "========================" << endl;
 	return true;
 }
 

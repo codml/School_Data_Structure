@@ -18,6 +18,12 @@ bool BpTree::Insert(LoanBookData* newData) {
 		else
 			next = ptr->getIndexMap()->begin()->second;
 	}
+	if (ptr->getDataMap()->find(newData->getName()) != ptr->getDataMap()->end())
+	{
+		ptr->getDataMap()->find(newData->getName())->second->updateCount();
+		delete newData;
+		return true;
+	}
 	ptr->insertDataMap(newData->getName(), newData);
 	if (excessDataNode(ptr))
 	{

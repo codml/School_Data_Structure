@@ -41,7 +41,8 @@ public:
         
         LoanBookData *tmp = new LoanBookData();
         tmp->setBookData(root->getBookData()->getName(), root->getBookData()->getCode(),
-            root->getBookData()->getAuthor(), root->getBookData()->getYear());
+            root->getBookData()->getAuthor(), root->getBookData()->getYear(),
+            root->getBookData()->getLoanCount());
         copy->setBookData(tmp);
         copy->setParent(root->getParent());
         return copy;
