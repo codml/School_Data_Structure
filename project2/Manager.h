@@ -2,6 +2,12 @@
 #define _MANAGER_H_
 #include "SelectionTree.h"
 #include "BpTree.h"
+#include <fstream>
+#include <vector>
+#include <string>
+#include <sstream>
+
+using namespace std;
 
 class Manager
 {
@@ -12,13 +18,18 @@ private:
 public:
 	Manager(int bpOrder)	//constructor
 	{
-		/* You must fill here */
+		cmd = NULL;
+		bptree = new BpTree(&flog);
+		stree = new SelectionTree(&flog);
+		flog.open("log.txt");
 	}
 
 
 	~Manager()//destructor
 	{
-		/* You must fill here */
+		delete bptree;
+		delete stree;
+		flog.close();
 	}
 
 	ifstream fin;
@@ -27,18 +38,18 @@ public:
 
 	void run(const char* command);
 	bool LOAD();
-	bool ADD();
+	bool ADD(string data);
 
 	bool SEARCH_BP_BOOK(string book);
 	bool SEARCH_BP_RANGE(string start, string end);
 
 	bool PRINT_BP();
-	bool PRINT_ST();
+	bool PRINT_ST(int bookCode);
 
 	bool DELETE();
 
 	void printErrorCode(int n);
-	void printSuccessCode();
+	void printSuccessCode(string code);
 
 };
 
