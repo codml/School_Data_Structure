@@ -125,7 +125,7 @@ bool BpTree::searchBook(string name) {
 	}
 	if (pCur->getDataMap()->find(name) != pCur->getDataMap()->end())
 	{
-		cout << pCur->getDataMap()->find(name)->second->getName() << "/"
+		*fout << pCur->getDataMap()->find(name)->second->getName() << "/"
 			<< pCur->getDataMap()->find(name)->second->getCode() << "/"
 			<< pCur->getDataMap()->find(name)->second->getAuthor() << "/"
 			<< pCur->getDataMap()->find(name)->second->getYear() << "/"
@@ -139,6 +139,7 @@ bool BpTree::searchBook(string name) {
 bool BpTree::searchRange(string start, string end) {
 	BpTreeNode* pCur = root;
 	BpTreeNode* next;
+	bool flagS = false;
 	bool flag = false;
 
 	for (pCur = root; pCur->getMostLeftChild(); pCur = next)
@@ -150,18 +151,17 @@ bool BpTree::searchRange(string start, string end) {
 		else
 			next = pCur->getIndexMap()->begin()->second;
 	}
-	for (auto itr = pCur->getDataMap()->begin(); itr == pCur->getDataMap()->end() || itr->first <= end; itr++)
+	auto itr = pCur->getDataMap()->begin();
+	while (pCur && itr->first <= end)
 	{
-		if (itr == pCur->getDataMap()->end())
+		if (itr->first >= start)
 		{
-			pCur = pCur->getNext();
-			if (!pCur)
-				break;
-			itr = pCur->getDataMap()->begin();
-		}
-		if (itr->first >= start && itr->first <= end)
-		{
-			cout << itr->second->getName() << "/"
+			if (!flagS)
+			{
+				*fout << "========SEARCH" << start << " " << end << "========" << endl;
+				flagS = true;
+			}	
+			*fout << itr->second->getName() << "/"
 			<< itr->second->getCode() << "/"
 			<< itr->second->getAuthor() << "/"
 			<< itr->second->getYear() << "/"
@@ -169,6 +169,16 @@ bool BpTree::searchRange(string start, string end) {
 			if (!flag)
 				flag = true;
 		}
+		itr++;
+		if (itr == pCur->getDataMap()->end())
+		{
+			pCur = pCur->getNext();
+			if (!pCur)
+				break;
+			itr = pCur->getDataMap()->begin();
+		}
 	}
+	if (flag)
+		*fout << "========================" << endl;
 	return flag;
 }

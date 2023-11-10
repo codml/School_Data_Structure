@@ -11,6 +11,7 @@ using namespace std;
 int main()
 {
 	ofstream fout;
+	fout.open("result.txt");
 	BpTree btree(&fout);
 	string name, author;
 	int code, year, num;
