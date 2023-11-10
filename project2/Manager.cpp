@@ -92,7 +92,7 @@ bool Manager::LOAD()
 		return false;
 	while (!floan.eof())
 	{
-
+		
 	}
 	return true;
 }
