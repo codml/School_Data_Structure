@@ -76,6 +76,8 @@ void Manager::run(const char* command)
 			else
 				printErrorCode(600);
 		}
+		else if (oneCmd == "EXIT")
+			break;
 		else
 			printErrorCode(700);
 	}
@@ -85,37 +87,99 @@ void Manager::run(const char* command)
 
 bool Manager::LOAD()
 {
-	ifstream floan;
+	ifstream		floan;
+	LoanBookData	*data;
+	stringstream	ss;
+	string			line, book;
+	vector<string>	v;
 
 	floan.open("loan_book.txt");
 	if (!floan)
 		return false;
+	if (bptree->getRoot())
+		return false;
 	while (!floan.eof())
 	{
-		
+		getline(floan, line);
+		if (*line.rbegin() == '\r')
+			line.pop_back();
+		ss << line;
+		while(getline(ss, book, '\t'))
+			v.push_back(book);
+		if (v.size() != 5)
+		{
+			delete bptree;
+			bptree = new BpTree(&flog);
+			floan.close();
+			return false;
+		}
+		data = new LoanBookData;
+		data->setBookData(v.at(0), stoi(v.at(1)), v.at(2), stoi(v.at(3)), stoi(v.at(4)));
+		bptree->Insert(data);
+		v.clear();
+		ss.clear();
 	}
+	floan.close();
 	return true;
 }
 
 bool Manager::ADD(string data)
 {
-	
+	vector <string>	v;
+	stringstream	ss;
+	string			buf;
+	LoanBookData	*pdata;
+
+	ss << data;
+	while(getline(ss, buf, '\t'))
+		v.push_back(buf);
+	if (v.size() != 6)
+		return false;
+	pdata = new LoanBookData;
+	pdata->setBookData(v.at(1), stoi(v.at(2)), v.at(3), stoi(v.at(4)), stoi(v.at(5)));
+	bptree->Insert(pdata);
 	return true;
 }
 
 bool Manager::SEARCH_BP_BOOK(string book) 
 {
-	
+	return bptree->searchBook(book);
 }
 
 bool Manager::SEARCH_BP_RANGE(string s, string e) 
 {
-	
+	return bptree->searchRange(s, e);
 }
 
 bool Manager::PRINT_BP() 
 {
-	
+	BpTreeNode *tmp;
+
+	if (bptree->getRoot() == NULL)
+		return false;
+	tmp = bptree->getRoot();
+	while (tmp->getMostLeftChild())
+		tmp = tmp->getMostLeftChild();
+	flog << "========PRINT_BP========" << endl;
+	auto itr = tmp->getDataMap()->begin();
+	while (tmp)
+	{	
+		flog << itr->second->getName() << "/"
+		<< itr->second->getCode() << "/"
+		<< itr->second->getAuthor() << "/"
+		<< itr->second->getYear() << "/"
+		<< itr->second->getLoanCount() << endl;
+		itr++;
+		if (itr == tmp->getDataMap()->end())
+		{
+			tmp = tmp->getNext();
+			if (!tmp)
+				break;
+			itr = tmp->getDataMap()->begin();
+		}
+	}
+	flog << "========================" << endl;
+	return true;
 }
 
 bool Manager::PRINT_ST(int bookCode) 

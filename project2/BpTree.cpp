@@ -100,6 +100,8 @@ BpTreeNode* BpTree::searchDataNode(string name) {
 	BpTreeNode* pCur = root;
 	BpTreeNode* next;
 
+	if (root == NULL)
+		return NULL;
 	for (pCur = root; pCur->getMostLeftChild(); pCur = next)
 	{
 		if (pCur->getIndexMap()->begin()->first > name)
@@ -119,6 +121,8 @@ bool BpTree::searchBook(string name) {
 	BpTreeNode* pCur = root;
 	BpTreeNode* next;
 
+	if (root == NULL)
+		return false;
 	for (pCur = root; pCur->getMostLeftChild(); pCur = next)
 	{
 		if (pCur->getIndexMap()->begin()->first > name)
@@ -149,6 +153,8 @@ bool BpTree::searchRange(string start, string end) {
 	bool flagS = false;
 	bool flag = false;
 
+	if (root == NULL)
+		return false;
 	for (pCur = root; pCur->getMostLeftChild(); pCur = next)
 	{
 		if (pCur->getIndexMap()->begin()->first > start)
