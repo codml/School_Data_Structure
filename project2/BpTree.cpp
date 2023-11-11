@@ -2,6 +2,8 @@
 
 bool BpTree::Insert(LoanBookData* newData) {
 	BpTreeNode *ptr, *next;
+	string		name;
+	int			code, loan_count;
 
 	if (root == NULL)
 	{
@@ -20,8 +22,13 @@ bool BpTree::Insert(LoanBookData* newData) {
 	}
 	if (ptr->getDataMap()->find(newData->getName()) != ptr->getDataMap()->end())
 	{
+		name = newData->getName();
+		code = newData->getCode() / 100;
 		ptr->getDataMap()->find(newData->getName())->second->updateCount();
 		delete newData;
+		loan_count = ptr->getDataMap()->find(name)->second->getLoanCount();
+		if (loan_count == 3 + ((code % 5) / 3) - (code / 5))
+			// toss it to Selection Tree
 		return true;
 	}
 	ptr->insertDataMap(newData->getName(), newData);
