@@ -141,10 +141,21 @@ bool Manager::ADD(string data)
 			pdata->updateCount();
 		stree->Insert(pdata);
 	}
-	flog << "========ADD========" << endl;
-	flog << pdata->getName() << "/" << pdata->getCode() << "/" << pdata->getAuthor()
-		<< "/" << pdata->getYear() << endl;
-	flog << "========================" << endl << endl;
+	if (pdata->getCode())
+	{
+		flog << "========ADD========" << endl;
+		flog << pdata->getName() << "/" << pdata->getCode() << "/" << pdata->getAuthor()
+			<< "/" << pdata->getYear() << endl;
+		flog << "========================" << endl << endl;
+	}
+	else
+	{
+		flog << "========ADD========" << endl;
+		flog << pdata->getName() << "/" << "000" << "/" << pdata->getAuthor()
+			<< "/" << pdata->getYear() << endl;
+		flog << "========================" << endl << endl;
+	}
+	
 	return true;
 }
 
@@ -173,11 +184,22 @@ bool Manager::PRINT_BP()
 	{	
 		if (itr->second)
 		{
-			flog << itr->second->getName() << "/"
+			if (itr->second->getCode())
+			{
+				flog << itr->second->getName() << "/"
 				<< itr->second->getCode() << "/"
 				<< itr->second->getAuthor() << "/"
 				<< itr->second->getYear() << "/"
 				<< itr->second->getLoanCount() << endl;
+			}
+			else
+			{
+				flog << itr->second->getName() << "/"
+				<< "000" << "/"
+				<< itr->second->getAuthor() << "/"
+				<< itr->second->getYear() << "/"
+				<< itr->second->getLoanCount() << endl;
+			}
 		}
 		itr++;
 		if (itr == tmp->getDataMap()->end())

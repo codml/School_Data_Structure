@@ -155,11 +155,22 @@ bool BpTree::searchBook(string name) {
 		&& pCur->getDataMap()->find(name)->second)
 	{
 		*fout << "========SEARCH_BP========" << endl;
-		*fout << pCur->getDataMap()->find(name)->second->getName() << "/"
-			<< pCur->getDataMap()->find(name)->second->getCode() << "/"
-			<< pCur->getDataMap()->find(name)->second->getAuthor() << "/"
-			<< pCur->getDataMap()->find(name)->second->getYear() << "/"
-			<< pCur->getDataMap()->find(name)->second->getLoanCount() << endl;
+		if (pCur->getDataMap()->at(name)->getCode())
+		{
+			*fout << pCur->getDataMap()->at(name)->getName() << "/"
+			<< pCur->getDataMap()->at(name)->getCode() << "/"
+			<< pCur->getDataMap()->at(name)->getAuthor() << "/"
+			<< pCur->getDataMap()->at(name)->getYear() << "/"
+			<< pCur->getDataMap()->at(name)->getLoanCount() << endl;
+		}
+		else
+		{
+			*fout << pCur->getDataMap()->at(name)->getName() << "/"
+			<< "000" << "/"
+			<< pCur->getDataMap()->at(name)->getAuthor() << "/"
+			<< pCur->getDataMap()->at(name)->getYear() << "/"
+			<< pCur->getDataMap()->at(name)->getLoanCount() << endl;
+		}
 		*fout << "========================" << endl << endl;
 		return true;
 	}
@@ -193,12 +204,24 @@ bool BpTree::searchRange(string start, string end) {
 			{
 				*fout << "========SEARCH_BP========" << endl;
 				flagS = true;
-			}	
-			*fout << itr->second->getName() << "/"
-			<< itr->second->getCode() << "/"
-			<< itr->second->getAuthor() << "/"
-			<< itr->second->getYear() << "/"
-			<< itr->second->getLoanCount() << endl;
+			}
+			if (itr->second->getCode())
+			{
+				*fout << itr->second->getName() << "/"
+					<< itr->second->getCode() << "/"
+					<< itr->second->getAuthor() << "/"
+					<< itr->second->getYear() << "/"
+					<< itr->second->getLoanCount() << endl;
+			}
+			else
+			{
+				*fout << itr->second->getName() << "/"
+					<< "000" << "/"
+					<< itr->second->getAuthor() << "/"
+					<< itr->second->getYear() << "/"
+					<< itr->second->getLoanCount() << endl;
+			}
+			
 			if (!flag)
 				flag = true;
 		}
