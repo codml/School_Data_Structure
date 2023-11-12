@@ -28,7 +28,7 @@ bool BpTree::Insert(LoanBookData* newData) {
 		delete newData;
 		loan_count = ptr->getDataMap()->find(name)->second->getLoanCount();
 		if (loan_count == 3 + ((code % 5) / 3) - (code / 5))
-			// toss it to Selection Tree
+			return false; // it's not fail of insert, time to toss node to Selection tree
 		return true;
 	}
 	ptr->insertDataMap(newData->getName(), newData);

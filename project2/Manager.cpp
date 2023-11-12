@@ -135,7 +135,12 @@ bool Manager::ADD(string data)
 		return false;
 	pdata = new LoanBookData;
 	pdata->setBookData(v.at(1), stoi(v.at(2)), v.at(3), stoi(v.at(4)), 0);
-	bptree->Insert(pdata);
+	if (!bptree->Insert(pdata))
+	{
+		while (pdata->getLoanCount() != 3 + ((pdata->getCode() % 5) / 3) - (pdata->getCode() / 5))
+			pdata->updateCount();
+		stree->Insert(pdata);
+	}
 	flog << "========ADD========" << endl;
 	flog << pdata->getName() << "/" << pdata->getCode() << "/" << pdata->getAuthor()
 		<< "/" << pdata->getYear() << endl;
