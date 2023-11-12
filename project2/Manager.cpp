@@ -191,12 +191,12 @@ bool Manager::PRINT_BP()
 
 bool Manager::PRINT_ST(int bookCode) 
 {
-
+	return (stree->printBookData(bookCode));
 }
 
 bool Manager::DELETE() 
 {
-
+	return stree->Delete();
 }
 
 void Manager::printErrorCode(int n) {				//ERROR CODE PRINT

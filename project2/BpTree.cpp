@@ -20,13 +20,16 @@ bool BpTree::Insert(LoanBookData* newData) {
 		else
 			next = ptr->getIndexMap()->begin()->second;
 	}
-	if (ptr->getDataMap()->find(newData->getName()) != ptr->getDataMap()->end())
+	if (ptr->getDataMap()->find(newData->getName()) != ptr->getDataMap()->end()) // need to fix
 	{
 		name = newData->getName();
 		code = newData->getCode() / 100;
+		loan_count = ptr->getDataMap()->find(name)->second->getLoanCount();
+		if (loan_count == 3 + ((code % 5) / 3) - (code / 5))
+			return false;
 		ptr->getDataMap()->find(newData->getName())->second->updateCount();
 		delete newData;
-		loan_count = ptr->getDataMap()->find(name)->second->getLoanCount();
+		loan_count++;
 		if (loan_count == 3 + ((code % 5) / 3) - (code / 5))
 			return false; // it's not fail of insert, time to toss node to Selection tree
 		return true;
@@ -178,9 +181,9 @@ bool BpTree::searchRange(string start, string end) {
 			next = pCur->getIndexMap()->begin()->second;
 	}
 	auto itr = pCur->getDataMap()->begin();
-	while (pCur && itr->first <= end)
+	while (pCur && itr->first.at(0) <= end.at(0))
 	{
-		if (itr->first >= start)
+		if (itr->first.at(0) >= start.at(0))
 		{
 			if (!flagS)
 			{
