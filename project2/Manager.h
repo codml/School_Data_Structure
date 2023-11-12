@@ -2,6 +2,7 @@
 #define _MANAGER_H_
 #include "SelectionTree.h"
 #include "BpTree.h"
+#include <iostream>
 #include <fstream>
 #include <vector>
 #include <string>
@@ -19,9 +20,9 @@ public:
 	Manager(int bpOrder)	//constructor
 	{
 		cmd = NULL;
+		flog.open("log.txt", ios::app);
 		bptree = new BpTree(&flog);
 		stree = new SelectionTree(&flog);
-		flog.open("log.txt");
 	}
 
 

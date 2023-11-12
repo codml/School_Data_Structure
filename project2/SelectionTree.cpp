@@ -139,6 +139,6 @@ bool SelectionTree::printBookData(int bookCode) {
             << itr->second->getLoanCount() << endl;
         }
     }
-    *fout << "========================" << endl;
+    *fout << "========================" << endl << endl;
     return true;
 }

@@ -3,7 +3,7 @@
 bool BpTree::Insert(LoanBookData* newData) {
 	BpTreeNode *ptr, *next;
 	string		name;
-	int			code, loan_count;
+	int			code;
 
 	if (root == NULL)
 	{
@@ -22,16 +22,19 @@ bool BpTree::Insert(LoanBookData* newData) {
 	}
 	if (ptr->getDataMap()->find(newData->getName()) != ptr->getDataMap()->end()) // need to fix
 	{
-		name = newData->getName();
-		code = newData->getCode() / 100;
-		loan_count = ptr->getDataMap()->find(name)->second->getLoanCount();
-		if (loan_count == 3 + ((code % 5) / 3) - (code / 5))
+		if (ptr->getDataMap()->find(newData->getName())->second == NULL)
 			return false;
 		ptr->getDataMap()->find(newData->getName())->second->updateCount();
-		delete newData;
-		loan_count++;
-		if (loan_count == 3 + ((code % 5) / 3) - (code / 5))
+		name = newData->getName();
+		code = newData->getCode();
+		if (ptr->getDataMap()->find(name)->second->getLoanCount()
+			== 3 + ((code % 500) / 300) - (code / 500))
+		{
+			delete ptr->getDataMap()->at(name);
+			ptr->getDataMap()->at(name) = NULL;
 			return false; // it's not fail of insert, time to toss node to Selection tree
+		}
+		delete newData;
 		return true;
 	}
 	ptr->insertDataMap(newData->getName(), newData);
@@ -148,7 +151,8 @@ bool BpTree::searchBook(string name) {
 		else
 			next = pCur->getIndexMap()->begin()->second;
 	}
-	if (pCur->getDataMap()->find(name) != pCur->getDataMap()->end())
+	if (pCur->getDataMap()->find(name) != pCur->getDataMap()->end()
+		&& pCur->getDataMap()->find(name)->second)
 	{
 		*fout << "========SEARCH_BP========" << endl;
 		*fout << pCur->getDataMap()->find(name)->second->getName() << "/"
@@ -156,7 +160,7 @@ bool BpTree::searchBook(string name) {
 			<< pCur->getDataMap()->find(name)->second->getAuthor() << "/"
 			<< pCur->getDataMap()->find(name)->second->getYear() << "/"
 			<< pCur->getDataMap()->find(name)->second->getLoanCount() << endl;
-		*fout << "========================" << endl;
+		*fout << "========================" << endl << endl;
 		return true;
 	}
 	else
@@ -183,7 +187,7 @@ bool BpTree::searchRange(string start, string end) {
 	auto itr = pCur->getDataMap()->begin();
 	while (pCur && itr->first.at(0) <= end.at(0))
 	{
-		if (itr->first.at(0) >= start.at(0))
+		if (itr->first.at(0) >= start.at(0) && itr->second)
 		{
 			if (!flagS)
 			{
@@ -208,6 +212,6 @@ bool BpTree::searchRange(string start, string end) {
 		}
 	}
 	if (flag)
-		*fout << "========================" << endl;
+		*fout << "========================" << endl << endl;
 	return flag;
 }

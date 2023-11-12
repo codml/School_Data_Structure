@@ -1,13 +1,83 @@
 LOAD
+ADD	zdtp	500	Ep	1918
+ADD	zdtp	500	Ep	1918
+ADD	itvx	300	Zi Fy	2032
+ADD	itvx	300	Zi Fy	2032
+ADD	itvx	300	Zi Fy	2032
+ADD	edap	100	Vu	2163
+ADD	edap	100	Vu	2163
+ADD	tagg	700	Jb	2196
+ADD	vutq	100	Jc Nd It	2305
+ADD	vutq	100	Jc Nd It	2305
+ADD	vutq	100	Jc Nd It	2305
+ADD	rzer	600	Xd	2396
+ADD	dlrs	300	De Ej	2195
+ADD	dlrs	300	De Ej	2195
+ADD	dlrs	300	De Ej	2195
+ADD	dlrs	300	De Ej	2195
+ADD	lewa	200	Uc Xh Fn	2319
+ADD	lewa	200	Uc Xh Fn	2319
+ADD	rpvm	500	Zf Dm	2145
+ADD	rpvm	500	Zf Dm	2145
+ADD	bhdh	100	Ya Eo	2056
+ADD	bhdh	100	Ya Eo	2056
+ADD	keua	200	As Ei	1952
+ADD	keua	200	As Ei	1952
+ADD	keua	200	As Ei	1952
+ADD	axrg bxnc	300	Mo Eg My	2391
+ADD	axrg bxnc	300	Mo Eg My	2391
+ADD	axrg bxnc	300	Mo Eg My	2391
+ADD	tjtw	300	Du Cs	2080
+ADD	tjtw	300	Du Cs	2080
+ADD	tjtw	300	Du Cs	2080
+ADD	nspj	700	Af	2336
+ADD	nspj	700	Af	2336
+ADD	cyjq	100	Cw Cj	2044
+ADD	cyjq	100	Cw Cj	2044
+ADD	rvgo	700	Ls	1940
+ADD	rvgo	700	Ls	1940
+ADD	kisc	600	Pg By	2119
+ADD	kisc	600	Pg By	2119
+ADD	bexa	700	Ze	2358
+ADD	dfsj earz	100	Cs Dw	1994
+ADD	dfsj earz	100	Cs Dw	1994
+ADD	dfsj earz	100	Cs Dw	1994
+ADD	sdse	200	Qy Iq Ga	2061
+ADD	sdse	200	Qy Iq Ga	2061
+ADD	lhtw uvcr	100	Uy	2030
+ADD	lhtw uvcr	100	Uy	2030
 ADD	oloo	600	Uy	2060
-ADD	hodi	200	Js Hz Ut	1995
-ADD	eskl	0	Ic Rk	2144
-SEARCH_BP	oloo
+ADD	oloo	600	Uy	2060
+ADD	fxsb	400	Em Ge Yu	2063
+ADD	fxsb	400	Em Ge Yu	2063
+ADD	fxsb	400	Em Ge Yu	2063
+ADD	yptm	300	Yf Cu	2377
+ADD	yptm	300	Yf Cu	2377
+ADD	yptm	300	Yf Cu	2377
+ADD	i hate assign	100	Taewan Kim	2023
+SEARCH_BP	yptm
 SEARCH_BP 	hodi
-SEARCH_BP 	eskl
-SEARCH_BP 	lhtw uvcr
-SEARCH_BP 	bzwn ubqr
+SEARCH_BP 	i hate assign
 SEARCH_BP 	a	i
 SEARCH_BP 	x	z
 PRINT_BP
+PRINT_ST	000
+PRINT_ST	100
+PRINT_ST	200
+PRINT_ST	300
+PRINT_ST	400
+PRINT_ST	500
+PRINT_ST	600
+PRINT_ST	700
+DELETE
+DELETE
+DELETE
+PRINT_ST	000
+PRINT_ST	100
+PRINT_ST	200
+PRINT_ST	300
+PRINT_ST	400
+PRINT_ST	500
+PRINT_ST	600
+PRINT_ST	700
 EXIT

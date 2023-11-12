@@ -137,14 +137,14 @@ bool Manager::ADD(string data)
 	pdata->setBookData(v.at(1), stoi(v.at(2)), v.at(3), stoi(v.at(4)), 0);
 	if (!bptree->Insert(pdata))
 	{
-		while (pdata->getLoanCount() != 3 + ((pdata->getCode() % 5) / 3) - (pdata->getCode() / 5))
+		while (pdata->getLoanCount() != 3 + ((pdata->getCode() % 500) / 300) - (pdata->getCode() / 500))
 			pdata->updateCount();
 		stree->Insert(pdata);
 	}
 	flog << "========ADD========" << endl;
 	flog << pdata->getName() << "/" << pdata->getCode() << "/" << pdata->getAuthor()
 		<< "/" << pdata->getYear() << endl;
-	flog << "========================" << endl;
+	flog << "========================" << endl << endl;
 	return true;
 }
 
@@ -171,11 +171,14 @@ bool Manager::PRINT_BP()
 	auto itr = tmp->getDataMap()->begin();
 	while (tmp)
 	{	
-		flog << itr->second->getName() << "/"
-		<< itr->second->getCode() << "/"
-		<< itr->second->getAuthor() << "/"
-		<< itr->second->getYear() << "/"
-		<< itr->second->getLoanCount() << endl;
+		if (itr->second)
+		{
+			flog << itr->second->getName() << "/"
+				<< itr->second->getCode() << "/"
+				<< itr->second->getAuthor() << "/"
+				<< itr->second->getYear() << "/"
+				<< itr->second->getLoanCount() << endl;
+		}
 		itr++;
 		if (itr == tmp->getDataMap()->end())
 		{
@@ -185,7 +188,7 @@ bool Manager::PRINT_BP()
 			itr = tmp->getDataMap()->begin();
 		}
 	}
-	flog << "========================" << endl;
+	flog << "========================" << endl << endl;
 	return true;
 }
 
