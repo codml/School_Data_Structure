@@ -95,7 +95,7 @@ bool Manager::LOAD()
 	string			line, book;
 	vector<string>	v;
 
-	floan.open("loan_book_JH.txt");
+	floan.open("loan_book.txt");
 	if (!floan)
 		return false;
 	if (bptree->getRoot())
