@@ -1,0 +1,57 @@
+the time machine	100	H.G. Wells	1895	2
+1984	200	George Orwell	1949	2
+brave new world	300	Aldous Huxley	1932	3
+fahrenheit 451	400	Ray Bradbury	1953	3
+one hundred years of solitude	500	Gabriel Garcia Marquez	1967	1
+to kill a mockingbird	600	Harper Lee	1960	1
+the catcher in the rye	700	J.D. Salinger	1951	1
+the great gatsby	200	F. Scott Fitzgerald	1925	2
+animal farm	400	George Orwell	1945	3
+lord of the flies	600	William Golding	1954	1
+the hobbit	300	J.R.R. Tolkien	1937	3
+the odyssey	500	Homer	8th century BC	1
+the alchemist	100	Paulo Coelho	1988	2
+the shining	700	Stephen King	1977	1
+slaughterhouse-five	200	Kurt Vonnegut	1969	2
+the road	600	Cormac McCarthy	2006	1
+the hitchhiker's guide to the galaxy	400	Douglas Adams	1979	3
+the da vinci code	500	Dan Brown	2003	1
+the grapes of wrath	100	John Steinbeck	1939	2
+frankenstein	300	Mary Shelley	1818	3
+pride and prejudice	500	Jane Austen	1813	1
+the hunger games	700	Suzanne Collins	2008	1
+dune	200	Frank Herbert	1965	2
+the girl with the dragon tattoo	400	Stieg Larsson	2005	3
+a clockwork orange	600	Anthony Burgess	1962	1
+moby-dick	100	Herman Melville	1851	2
+the chronicles of narnia	300	C.S. Lewis	1950	3
+the picture of dorian gray	500	Oscar Wilde	1890	1
+gone with the wind	700	Margaret Mitchell	1936	1
+the war of the worlds	200	H.G. Wells	1898	2
+dracula	400	Bram Stoker	1897	3
+the kite runner	500	Khaled Hosseini	2003	1
+the lord of the rings	100	J.R.R. Tolkien	1954	2
+the outsiders	600	S.E. Hinton	1967	1
+catch-22	300	Joseph Heller	1961	3
+a tale of two cities	700	Charles Dickens	1859	1
+the secret garden	400	Frances Hodgson Burnett	1911	3
+the road not taken	500	Robert Frost	1916	1
+crime and punishment	100	Fyodor Dostoevsky	1866	2
+the color purple	200	Alice Walker	1982	2
+wuthering heights	600	Emily Brontë	1847	1
+the sun also rises	700	Ernest Hemingway	1926	1
+the count of monte cristo	500	Alexandre Dumas	1844	1
+the old man and the sea	300	Ernest Hemingway	1952	3
+anna karenina	100	Leo Tolstoy	1877	2
+the hound of the baskervilles	200	Arthur Conan Doyle	1902	2
+the jungle book	400	Rudyard Kipling	1894	3
+a farewell to arms	600	Ernest Hemingway	1929	1
+the secret life of bees	700	Sue Monk Kidd	2001	1
+the silmarillion	300	J.R.R. Tolkien	1977	3
+the martian	000	Andy Weir	2012	2
+the silent patient	000	Alex Michaelides	2019	2
+educated	000	Tara Westover	2018	2
+the night circus	000	Erin Morgenstern	2011	2
+circe	000	Madeline Miller	2018	2
+where the crawdads sing	000	Delia Owens	2018	2
+the underground railroad	000	Colson Whitehead	2016	2
