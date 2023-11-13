@@ -1,381 +1,381 @@
-===== LOAD =====
+========LOAD========
 Success
-===============
+=======================
 
 ========PRINT_BP========
-1984/200/George Orwell/2
-a clockwork orange/600/Anthony Burgess/1
-a farewell to arms/600/Ernest Hemingway/1
-a tale of two cities/700/Charles Dickens/1
-animal farm/400/George Orwell/3
-anna karenina/100/Leo Tolstoy/2
-brave new world/300/Aldous Huxley/3
-catch-22/300/Joseph Heller/3
-circe/000/Madeline Miller/2
-crime and punishment/100/Fyodor Dostoevsky/2
-dracula/400/Bram Stoker/3
-dune/200/Frank Herbert/2
-educated/000/Tara Westover/2
-fahrenheit 451/400/Ray Bradbury/3
-frankenstein/300/Mary Shelley/3
-gone with the wind/700/Margaret Mitchell/1
-lord of the flies/600/William Golding/1
-moby-dick/100/Herman Melville/2
-one hundred years of solitude/500/Gabriel Garcia Marquez/1
-pride and prejudice/500/Jane Austen/1
-slaughterhouse-five/200/Kurt Vonnegut/2
-the alchemist/100/Paulo Coelho/2
-the catcher in the rye/700/J.D. Salinger/1
-the chronicles of narnia/300/C.S. Lewis/3
-the color purple/200/Alice Walker/2
-the count of monte cristo/500/Alexandre Dumas/1
-the da vinci code/500/Dan Brown/1
-the girl with the dragon tattoo/400/Stieg Larsson/3
-the grapes of wrath/100/John Steinbeck/2
-the great gatsby/200/F. Scott Fitzgerald/2
-the hitchhiker's guide to the galaxy/400/Douglas Adams/3
-the hobbit/300/J.R.R. Tolkien/3
-the hound of the baskervilles/200/Arthur Conan Doyle/2
-the hunger games/700/Suzanne Collins/1
-the jungle book/400/Rudyard Kipling/3
-the kite runner/500/Khaled Hosseini/1
-the lord of the rings/100/J.R.R. Tolkien/2
-the martian/000/Andy Weir/2
-the night circus/000/Erin Morgenstern/2
-the odyssey/500/Homer/1
-the old man and the sea/300/Ernest Hemingway/3
-the outsiders/600/S.E. Hinton/1
-the picture of dorian gray/500/Oscar Wilde/1
-the road/600/Cormac McCarthy/1
-the road not taken/500/Robert Frost/1
-the secret garden/400/Frances Hodgson Burnett/3
-the secret life of bees/700/Sue Monk Kidd/1
-the shining/700/Stephen King/1
-the silent patient/000/Alex Michaelides/2
-the silmarillion/300/J.R.R. Tolkien/3
-the sun also rises/700/Ernest Hemingway/1
-the time machine/100/H.G. Wells/2
-the underground railroad/000/Colson Whitehead/2
-the war of the worlds/200/H.G. Wells/2
-to kill a mockingbird/600/Harper Lee/1
-where the crawdads sing/000/Delia Owens/2
-wuthering heights/600/Emily Brontë/1
-==========================
+1984/200/George Orwell/1949/2
+a clockwork orange/600/Anthony Burgess/1962/1
+a farewell to arms/600/Ernest Hemingway/1929/1
+a tale of two cities/700/Charles Dickens/1859/1
+animal farm/400/George Orwell/1945/3
+anna karenina/100/Leo Tolstoy/1877/2
+brave new world/300/Aldous Huxley/1932/3
+catch-22/300/Joseph Heller/1961/3
+circe/000/Madeline Miller/2018/2
+crime and punishment/100/Fyodor Dostoevsky/1866/2
+dracula/400/Bram Stoker/1897/3
+dune/200/Frank Herbert/1965/2
+educated/000/Tara Westover/2018/2
+fahrenheit 451/400/Ray Bradbury/1953/3
+frankenstein/300/Mary Shelley/1818/3
+gone with the wind/700/Margaret Mitchell/1936/1
+lord of the flies/600/William Golding/1954/1
+moby-dick/100/Herman Melville/1851/2
+one hundred years of solitude/500/Gabriel Garcia Marquez/1967/1
+pride and prejudice/500/Jane Austen/1813/1
+slaughterhouse-five/200/Kurt Vonnegut/1969/2
+the alchemist/100/Paulo Coelho/1988/2
+the catcher in the rye/700/J.D. Salinger/1951/1
+the chronicles of narnia/300/C.S. Lewis/1950/3
+the color purple/200/Alice Walker/1982/2
+the count of monte cristo/500/Alexandre Dumas/1844/1
+the da vinci code/500/Dan Brown/2003/1
+the girl with the dragon tattoo/400/Stieg Larsson/2005/3
+the grapes of wrath/100/John Steinbeck/1939/2
+the great gatsby/200/F. Scott Fitzgerald/1925/2
+the hitchhiker's guide to the galaxy/400/Douglas Adams/1979/3
+the hobbit/300/J.R.R. Tolkien/1937/3
+the hound of the baskervilles/200/Arthur Conan Doyle/1902/2
+the hunger games/700/Suzanne Collins/2008/1
+the jungle book/400/Rudyard Kipling/1894/3
+the kite runner/500/Khaled Hosseini/2003/1
+the lord of the rings/100/J.R.R. Tolkien/1954/2
+the martian/000/Andy Weir/2012/2
+the night circus/000/Erin Morgenstern/2011/2
+the odyssey/500/Homer/8/1
+the old man and the sea/300/Ernest Hemingway/1952/3
+the outsiders/600/S.E. Hinton/1967/1
+the picture of dorian gray/500/Oscar Wilde/1890/1
+the road/600/Cormac McCarthy/2006/1
+the road not taken/500/Robert Frost/1916/1
+the secret garden/400/Frances Hodgson Burnett/1911/3
+the secret life of bees/700/Sue Monk Kidd/2001/1
+the shining/700/Stephen King/1977/1
+the silent patient/000/Alex Michaelides/2019/2
+the silmarillion/300/J.R.R. Tolkien/1977/3
+the sun also rises/700/Ernest Hemingway/1926/1
+the time machine/100/H.G. Wells/1895/2
+the underground railroad/000/Colson Whitehead/2016/2
+the war of the worlds/200/H.G. Wells/1898/2
+to kill a mockingbird/600/Harper Lee/1960/1
+where the crawdads sing/000/Delia Owens/2018/2
+wuthering heights/600/Emily Brontë/1847/1
+========================
 
 ========ADD========
-the time machine/100/H.G. Wells/0
-====================
+the time machine/100/H.G. Wells/1895
+===================
 
 ========ADD========
-1984/200/George Orwell/0
-====================
+1984/200/George Orwell/1949
+===================
 
 ========ADD========
-brave new world/300/Aldous Huxley/0
-====================
+brave new world/300/Aldous Huxley/1932
+===================
 
 ========ADD========
-fahrenheit 451/400/Ray Bradbury/0
-====================
+fahrenheit 451/400/Ray Bradbury/1953
+===================
 
 ========ADD========
-one hundred years of solitude/500/Gabriel Garcia Marquez/0
-====================
+one hundred years of solitude/500/Gabriel Garcia Marquez/1967
+===================
 
 ========ADD========
-to kill a mockingbird/600/Harper Lee/0
-====================
+to kill a mockingbird/600/Harper Lee/1960
+===================
 
 ========ADD========
-the catcher in the rye/700/J.D. Salinger/0
-====================
+the catcher in the rye/700/J.D. Salinger/1951
+===================
 
 ========ADD========
-the great gatsby/200/F. Scott Fitzgerald/0
-====================
+the great gatsby/200/F. Scott Fitzgerald/1925
+===================
 
 ========ADD========
-animal farm/400/George Orwell/0
-====================
+animal farm/400/George Orwell/1945
+===================
 
 ========ADD========
-lord of the flies/600/William Golding/0
-====================
+lord of the flies/600/William Golding/1954
+===================
 
 ========ADD========
-the hobbit/300/J.R.R. Tolkien/0
-====================
+the hobbit/300/J.R.R. Tolkien/1937
+===================
 
 ========ADD========
-the odyssey/500/Homer/0
-====================
+the odyssey/500/Homer/8
+===================
 
 ========ADD========
-the alchemist/100/Paulo Coelho/0
-====================
+the alchemist/100/Paulo Coelho/1988
+===================
 
 ========ADD========
-the shining/700/Stephen King/0
-====================
+the shining/700/Stephen King/1977
+===================
 
 ========ADD========
-slaughterhouse-five/200/Kurt Vonnegut/0
-====================
+slaughterhouse-five/200/Kurt Vonnegut/1969
+===================
 
 ========ADD========
-the road/600/Cormac McCarthy/0
-====================
+the road/600/Cormac McCarthy/2006
+===================
 
 ========ADD========
-the hitchhiker's guide to the galaxy/400/Douglas Adams/0
-====================
+the hitchhiker's guide to the galaxy/400/Douglas Adams/1979
+===================
 
 ========ADD========
-the da vinci code/500/Dan Brown/0
-====================
+the da vinci code/500/Dan Brown/2003
+===================
 
 ========ADD========
-the grapes of wrath/100/John Steinbeck/0
-====================
+the grapes of wrath/100/John Steinbeck/1939
+===================
 
 ========ADD========
-frankenstein/300/Mary Shelley/0
-====================
+frankenstein/300/Mary Shelley/1818
+===================
 
 ========ADD========
-pride and prejudice/500/Jane Austen/0
-====================
+pride and prejudice/500/Jane Austen/1813
+===================
 
 ========ADD========
-the hunger games/700/Suzanne Collins/0
-====================
+the hunger games/700/Suzanne Collins/2008
+===================
 
 ========ADD========
-dune/200/Frank Herbert/0
-====================
+dune/200/Frank Herbert/1965
+===================
 
 ========ADD========
-the girl with the dragon tattoo/400/Stieg Larsson/0
-====================
+the girl with the dragon tattoo/400/Stieg Larsson/2005
+===================
 
 ========ADD========
-a clockwork orange/600/Anthony Burgess/0
-====================
+a clockwork orange/600/Anthony Burgess/1962
+===================
 
 ========ADD========
-moby-dick/100/Herman Melville/0
-====================
+moby-dick/100/Herman Melville/1851
+===================
 
 ========ADD========
-the chronicles of narnia/300/C.S. Lewis/0
-====================
+the chronicles of narnia/300/C.S. Lewis/1950
+===================
 
 ========ADD========
-the picture of dorian gray/500/Oscar Wilde/0
-====================
+the picture of dorian gray/500/Oscar Wilde/1890
+===================
 
 ========ADD========
-gone with the wind/700/Margaret Mitchell/0
-====================
+gone with the wind/700/Margaret Mitchell/1936
+===================
 
 ========ADD========
-the war of the worlds/200/H.G. Wells/0
-====================
+the war of the worlds/200/H.G. Wells/1898
+===================
 
 ========ADD========
-dracula/400/Bram Stoker/0
-====================
+dracula/400/Bram Stoker/1897
+===================
 
 ========ADD========
-the kite runner/500/Khaled Hosseini/0
-====================
+the kite runner/500/Khaled Hosseini/2003
+===================
 
 ========ADD========
-the lord of the rings/100/J.R.R. Tolkien/0
-====================
+the lord of the rings/100/J.R.R. Tolkien/1954
+===================
 
 ========ADD========
-the outsiders/600/S.E. Hinton/0
-====================
+the outsiders/600/S.E. Hinton/1967
+===================
 
 ========ADD========
-catch-22/300/Joseph Heller/0
-====================
+catch-22/300/Joseph Heller/1961
+===================
 
 ========ADD========
-a tale of two cities/700/Charles Dickens/0
-====================
+a tale of two cities/700/Charles Dickens/1859
+===================
 
 ========ADD========
-the secret garden/400/Frances Hodgson Burnett/0
-====================
+the secret garden/400/Frances Hodgson Burnett/1911
+===================
 
 ========ADD========
-the road not taken/500/Robert Frost/0
-====================
+the road not taken/500/Robert Frost/1916
+===================
 
 ========ADD========
-crime and punishment/100/Fyodor Dostoevsky/0
-====================
+crime and punishment/100/Fyodor Dostoevsky/1866
+===================
 
 ========ADD========
-the color purple/200/Alice Walker/0
-====================
+the color purple/200/Alice Walker/1982
+===================
 
 ========ADD========
-wuthering heights/600/Emily Brontë/0
-====================
+wuthering heights/600/Emily Brontë/1847
+===================
 
 ========ADD========
-the sun also rises/700/Ernest Hemingway/0
-====================
+the sun also rises/700/Ernest Hemingway/1926
+===================
 
 ========ADD========
-the count of monte cristo/500/Alexandre Dumas/0
-====================
+the count of monte cristo/500/Alexandre Dumas/1844
+===================
 
 ========ADD========
-the old man and the sea/300/Ernest Hemingway/0
-====================
+the old man and the sea/300/Ernest Hemingway/1952
+===================
 
 ========ADD========
-anna karenina/100/Leo Tolstoy/0
-====================
+anna karenina/100/Leo Tolstoy/1877
+===================
 
 ========ADD========
-the hound of the baskervilles/200/Arthur Conan Doyle/0
-====================
+the hound of the baskervilles/200/Arthur Conan Doyle/1902
+===================
 
 ========ADD========
-the jungle book/400/Rudyard Kipling/0
-====================
+the jungle book/400/Rudyard Kipling/1894
+===================
 
 ========ADD========
-a farewell to arms/600/Ernest Hemingway/0
-====================
+a farewell to arms/600/Ernest Hemingway/1929
+===================
 
 ========ADD========
-the secret life of bees/700/Sue Monk Kidd/0
-====================
+the secret life of bees/700/Sue Monk Kidd/2001
+===================
 
 ========ADD========
-the silmarillion/300/J.R.R. Tolkien/0
-====================
+the silmarillion/300/J.R.R. Tolkien/1977
+===================
 
 ========ADD========
-the martian/000/Andy Weir/0
-====================
+the martian/000/Andy Weir/2012
+===================
 
 ========ADD========
-the silent patient/000/Alex Michaelides/0
-====================
+the silent patient/000/Alex Michaelides/2019
+===================
 
 ========ADD========
-educated/000/Tara Westover/0
-====================
+educated/000/Tara Westover/2018
+===================
 
 ========ADD========
-the night circus/000/Erin Morgenstern/0
-====================
+the night circus/000/Erin Morgenstern/2011
+===================
 
 ========ADD========
-circe/000/Madeline Miller/0
-====================
+circe/000/Madeline Miller/2018
+===================
 
 ========ADD========
-where the crawdads sing/000/Delia Owens/0
-====================
+where the crawdads sing/000/Delia Owens/2018
+===================
 
 ========ADD========
-the underground railroad/000/Colson Whitehead/0
-====================
+the underground railroad/000/Colson Whitehead/2016
+===================
 
 ========PRINT_ST========
-circe/000/Madeline Miller/0
-educated/000/Tara Westover/0
-the martian/000/Andy Weir/0
-the night circus/000/Erin Morgenstern/0
-the silent patient/000/Alex Michaelides/0
-the underground railroad/000/Colson Whitehead/0
-where the crawdads sing/000/Delia Owens/0
-=========================
+circe/000/Madeline Miller/2018/3
+educated/000/Tara Westover/2018/3
+the martian/000/Andy Weir/2012/3
+the night circus/000/Erin Morgenstern/2011/3
+the silent patient/000/Alex Michaelides/2019/3
+the underground railroad/000/Colson Whitehead/2016/3
+where the crawdads sing/000/Delia Owens/2018/3
+========================
 
 ========PRINT_ST========
-anna karenina/100/Leo Tolstoy/0
-crime and punishment/100/Fyodor Dostoevsky/0
-moby-dick/100/Herman Melville/0
-the alchemist/100/Paulo Coelho/0
-the grapes of wrath/100/John Steinbeck/0
-the lord of the rings/100/J.R.R. Tolkien/0
-the time machine/100/H.G. Wells/0
-=========================
+anna karenina/100/Leo Tolstoy/1877/3
+crime and punishment/100/Fyodor Dostoevsky/1866/3
+moby-dick/100/Herman Melville/1851/3
+the alchemist/100/Paulo Coelho/1988/3
+the grapes of wrath/100/John Steinbeck/1939/3
+the lord of the rings/100/J.R.R. Tolkien/1954/3
+the time machine/100/H.G. Wells/1895/3
+========================
 
 ========PRINT_ST========
-1984/200/George Orwell/0
-dune/200/Frank Herbert/0
-slaughterhouse-five/200/Kurt Vonnegut/0
-the color purple/200/Alice Walker/0
-the great gatsby/200/F. Scott Fitzgerald/0
-the hound of the baskervilles/200/Arthur Conan Doyle/0
-the war of the worlds/200/H.G. Wells/0
-=========================
+1984/200/George Orwell/1949/3
+dune/200/Frank Herbert/1965/3
+slaughterhouse-five/200/Kurt Vonnegut/1969/3
+the color purple/200/Alice Walker/1982/3
+the great gatsby/200/F. Scott Fitzgerald/1925/3
+the hound of the baskervilles/200/Arthur Conan Doyle/1902/3
+the war of the worlds/200/H.G. Wells/1898/3
+========================
 
 ========PRINT_ST========
-brave new world/300/Aldous Huxley/0
-catch-22/300/Joseph Heller/0
-frankenstein/300/Mary Shelley/0
-the chronicles of narnia/300/C.S. Lewis/0
-the hobbit/300/J.R.R. Tolkien/0
-the old man and the sea/300/Ernest Hemingway/0
-the silmarillion/300/J.R.R. Tolkien/0
-=========================
+brave new world/300/Aldous Huxley/1932/4
+catch-22/300/Joseph Heller/1961/4
+frankenstein/300/Mary Shelley/1818/4
+the chronicles of narnia/300/C.S. Lewis/1950/4
+the hobbit/300/J.R.R. Tolkien/1937/4
+the old man and the sea/300/Ernest Hemingway/1952/4
+the silmarillion/300/J.R.R. Tolkien/1977/4
+========================
 
 ========PRINT_ST========
-animal farm/400/George Orwell/0
-dracula/400/Bram Stoker/0
-fahrenheit 451/400/Ray Bradbury/0
-the girl with the dragon tattoo/400/Stieg Larsson/0
-the hitchhiker's guide to the galaxy/400/Douglas Adams/0
-the jungle book/400/Rudyard Kipling/0
-the secret garden/400/Frances Hodgson Burnett/0
-=========================
+animal farm/400/George Orwell/1945/4
+dracula/400/Bram Stoker/1897/4
+fahrenheit 451/400/Ray Bradbury/1953/4
+the girl with the dragon tattoo/400/Stieg Larsson/2005/4
+the hitchhiker's guide to the galaxy/400/Douglas Adams/1979/4
+the jungle book/400/Rudyard Kipling/1894/4
+the secret garden/400/Frances Hodgson Burnett/1911/4
+========================
 
 ========PRINT_ST========
-one hundred years of solitude/500/Gabriel Garcia Marquez/0
-pride and prejudice/500/Jane Austen/0
-the count of monte cristo/500/Alexandre Dumas/0
-the da vinci code/500/Dan Brown/0
-the kite runner/500/Khaled Hosseini/0
-the odyssey/500/Homer/0
-the picture of dorian gray/500/Oscar Wilde/0
-the road not taken/500/Robert Frost/0
-=========================
+one hundred years of solitude/500/Gabriel Garcia Marquez/1967/2
+pride and prejudice/500/Jane Austen/1813/2
+the count of monte cristo/500/Alexandre Dumas/1844/2
+the da vinci code/500/Dan Brown/2003/2
+the kite runner/500/Khaled Hosseini/2003/2
+the odyssey/500/Homer/8/2
+the picture of dorian gray/500/Oscar Wilde/1890/2
+the road not taken/500/Robert Frost/1916/2
+========================
 
 ========PRINT_ST========
-a clockwork orange/600/Anthony Burgess/0
-a farewell to arms/600/Ernest Hemingway/0
-lord of the flies/600/William Golding/0
-the outsiders/600/S.E. Hinton/0
-the road/600/Cormac McCarthy/0
-to kill a mockingbird/600/Harper Lee/0
-wuthering heights/600/Emily Brontë/0
-=========================
+a clockwork orange/600/Anthony Burgess/1962/2
+a farewell to arms/600/Ernest Hemingway/1929/2
+lord of the flies/600/William Golding/1954/2
+the outsiders/600/S.E. Hinton/1967/2
+the road/600/Cormac McCarthy/2006/2
+to kill a mockingbird/600/Harper Lee/1960/2
+wuthering heights/600/Emily Brontë/1847/2
+========================
 
 ========PRINT_ST========
-a tale of two cities/700/Charles Dickens/0
-gone with the wind/700/Margaret Mitchell/0
-the catcher in the rye/700/J.D. Salinger/0
-the hunger games/700/Suzanne Collins/0
-the secret life of bees/700/Sue Monk Kidd/0
-the shining/700/Stephen King/0
-the sun also rises/700/Ernest Hemingway/0
-=========================
+a tale of two cities/700/Charles Dickens/1859/2
+gone with the wind/700/Margaret Mitchell/1936/2
+the catcher in the rye/700/J.D. Salinger/1951/2
+the hunger games/700/Suzanne Collins/2008/2
+the secret life of bees/700/Sue Monk Kidd/2001/2
+the shining/700/Stephen King/1977/2
+the sun also rises/700/Ernest Hemingway/1926/2
+========================
 
 ========ERROR========
 700
-=====================
+=======================
 
-===== EXIT =====
+========EXIT========
 Success
-===============
+=======================
 
