@@ -76,7 +76,10 @@ void Manager::run(const char* command)
 				printErrorCode(600);
 		}
 		else if (oneCmd == "EXIT")
+		{
+			printSuccessCode("EXIT");
 			break;
+		}
 		else
 			printErrorCode(700);
 	}
@@ -92,7 +95,7 @@ bool Manager::LOAD()
 	string			line, book;
 	vector<string>	v;
 
-	floan.open("loan_book.txt");
+	floan.open("loan_book_JH.txt");
 	if (!floan)
 		return false;
 	if (bptree->getRoot())
@@ -146,14 +149,14 @@ bool Manager::ADD(string data)
 		flog << "========ADD========" << endl;
 		flog << pdata->getName() << "/" << pdata->getCode() << "/" << pdata->getAuthor()
 			<< "/" << pdata->getYear() << endl;
-		flog << "========================" << endl << endl;
+		flog << "===================" << endl << endl;
 	}
 	else
 	{
 		flog << "========ADD========" << endl;
 		flog << pdata->getName() << "/" << "000" << "/" << pdata->getAuthor()
 			<< "/" << pdata->getYear() << endl;
-		flog << "========================" << endl << endl;
+		flog << "===================" << endl << endl;
 	}
 	
 	return true;
@@ -225,8 +228,8 @@ bool Manager::DELETE()
 }
 
 void Manager::printErrorCode(int n) {				//ERROR CODE PRINT
-	flog << "=======================" << endl;
-	flog << "ERROR " << n << endl;
+	flog << "========ERROR========" << endl;
+	flog << n << endl;
 	flog << "=======================" << endl << endl;
 }
 
