@@ -20,7 +20,7 @@ bool BpTree::Insert(LoanBookData* newData) {
 		else
 			next = ptr->getIndexMap()->begin()->second;
 	}
-	if (ptr->getDataMap()->find(newData->getName()) != ptr->getDataMap()->end()) // need to fix
+	if (ptr->getDataMap()->find(newData->getName()) != ptr->getDataMap()->end())
 	{
 		if (ptr->getDataMap()->find(newData->getName())->second == NULL)
 			return false;
@@ -28,7 +28,7 @@ bool BpTree::Insert(LoanBookData* newData) {
 		name = newData->getName();
 		code = newData->getCode();
 		if (ptr->getDataMap()->find(name)->second->getLoanCount()
-			== 3 + ((code % 500) / 300) - (code / 500))
+			== 3 + ((code % 500) / 300) - (code / 500)) // get max loan count per code
 		{
 			delete ptr->getDataMap()->at(name);
 			ptr->getDataMap()->at(name) = NULL;
