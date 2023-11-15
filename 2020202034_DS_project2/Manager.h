@@ -20,9 +20,9 @@ public:
 	Manager(int bpOrder)	//constructor
 	{
 		cmd = NULL;
-		flog.open("log.txt", ios::app);
+		flog.open("log.txt", ios::app); // app: append to exist file
 		bptree = new BpTree(&flog);
-		stree = new SelectionTree(&flog);
+		stree = new SelectionTree(&flog); // allocate b+tree, selection tree
 	}
 
 
@@ -38,16 +38,16 @@ public:
 	
 
 	void run(const char* command);
-	bool LOAD();
-	bool ADD(string data);
+	bool LOAD(); // load data from loan_book.txt
+	bool ADD(string data); // add data into b+tree
 
 	bool SEARCH_BP_BOOK(string book);
-	bool SEARCH_BP_RANGE(string start, string end);
+	bool SEARCH_BP_RANGE(string start, string end); // search one book and books in range
 
 	bool PRINT_BP();
-	bool PRINT_ST(int bookCode);
+	bool PRINT_ST(int bookCode); // print b+tree and heap in selection tree
 
-	bool DELETE();
+	bool DELETE(); // delete from selection tree
 
 	void printErrorCode(int n);
 	void printSuccessCode(string code);

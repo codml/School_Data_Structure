@@ -5,7 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <map>
-#include <utility>
+#include <utility> // for pair
 
 using namespace std;
 
@@ -15,8 +15,8 @@ private:
     SelectionTreeNode* root;
     ofstream* fout;
 
-    void Setting();
-    SelectionTreeNode* returnIdx(int code);
+    void Setting(); // init selection tree
+    SelectionTreeNode* returnIdx(int code); // get address of run
     void reSort(SelectionTreeNode* node);
     void PreorderHeap(LoanBookHeapNode* node, map <string, LoanBookData *> &heap)
     {
@@ -26,7 +26,7 @@ private:
             PreorderHeap(node->getLeftChild(), heap);
             PreorderHeap(node->getRightChild(), heap);
         }
-    }
+    } // preorder travesal to copy heap
     void    PostorderDelete(SelectionTreeNode *node)
     {
         if (node)
@@ -35,7 +35,7 @@ private:
             PostorderDelete(node->getRightChild());
             delete node;
         }
-    }
+    } // for destructor
 
 public:
     SelectionTree(ofstream* fout) {
@@ -50,8 +50,8 @@ public:
     void setRoot(SelectionTreeNode* pN) { this->root = pN; }
     SelectionTreeNode* getRoot() { return root; }
 
-    bool Insert(LoanBookData* newData);
-    bool Delete();
+    bool Insert(LoanBookData* newData); // insert data into heap and selection tree
+    bool Delete(); // delete winner
     bool printBookData(int bookCode);
 };
 

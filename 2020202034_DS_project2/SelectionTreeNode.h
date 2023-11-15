@@ -22,14 +22,14 @@ public:
     }
     ~SelectionTreeNode() {
         if (hRoot)
-            delete hRoot;
+            delete hRoot; // delete heap
     }
 
     void setBookData(LoanBookData* data) { this->pData = data; }
     void setLeftChild(SelectionTreeNode* pL) { this->pLeft = pL; }
     void setRightChild(SelectionTreeNode* pR) { this->pRight = pR; }
     void setParent(SelectionTreeNode* pP) { this->pParent = pP; }
-    void setHeap(LoanBookHeap* pHR) { this->hRoot = pHR; }
+    void setHeap(LoanBookHeap* pHR) { this->hRoot = pHR; } // setter
 
     // function to output heap data stored in LoanBookHeap according to book classification code
     LoanBookHeapNode* deepCopy(LoanBookHeapNode* root) {
@@ -52,7 +52,7 @@ public:
     SelectionTreeNode* getLeftChild() { return pLeft; }
     SelectionTreeNode* getRightChild() { return pRight; }
     SelectionTreeNode* getParent() { return pParent; }
-    LoanBookHeap* getHeap() { return hRoot; }
+    LoanBookHeap* getHeap() { return hRoot; } // getter
 };
 
 #endif

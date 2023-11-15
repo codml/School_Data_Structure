@@ -176,13 +176,13 @@ bool Manager::PRINT_BP()
 {
 	BpTreeNode *tmp;
 
-	if (bptree->getRoot() == NULL)
+	if (bptree->getRoot() == NULL) // if B+tree is empty
 		return false;
 	tmp = bptree->getRoot();
 	while (tmp->getMostLeftChild())
-		tmp = tmp->getMostLeftChild();
+		tmp = tmp->getMostLeftChild(); // move to first data node
 	flog << "========PRINT_BP========" << endl;
-	auto itr = tmp->getDataMap()->begin();
+	auto itr = tmp->getDataMap()->begin(); // first data in first data node
 	while (tmp)
 	{	
 		if (itr->second)
@@ -204,10 +204,10 @@ bool Manager::PRINT_BP()
 				<< itr->second->getLoanCount() << endl;
 			}
 		}
-		itr++;
-		if (itr == tmp->getDataMap()->end())
+		itr++; // move to next data in data map
+		if (itr == tmp->getDataMap()->end()) // end of map
 		{
-			tmp = tmp->getNext();
+			tmp = tmp->getNext(); // move to next node
 			if (!tmp)
 				break;
 			itr = tmp->getDataMap()->begin();
@@ -217,14 +217,14 @@ bool Manager::PRINT_BP()
 	return true;
 }
 
-bool Manager::PRINT_ST(int bookCode) 
+bool Manager::PRINT_ST(int bookCode) // print selection tree's run(heap)
 {
 	return (stree->printBookData(bookCode));
 }
 
 bool Manager::DELETE() 
 {
-	return stree->Delete();
+	return stree->Delete(); // delete winner of selection tree
 }
 
 void Manager::printErrorCode(int n) {				//ERROR CODE PRINT
