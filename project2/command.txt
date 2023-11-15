@@ -81,13 +81,16 @@ ADD	cnrm yfoq	300	Dd Ml	1909
 ADD	yzxy	500	Oc Oh	2042
 ADD	glul	0	Xp Us	2285
 ADD	glul	0	Xp Us	2285
+ADD	how to make money	300	jh lee	2023
 SEARCH_BP
 SEARCH_BP	tsmr
 SEARCH_BP	oosy xmsa
 SEARCH_BP	sdf	sdf	sdf
 SEARCH_BP	fsfb
+SEARCH_BP	how to make money
 SEARCH_BP	a	i
 SEARCH_BP	y	z
+SEARCH_ST
 PRINT_BP
 PRINT_ST	000
 PRINT_ST	100
