@@ -1,10 +1,15 @@
+PRINT_BP
 LOAD
+DELETE
 ADD	nwxv jhna	400	Ze	1971
 ADD	nwxv jhna	400	Ze	1971
 ADD	nwxv jhna	400	Ze	1971
 ADD	nwxv jhna	400	Ze	1971
+LOAD
 ADD	qjfy	700	Nc Ym Gy	2248
 ADD	ykhk alss	0	Qq Nt Rx	2038
+ADD asdf sdf    100 asdfsd
+PRINT_ST	200
 ADD	ykhk alss	0	Qq Nt Rx	2038
 ADD	ykhk alss	0	Qq Nt Rx	2038
 ADD	qayc vwjg	600	Vp Td Wx	1980
@@ -76,8 +81,10 @@ ADD	cnrm yfoq	300	Dd Ml	1909
 ADD	yzxy	500	Oc Oh	2042
 ADD	glul	0	Xp Us	2285
 ADD	glul	0	Xp Us	2285
+SEARCH_BP
 SEARCH_BP	tsmr
 SEARCH_BP	oosy xmsa
+SEARCH_BP	sdf	sdf	sdf
 SEARCH_BP	fsfb
 SEARCH_BP	a	i
 SEARCH_BP	y	z
