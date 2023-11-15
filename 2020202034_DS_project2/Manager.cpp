@@ -144,21 +144,20 @@ bool Manager::ADD(string data)
 			pdata->updateCount();
 		stree->Insert(pdata);
 	}
-	if (pdata->getCode()) // code != 000
+	if (stoi(v.at(2))) // code != 000
 	{
 		flog << "========ADD========" << endl;
-		flog << pdata->getName() << "/" << pdata->getCode() << "/" << pdata->getAuthor()
-			<< "/" << pdata->getYear() << endl;
+		flog << v.at(1) << "/" << stoi(v.at(2)) << "/" << v.at(3)
+			<< "/" << stoi(v.at(4)) << endl;
 		flog << "===================" << endl << endl;
 	}
 	else // code == 000
 	{
 		flog << "========ADD========" << endl;
-		flog << pdata->getName() << "/" << "000" << "/" << pdata->getAuthor()
-			<< "/" << pdata->getYear() << endl;
+		flog << v.at(1) << "/" << "000" << "/" << v.at(3)
+			<< "/" << stoi(v.at(4)) << endl;
 		flog << "===================" << endl << endl;
 	}
-	
 	return true;
 }
 
