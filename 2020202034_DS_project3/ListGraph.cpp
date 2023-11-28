@@ -15,7 +15,16 @@ ListGraph::~ListGraph()
 
 void ListGraph::getAdjacentEdges(int vertex, map<int, int>* m)	 //Definition of getAdjacentEdges(No Direction == Undirected)
 {
-	
+	for (int i = 0; i < m_Size; i++)
+	{
+		if (vertex - 1 == i)
+			m->insert(m_List[i].begin(), m_List[i].end());
+		else
+		{
+			if (m_List[i].at(vertex - 1))
+				m->insert(map<int, int>::value_type(i + 1, m_List[i].at(vertex - 1)));
+		}
+	}
 }
 
 void ListGraph::getAdjacentEdgesDirect(int vertex, map<int, int>* m)	//Definition of getAdjacentEdges(Directed graph)
@@ -30,5 +39,15 @@ void ListGraph::insertEdge(int from, int to, int weight) //Definition of insertE
 
 bool ListGraph::printGraph(ofstream *fout)	//Definition of print Graph
 {
-	
+	if (!(fout->is_open()))
+		return false;
+	*fout << "========PRINT========" << endl;
+	for (int i = 0; i < m_Size; i++)
+	{
+		*fout << '[' << i + 1 << ']';
+		for (auto itr = m_List[i].begin(); itr != m_List[i].end(); itr++)
+			*fout << "->" << '(' << itr->first + 1 << ',' << itr->second << ')';
+		*fout << endl;
+	}
+	*fout << "=====================" << endl;
 }

@@ -35,7 +35,13 @@ void Manager::run(const char* command_txt){
 
 bool Manager::LOAD(const char* filename)
 {
+	ifstream fg;
+	fg.open(filename);
 	
+	if (!fg)
+		return false;
+	if (load)
+		return false;
 }
 
 bool Manager::PRINT()	

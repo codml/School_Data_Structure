@@ -49,5 +49,25 @@ void MatrixGraph::insertEdge(int from, int to, int weight)
 
 bool MatrixGraph::printGraph(ofstream *fout)	
 {
-	
+    if (!(fout->is_open()))
+        return false;
+	*fout << "========PRINT========" << endl;
+    *fout << "    ";
+    for (int i = 0; i < m_Size; i++)
+        *fout << '[' << i + i << "] ";
+    *fout << endl;
+    for (int i = 0; i < m_Size; i++)
+    {
+        *fout << '[' << i + i << "] ";
+        for (int j = 0; j < m_Size; j++)
+        {
+            fout->width(3);
+            fout->fill(' ');
+            *fout << m_Mat[i][j];
+            *fout << ' ';
+        }
+        *fout << endl;
+    }
+    *fout << "=====================" << endl;
+    return true;
 }
