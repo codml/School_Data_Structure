@@ -4,6 +4,8 @@
 int main()
 {
 	Manager ds;	//Declare DS
-	ds.run("command.txt");	//Run Program
+	ds.LOAD("graph_M.txt");
+	ds.PRINT();
+	 // ds.run("command.txt");	//Run Program
 	return 0;	//Return Program
 }

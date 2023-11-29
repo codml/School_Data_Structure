@@ -3,6 +3,8 @@
 
 #include "GraphMethod.h"
 
+#include <sstream>
+
 class Manager{	
 private:
 	Graph* graph;	

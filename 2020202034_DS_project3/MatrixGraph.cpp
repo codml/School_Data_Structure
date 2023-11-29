@@ -18,8 +18,8 @@ MatrixGraph::MatrixGraph(bool type, int size) : Graph(type, size)
 MatrixGraph::~MatrixGraph()
 {
     for (int i = 0; i < m_Size; i++)
-        delete m_Mat[i];
-    delete m_Mat;
+        delete[] m_Mat[i];
+    delete[] m_Mat;
 }
 
 void MatrixGraph::getAdjacentEdges(int vertex, map<int, int>* m)
@@ -54,11 +54,11 @@ bool MatrixGraph::printGraph(ofstream *fout)
 	*fout << "========PRINT========" << endl;
     *fout << "    ";
     for (int i = 0; i < m_Size; i++)
-        *fout << '[' << i + i << "] ";
+        *fout << '[' << i + 1 << "] ";
     *fout << endl;
     for (int i = 0; i < m_Size; i++)
     {
-        *fout << '[' << i + i << "] ";
+        *fout << '[' << i + 1 << "] ";
         for (int j = 0; j < m_Size; j++)
         {
             fout->width(3);
@@ -68,6 +68,6 @@ bool MatrixGraph::printGraph(ofstream *fout)
         }
         *fout << endl;
     }
-    *fout << "=====================" << endl;
+    *fout << "=====================" << endl << endl;
     return true;
 }

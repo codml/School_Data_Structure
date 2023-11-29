@@ -10,7 +10,7 @@ ListGraph::ListGraph(bool type, int size) : Graph(type, size)
 
 ListGraph::~ListGraph()	
 {
-	delete m_List;
+	delete[] m_List;
 }
 
 void ListGraph::getAdjacentEdges(int vertex, map<int, int>* m)	 //Definition of getAdjacentEdges(No Direction == Undirected)
@@ -46,8 +46,8 @@ bool ListGraph::printGraph(ofstream *fout)	//Definition of print Graph
 	{
 		*fout << '[' << i + 1 << ']';
 		for (auto itr = m_List[i].begin(); itr != m_List[i].end(); itr++)
-			*fout << "->" << '(' << itr->first + 1 << ',' << itr->second << ')';
+			*fout << "->" << '(' << itr->first << ',' << itr->second << ')';
 		*fout << endl;
 	}
-	*fout << "=====================" << endl;
+	*fout << "=====================" << endl << endl;
 }
