@@ -22,13 +22,83 @@ Manager::~Manager()
 
 void Manager::run(const char* command_txt){
 	ifstream fin;	//Command File Input File Stream
+	string oneLine, buf;
+	vector <string> v;
+	stringstream ss;
+
 	fin.open(command_txt, ios_base::in);//File open with read mode
 		
 	if(!fin) { //If command File cannot be read, Print error
 		fout<<"command file open error"<<endl;
 		return;	//Return
 	}
-	
+	while (getline(fin, oneLine))
+	{
+		ss << oneLine;
+		while (getline(ss, buf, ' '))
+			v.push_back(buf);
+		if (v.empty())
+			printErrorCode(1000);
+		else if (v.at(0) == "LOAD")
+		{
+			if (v.size() != 2)
+				printErrorCode(100);
+			else if (!LOAD(v.at(1).c_str()))
+				printErrorCode(100);
+		}
+		else if (v.at(0) == "PRINT")
+		{
+			if (v.size() != 1)
+				printErrorCode(200);
+			else if (!PRINT())
+				printErrorCode(200);
+		}
+		else if (v.at(0) == "BFS")
+		{
+			if (v.size() != 3)
+				printErrorCode(300);
+			else if (!mBFS(v.at(1)[0], stoi(v.at(2))))
+				printErrorCode(300);
+		}
+		else if (v.at(0) == "DFS")
+		{
+			if (v.size() != 3)
+				printErrorCode(400);
+			else if (!mDFS(v.at(1)[0], stoi(v.at(2))))
+				printErrorCode(400);
+		}
+		else if (v.at(0) == "KWANGWOON")
+		{
+			if (v.size() != 2)
+				printErrorCode(500);
+			else if (!mKwoonWoon(stoi(v.at(1))))
+				printErrorCode(500);
+		}
+		else if (v.at(0) == "KRUSKAL")
+		{
+
+		}
+		else if (v.at(0) == "DIJKSTRA")
+		{
+
+		}
+		else if (v.at(0) == "BELLMANFORD")
+		{
+
+		}
+		else if (v.at(0) == "FLYOD")
+		{
+
+		}
+		else if (v.at(0) == "EXIT")
+		{
+
+		}
+		else
+			printErrorCode(1000);
+		v.clear();
+		ss.clear();
+	}
 	fin.close();
 	return;
 }
