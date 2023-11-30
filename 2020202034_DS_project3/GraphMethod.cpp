@@ -153,9 +153,10 @@ bool Kruskal(Graph* graph)
    
 }
 
-bool Dijkstra(Graph* graph, char option, int vertex)
+bool Dijkstra(Graph* graph, char option, int vertex, ofstream *fout)
 {
 	map <int, int > temp;
+	stack <int> stack;
 	int *dist, *parent;
 	bool *s;
 	int u, dis;
@@ -170,34 +171,87 @@ bool Dijkstra(Graph* graph, char option, int vertex)
 	dist = new int[graph->getSize() + 1];
 	parent = new int[graph->getSize() + 1];
 	fill(s, s + graph->getSize() + 1, false);
-	for (int i = 1; i < graph->getSize(); i++)
-	{
-		// parent initialization
-	}
+	fill(parent, parent + graph->getSize() + 1, -1);
+	if (option == 'Y')
+		graph->getAdjacentEdgesDirect(vertex, &temp);
+	else
+		graph->getAdjacentEdges(vertex, &temp);
+	for (auto itr = temp.begin(); itr != temp.end(); itr++)
+		parent[itr->first] = vertex; // set parent
 	for (int i = 1; i <= graph->getSize(); i++)
-		dist[i] = graph->getWeight(vertex, i); // need to consider Undirected
+	{
+		if (option == 'Y')
+			dist[i] = graph->getWeightDirect(vertex, i);
+		else
+			dist[i] = graph->getWeight(vertex, i);
+	}
 	s[vertex] = true;
 	dist[vertex] = 0;
 	for(int i = 0; i < graph->getSize() - 1; i++)
 	{
-		dis = -1;
+		dis = INT32_MAX;
 		for (int j = 1; j <= graph->getSize(); j++)
 		{
-			if (!s[j] && (dis < 0 || dis > dist[j]))
+			if (!s[j] && dis > dist[j])
 			{
 				u = j;
 				dis = dist[u];
-			}		
+			}
 		}
 		s[u] = true;
 		for (int j = 1; j <= graph->getSize(); j++)
 		{
 			if (s[j] == false)
-				dist[j] = min(dist[u] + graph->getWeight(u, j), dist[j]);
+			{
+				if (option == 'Y')
+				{
+					if (dist[u] + graph->getWeightDirect(u, j) < dist[j])
+					{
+						dist[j] = dist[u] + graph->getWeightDirect(u, j);
+						parent[j] = u;
+					}
+				}
+				else
+				{
+					if (dist[u] + graph->getWeight(u, j) < dist[j])
+					{
+						dist[j] = dist[u] + graph->getWeight(u, j);
+						parent[j] = u;
+					}
+				}
+				
+			}
 		}
 	}
+	*fout << "========Dijkstra========" << endl;
+	if (option == 'Y')
+		*fout << "Directed ";
+	else
+		*fout << "Undirected ";
+	*fout << "Graph Dijkstra result" << endl;
+	*fout << "startvertex: " << vertex << endl;
 	for (int i = 1; i <= graph->getSize(); i++)
-		cout << dist[i] << endl;
+	{
+		if (i == vertex)
+			continue;
+		*fout << "[" << i << "] ";
+		if (parent[i] > 0)
+		{
+			*fout << vertex;
+			for (int j = i; j != vertex; j = parent[j])
+				stack.push(j);
+			while (!stack.empty())
+			{
+				*fout << "->" << stack.top();
+				stack.pop();
+			}
+			*fout << "(" << dist[i] << ")";
+		}
+		else
+			*fout << "x";
+		*fout << endl;
+	}
+	*fout << "=====================" << endl << endl;
 	delete [] s;
 	delete [] dist;
 	delete [] parent;

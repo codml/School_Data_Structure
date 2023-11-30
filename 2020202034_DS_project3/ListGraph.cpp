@@ -17,6 +17,16 @@ int ListGraph::getWeight(int from_v, int to_v)
 {
 	if (m_List[from_v - 1].find(to_v) != m_List[from_v - 1].end())
 		return m_List[from_v - 1].at(to_v);
+	else if (m_List[to_v - 1].find(from_v) != m_List[to_v - 1].end())
+		return m_List[to_v - 1].at(from_v);
+	else
+		return 987654321;
+}
+
+int ListGraph::getWeightDirect(int from_v, int to_v)
+{
+	if (m_List[from_v - 1].find(to_v) != m_List[from_v - 1].end())
+		return m_List[from_v - 1].at(to_v);
 	else
 		return 987654321;
 }

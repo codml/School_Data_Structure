@@ -29,6 +29,7 @@ public:
 	int getSize();
 
 	virtual int getWeight(int from_v, int to_v) = 0;
+	virtual int getWeightDirect(int from_v, int to_v) = 0;
 	virtual void getAdjacentEdges(int vertex, map<int, int>* m) = 0;		
 	virtual void getAdjacentEdgesDirect(int vertex, map<int, int>* m) = 0;	
 	virtual void insertEdge(int from, int to, int weight) = 0;				
