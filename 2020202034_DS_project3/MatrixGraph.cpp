@@ -27,9 +27,9 @@ void MatrixGraph::getAdjacentEdges(int vertex, map<int, int>* m)
     for (int i = 0; i < m_Size; i++)
     {
         if (m_Mat[vertex - 1][i])
-            m->insert(map<int, int>::value_type(i + 1, m_Mat[vertex][i]));
+            m->insert(map<int, int>::value_type(i + 1, m_Mat[vertex - 1][i]));
         if (m_Mat[i][vertex - 1])
-            m->insert(map<int, int>::value_type(i + 1, m_Mat[vertex][i]));
+            m->insert(map<int, int>::value_type(i + 1, m_Mat[vertex - 1][i]));
     }
 }
 
@@ -38,7 +38,7 @@ void MatrixGraph::getAdjacentEdgesDirect(int vertex, map<int, int>* m)
 	for (int i = 0; i < m_Size; i++)
     {
         if (m_Mat[vertex - 1][i])
-            m->insert(map<int, int>::value_type(i + 1, m_Mat[vertex][i]));
+            m->insert(map<int, int>::value_type(i + 1, m_Mat[vertex - 1][i]));
     }
 }
 

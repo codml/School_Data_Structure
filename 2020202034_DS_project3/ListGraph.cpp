@@ -50,4 +50,5 @@ bool ListGraph::printGraph(ofstream *fout)	//Definition of print Graph
 		*fout << endl;
 	}
 	*fout << "=====================" << endl << endl;
+	return true;
 }

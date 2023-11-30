@@ -76,24 +76,34 @@ void Manager::run(const char* command_txt){
 		}
 		else if (v.at(0) == "KRUSKAL")
 		{
-
+			if (v.size() != 1)
+				printErrorCode(600);
+			else if (!mKRUSKAL())
+				printErrorCode(600);
 		}
 		else if (v.at(0) == "DIJKSTRA")
 		{
-
+			if (v.size() != 3)
+				printErrorCode(700);
+			else if (!mDIJKSTRA(v.at(1)[0], stoi(v.at(2))))
+				printErrorCode(700);
 		}
 		else if (v.at(0) == "BELLMANFORD")
 		{
-
+			if (v.size() != 4)
+				printErrorCode(800);
+			else if (!mBELLMANFORD(v.at(1)[0], stoi(v.at(2)), stoi(v.at(3))))
+				printErrorCode(800);
 		}
 		else if (v.at(0) == "FLYOD")
 		{
-
+			if (v.size() != 2)
+				printErrorCode(900);
+			else if (!mFLOYD(v.at(1)[0]))
+				printErrorCode(900);
 		}
 		else if (v.at(0) == "EXIT")
-		{
-
-		}
+			break;
 		else
 			printErrorCode(1000);
 		v.clear();
@@ -168,6 +178,8 @@ bool Manager::LOAD(const char* filename)
 	}
 	fg.close();
 	load = 1;
+	fout << "========LOAD========" << endl << "Success" << endl;
+	fout << "=====================" << endl << endl;
 	return true;
 }
 
@@ -182,36 +194,36 @@ bool Manager::PRINT()
 
 bool Manager::mBFS(char option, int vertex)	
 {
-	
+	return (BFS(graph, option, vertex, &fout));
 }
 
 bool Manager::mDFS(char option, int vertex)	
 {
-	
+	return (DFS(graph, option, vertex, &fout));
 }
 
 bool Manager::mDIJKSTRA(char option, int vertex)	
 {
-	
+	return true;
 }
 
 bool Manager::mKRUSKAL()
 {
- 	
+ 	return true;
 }
 
 bool Manager::mBELLMANFORD(char option, int s_vertex, int e_vertex) 
 {
-	
+	return true;
 }
 
 bool Manager::mFLOYD(char option)
 {
-	
+	return true;
 }
 
 bool Manager::mKwoonWoon(int vertex) {
-	
+	return true;
 }
 
 void Manager::printErrorCode(int n)
