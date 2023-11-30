@@ -155,8 +155,10 @@ bool Kruskal(Graph* graph)
 
 bool Dijkstra(Graph* graph, char option, int vertex)
 {
+	map <int, int > temp;
 	int *dist, *parent;
 	bool *s;
+	int u, dis;
 
 	if (!graph)
 		return false;
@@ -168,13 +170,38 @@ bool Dijkstra(Graph* graph, char option, int vertex)
 	dist = new int[graph->getSize() + 1];
 	parent = new int[graph->getSize() + 1];
 	fill(s, s + graph->getSize() + 1, false);
-	for (int i = 1; i <= graph->getSize(); i++)
+	for (int i = 1; i < graph->getSize(); i++)
 	{
-		if (i != vertex)
-			dist[i] = graph->getWeight(vertex, i);
-		else
-			dist[i] = 0;
+		// parent initialization
 	}
+	for (int i = 1; i <= graph->getSize(); i++)
+		dist[i] = graph->getWeight(vertex, i); // need to consider Undirected
+	s[vertex] = true;
+	dist[vertex] = 0;
+	for(int i = 0; i < graph->getSize() - 1; i++)
+	{
+		dis = -1;
+		for (int j = 1; j <= graph->getSize(); j++)
+		{
+			if (!s[j] && (dis < 0 || dis > dist[j]))
+			{
+				u = j;
+				dis = dist[u];
+			}		
+		}
+		s[u] = true;
+		for (int j = 1; j <= graph->getSize(); j++)
+		{
+			if (s[j] == false)
+				dist[j] = min(dist[u] + graph->getWeight(u, j), dist[j]);
+		}
+	}
+	for (int i = 1; i <= graph->getSize(); i++)
+		cout << dist[i] << endl;
+	delete [] s;
+	delete [] dist;
+	delete [] parent;
+	return true;
 }
 
 bool Bellmanford(Graph* graph, char option, int s_vertex, int e_vertex) 

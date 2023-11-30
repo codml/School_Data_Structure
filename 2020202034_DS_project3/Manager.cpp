@@ -204,7 +204,7 @@ bool Manager::mDFS(char option, int vertex)
 
 bool Manager::mDIJKSTRA(char option, int vertex)	
 {
-	return true;
+	return Dijkstra(graph, option, vertex);
 }
 
 bool Manager::mKRUSKAL()
