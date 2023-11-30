@@ -155,7 +155,26 @@ bool Kruskal(Graph* graph)
 
 bool Dijkstra(Graph* graph, char option, int vertex)
 {
-   
+	int *dist, *parent;
+	bool *s;
+
+	if (!graph)
+		return false;
+	if (vertex < 1 || vertex > graph->getSize())
+		return false;
+	if (option != 'Y' && option != 'N')
+		return false;
+	s = new bool[graph->getSize() + 1];
+	dist = new int[graph->getSize() + 1];
+	parent = new int[graph->getSize() + 1];
+	fill(s, s + graph->getSize() + 1, false);
+	for (int i = 1; i <= graph->getSize(); i++)
+	{
+		if (i != vertex)
+			dist[i] = graph->getWeight(vertex, i);
+		else
+			dist[i] = 0;
+	}
 }
 
 bool Bellmanford(Graph* graph, char option, int s_vertex, int e_vertex) 

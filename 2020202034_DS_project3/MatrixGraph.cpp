@@ -22,6 +22,14 @@ MatrixGraph::~MatrixGraph()
     delete[] m_Mat;
 }
 
+int MatrixGraph::getWeight(int from_v, int to_v)
+{
+	if (m_Mat[from_v - 1][to_v - 1])
+		return m_Mat[from_v - 1][to_v - 1];
+	else
+		return 987654321;
+}
+
 void MatrixGraph::getAdjacentEdges(int vertex, map<int, int>* m)
 {	
     for (int i = 0; i < m_Size; i++)

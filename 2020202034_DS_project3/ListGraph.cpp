@@ -13,6 +13,14 @@ ListGraph::~ListGraph()
 	delete[] m_List;
 }
 
+int ListGraph::getWeight(int from_v, int to_v)
+{
+	if (m_List[from_v - 1].find(to_v) != m_List[from_v - 1].end())
+		return m_List[from_v - 1].at(to_v);
+	else
+		return 987654321;
+}
+
 void ListGraph::getAdjacentEdges(int vertex, map<int, int>* m)	 //Definition of getAdjacentEdges(No Direction == Undirected)
 {
 	for (int i = 0; i < m_Size; i++)
