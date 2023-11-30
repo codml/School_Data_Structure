@@ -21,8 +21,8 @@ void ListGraph::getAdjacentEdges(int vertex, map<int, int>* m)	 //Definition of 
 			m->insert(m_List[i].begin(), m_List[i].end());
 		else
 		{
-			if (m_List[i].find(vertex - 1) != m_List[i].end())
-				m->insert(map<int, int>::value_type(i + 1, m_List[i].find(vertex - 1)->second));
+			if (m_List[i].find(vertex) != m_List[i].end())
+				m->insert(map<int, int>::value_type(i + 1, (m_List[i].find(vertex))->second));
 		}
 	}
 }

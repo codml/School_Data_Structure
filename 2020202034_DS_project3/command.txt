@@ -1,5 +1,5 @@
-LOAD graph_L.txt
+LOAD graph_M.txt
 PRINT
-BFS Y 1
-DFS N 1
+BFS N 5
+DFS Y 2
 EXIT

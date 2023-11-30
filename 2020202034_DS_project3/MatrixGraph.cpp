@@ -44,7 +44,7 @@ void MatrixGraph::getAdjacentEdgesDirect(int vertex, map<int, int>* m)
 
 void MatrixGraph::insertEdge(int from, int to, int weight)	
 {
-	m_Mat[from][to] = weight; // need to fix
+	m_Mat[from][to] = weight;
 }
 
 bool MatrixGraph::printGraph(ofstream *fout)	
