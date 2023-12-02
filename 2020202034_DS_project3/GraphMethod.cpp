@@ -102,9 +102,103 @@ bool DFS(Graph* graph, char option, int vertex, ofstream *fout)
 	return true;
 }
 
-bool Kruskal(Graph* graph)
+void Union(int *parent, int i, int j)
 {
-   
+	parent[i] = j;
+}
+
+int Find(int *parent, int i)
+{
+	while (parent[i] > 0)
+		i = parent[i];
+	return i;
+}
+
+void insertionSort(vector <pair<int, pair <int, int> > > &v, int low, int high)
+{
+	int i, j;
+	pair <int, pair <int, int> > key;
+
+	for (i = low + 1; i <= high; i++)
+	{
+		key = v[i];
+		for (j = i - 1; j >= 0 && v[j].first < key.first; j--)
+			v[j + 1] = v[j];
+		v[i + 1] = key;
+	}
+}
+
+int partition(vector <pair<int, pair <int, int> > > &v, int low, int high)
+{
+	int i = low;
+	int j = high + 1;
+	int pivot = v[low].first;
+
+	do {
+		do i++; while (v[i].first > pivot);
+		do j--; while (v[j].first < pivot);
+		if (i < j) swap(v[i], v[j]);
+	} while (i < j);
+	swap(v[low], v[j]);
+	return j;
+}
+
+void quickSort(vector <pair<int, pair <int, int> > > &v, int low, int high)
+{
+	int pivot;
+
+	if (low < high)
+	{
+		if (high-low+1 <= 6)
+			insertionSort(v, low, high);
+		else
+		{
+			pivot = partition(v, low, high);
+			quickSort(v, low, pivot - 1);
+			quickSort(v, pivot + 1, high);
+		}
+	}
+}
+
+bool Kruskal(Graph* graph, ofstream *fout)
+{
+	int *parent;
+	int weight, v, w;
+	vector <pair <int , pair <int, int > > > E;
+	pair <int, pair <int, int> > edge;
+	map <int, int> temp;
+	vector <pair <int, pair <int, int> > > T;
+
+	parent = new int [graph->getSize() + 1];
+	fill(parent, parent + graph->getSize() + 1, -1);
+	for (int i = 1; i <= graph->getSize(); i++)
+	{
+		graph->getAdjacentEdges(i, &temp, 'N');
+		for (auto itr = temp.begin(); itr != temp.end(); itr++)
+			E.push_back(make_pair(itr->second, make_pair(i, itr->first)));
+		temp.clear();
+	}
+	while (T.size() < graph->getSize() && !E.empty())
+	{
+		edge = *E.rbegin();
+		v = edge.second.first;
+		w = edge.second.second;
+		weight = edge.first;
+		E.pop_back();
+		if (Find(parent, v) != Find(parent, w))
+		{
+			Union(parent, v, w);
+			T.push_back(make_pair(v, make_pair(w, weight)));
+		}
+	}
+	if (T.size() < graph->getSize() - 1)
+	{
+		delete []parent;
+		return false;
+	}
+	// print result MST
+	delete []parent;
+	return true;
 }
 
 bool Dijkstra(Graph* graph, char option, int vertex, ofstream *fout)
