@@ -95,7 +95,7 @@ void Manager::run(const char* command_txt){
 			else if (!mBELLMANFORD(v.at(1)[0], stoi(v.at(2)), stoi(v.at(3))))
 				printErrorCode(800);
 		}
-		else if (v.at(0) == "FLYOD")
+		else if (v.at(0) == "FLOYD")
 		{
 			if (v.size() != 2)
 				printErrorCode(900);
@@ -149,7 +149,11 @@ bool Manager::LOAD(const char* filename)
 				weight = stoi(v.at(1));
 			}
 			if (to)
+			{
 				graph->insertEdge(from, to, weight);
+				if (weight < 0)
+					graph->setNeg(true);
+			}
 			ss.clear();
 			v.clear();
 		}
@@ -165,7 +169,11 @@ bool Manager::LOAD(const char* filename)
 			while (getline(ss, buf2, ' '))
 				v.push_back(buf2);
 			for (to = 0; to < graph->getSize(); to++)
+			{
 				graph->insertEdge(from, to, stoi(v.at(to)));
+				if (stoi(v.at(to)) < 0)
+					graph->setNeg(true);
+			}
 			from++;
 			v.clear();
 			ss.clear();
@@ -219,7 +227,7 @@ bool Manager::mBELLMANFORD(char option, int s_vertex, int e_vertex)
 
 bool Manager::mFLOYD(char option)
 {
-	return true;
+	return FLOYD(graph, option, &fout);
 }
 
 bool Manager::mKwoonWoon(int vertex) {

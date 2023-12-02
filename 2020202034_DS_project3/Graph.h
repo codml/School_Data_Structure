@@ -20,13 +20,16 @@ class Graph{
 protected:
 	bool m_Type;
 	int m_Size;
-
+	bool m_Neg;
 public:
 	Graph(bool type, int size);
 	virtual ~Graph();
 
 	bool getType();	
 	int getSize();
+
+	bool getNeg();
+	void setNeg(bool tf);
 
 	virtual int getWeight(int from_v, int to_v, char option) = 0;
 	virtual void getAdjacentEdges(int vertex, map<int, int>* m, char option) = 0;	

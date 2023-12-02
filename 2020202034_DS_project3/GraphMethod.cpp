@@ -121,6 +121,8 @@ bool Dijkstra(Graph* graph, char option, int vertex, ofstream *fout)
 		return false;
 	if (option != 'Y' && option != 'N')
 		return false;
+	if (graph->getNeg())
+		return false;
 	s = new bool[graph->getSize() + 1];
 	dist = new int[graph->getSize() + 1];
 	parent = new int[graph->getSize() + 1];
@@ -135,7 +137,7 @@ bool Dijkstra(Graph* graph, char option, int vertex, ofstream *fout)
 	dist[vertex] = 0;
 	for(int i = 0; i < graph->getSize() - 1; i++)
 	{
-		dis = 2147483648;
+		dis = 2147483647;
 		for (int j = 1; j <= graph->getSize(); j++)
 		{
 			if (!s[j] && dis > dist[j])
@@ -214,7 +216,6 @@ bool Bellmanford(Graph* graph, char option, int s_vertex, int e_vertex, ofstream
 		parent[itr->first] = s_vertex;
 	for (int i = 1; i <= graph->getSize(); i++)
 		dist[i] = graph->getWeight(s_vertex, i, option);
-	dist[s_vertex] = 0;
 	for (int i = 2; i < graph->getSize(); i++)
 	{
 		for (int j = 1; j <= graph->getSize(); j++)
@@ -249,36 +250,99 @@ bool Bellmanford(Graph* graph, char option, int s_vertex, int e_vertex, ofstream
 			}
 		}
 	}
-	if (parent[e_vertex] < 0)
-	{
-		delete [] dist;
-		delete [] parent;
-		return false;
-	}
 	*fout << "========Bellman-Ford========" << endl;
 	if (option == 'Y')
 		*fout << "Directed ";
 	else
 		*fout << "Undirected ";
 	*fout << "Graph Bellman-Ford result" << endl;
-	*fout << s_vertex;
-	for (int i = e_vertex; i != s_vertex; i = parent[i])
+	for (int i = e_vertex; i > 0; i = parent[i])
 		stack.push(i);
-	while (!stack.empty())
+	if (stack.empty() || stack.top() != s_vertex)
+		*fout << 'x' << endl;
+	else
 	{
-		*fout << "->" << stack.top();
+		*fout << stack.top();
 		stack.pop();
+		while (!stack.empty())
+		{
+			*fout << "->" << stack.top();
+			stack.pop();
+		}
+		*fout << endl << "cost: " << dist[e_vertex] << endl;
 	}
-	*fout << endl << "cost: " << dist[e_vertex] << endl;
 	*fout << "=====================" << endl << endl;
 	delete [] dist;
 	delete [] parent;
 	return true;
 }
 
-bool FLOYD(Graph* graph, char option)
+bool FLOYD(Graph* graph, char option, ofstream *fout)
 {
-   
+	int **dist;
+	map <int, int> temp;
+	stack <int> stack;
+
+	if (!graph)
+		return false;
+	if (option != 'Y' && option != 'N')
+		return false;
+	dist = new int *[graph->getSize() + 1];
+	for (int i = 1; i < graph->getSize() + 1; i++)
+		dist[i] = new int [graph->getSize() + 1];
+	for (int i = 1; i < graph->getSize() + 1; i++)
+	{
+		for (int j = 1; j < graph->getSize() + 1; j++)
+			dist[i][j] = graph->getWeight(i, j, option);
+	}
+	for (int k = 1; k <= graph->getSize(); k++)
+	{
+		for (int i = 1; i <= graph->getSize(); i++)
+		{
+			for (int j = 1; j <= graph->getSize(); j++)
+				dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
+		}
+	}
+	for (int i = 1; i < graph->getSize() + 1; i++)
+	{
+		if (dist[i][i] < 0)
+		{
+			for (int i = 1; i < graph->getSize() + 1; i++)
+       			delete[] dist[i];
+    		delete[] dist;
+			return false;
+		}
+	}
+	*fout << "========FLOYD========" << endl;
+	if (option == 'Y')
+		*fout << "Directed ";
+	else
+		*fout << "Undirected ";
+	*fout << "Graph FLOYD result" << endl;
+	*fout << "    ";
+    for (int i = 1; i < graph->getSize() + 1; i++)
+        *fout << '[' << i << "] ";
+    *fout << endl;
+    for (int i = 1; i < graph->getSize() + 1; i++)
+    {
+        *fout << '[' << i << "] ";
+        for (int j = 1; j < graph->getSize() + 1; j++)
+        {
+            fout->width(3);
+            fout->fill(' ');
+			if (dist[i][j] > 500000000) // need to fix
+				*fout << 'x';
+			else
+            	*fout << dist[i][j];
+            *fout << ' ';
+        }
+        *fout << endl;
+    }
+    *fout << "=====================" << endl << endl;
+	for (int i = 1; i < graph->getSize() + 1; i++)
+        delete[] dist[i];
+    delete[] dist;
+	return true;
 }
 
 bool KWANGWOON(Graph* graph, int vertex) {
