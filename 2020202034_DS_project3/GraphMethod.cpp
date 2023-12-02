@@ -124,7 +124,7 @@ void insertionSort(vector <pair<int, pair <int, int> > > &v, int low, int high)
 		key = v[i];
 		for (j = i - 1; j >= 0 && v[j].first < key.first; j--)
 			v[j + 1] = v[j];
-		v[i + 1] = key;
+		v[j + 1] = key;
 	}
 }
 
@@ -174,17 +174,17 @@ bool Kruskal(Graph* graph, ofstream *fout)
 	parent = new int [graph->getSize() + 1];
 	fill(parent, parent + graph->getSize() + 1, -1);
 	T = new map<int, int> [graph->getSize() + 1];
-	t_size = 0;
 	for (int i = 1; i <= graph->getSize(); i++)
 	{
-		graph->getAdjacentEdges(i, &temp, 'N');
+		graph->getAdjacentEdges(i, &temp, 'Y');
 		for (auto itr = temp.begin(); itr != temp.end(); itr++)
 			E.push_back(make_pair(itr->second, make_pair(i, itr->first)));
 		temp.clear();
 	}
 	quickSort(E, 0, E.size() - 1);
+	t_size = 0;
 	cost = 0;
-	while (t_size < graph->getSize() && !E.empty())
+	while (t_size < graph->getSize() - 1 && !E.empty())
 	{
 		edge = *E.rbegin();
 		v = edge.second.first;
