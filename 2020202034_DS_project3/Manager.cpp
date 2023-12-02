@@ -217,7 +217,7 @@ bool Manager::mDIJKSTRA(char option, int vertex)
 
 bool Manager::mKRUSKAL()
 {
- 	return true;
+ 	return Kruskal(graph, &fout);
 }
 
 bool Manager::mBELLMANFORD(char option, int s_vertex, int e_vertex) 

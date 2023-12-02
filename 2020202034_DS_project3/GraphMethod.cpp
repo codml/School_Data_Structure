@@ -163,14 +163,18 @@ void quickSort(vector <pair<int, pair <int, int> > > &v, int low, int high)
 bool Kruskal(Graph* graph, ofstream *fout)
 {
 	int *parent;
-	int weight, v, w;
+	int weight, v, w, t_size, cost;
 	vector <pair <int , pair <int, int > > > E;
 	pair <int, pair <int, int> > edge;
 	map <int, int> temp;
-	vector <pair <int, pair <int, int> > > T;
+	map <int, int> *T;
 
+	if (!graph)
+		return false;
 	parent = new int [graph->getSize() + 1];
 	fill(parent, parent + graph->getSize() + 1, -1);
+	T = new map<int, int> [graph->getSize() + 1];
+	t_size = 0;
 	for (int i = 1; i <= graph->getSize(); i++)
 	{
 		graph->getAdjacentEdges(i, &temp, 'N');
@@ -178,26 +182,45 @@ bool Kruskal(Graph* graph, ofstream *fout)
 			E.push_back(make_pair(itr->second, make_pair(i, itr->first)));
 		temp.clear();
 	}
-	while (T.size() < graph->getSize() && !E.empty())
+	quickSort(E, 0, E.size() - 1);
+	cost = 0;
+	while (t_size < graph->getSize() && !E.empty())
 	{
 		edge = *E.rbegin();
 		v = edge.second.first;
-		w = edge.second.second; // need to make v < w(using swap)
+		w = edge.second.second;
+		if (v > w)
+			swap(v, w);
 		weight = edge.first;
 		E.pop_back();
 		if (Find(parent, v) != Find(parent, w))
 		{
 			Union(parent, v, w);
-			T.push_back(make_pair(v, make_pair(w, weight)));
+			T[v].insert(map<int, int>::value_type(w, weight));
+			t_size++;
+			cost += weight;
 		}
 	}
-	if (T.size() < graph->getSize() - 1)
+	if (t_size < graph->getSize() - 1)
 	{
 		delete []parent;
+		delete []T;
 		return false;
 	}
-	// print result MST
+	*fout << "========Kruskal========" << endl;
+	for (int i = 1; i <= graph->getSize(); i++)
+	{
+		if (T[i].empty())
+			continue;
+		*fout << '[' << i << ']' << '\t';
+		for (auto itr = T[i].begin(); itr != T[i].end(); itr++)
+			*fout << itr->first << '(' << itr->second << ')';
+		*fout << endl;
+	}
+	*fout << "cost: " << cost << endl;
+	*fout << "=====================" << endl;
 	delete []parent;
+	delete []T;
 	return true;
 }
 
