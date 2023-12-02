@@ -182,7 +182,7 @@ bool Kruskal(Graph* graph, ofstream *fout)
 	{
 		edge = *E.rbegin();
 		v = edge.second.first;
-		w = edge.second.second;
+		w = edge.second.second; // need to make v < w(using swap)
 		weight = edge.first;
 		E.pop_back();
 		if (Find(parent, v) != Find(parent, w))
