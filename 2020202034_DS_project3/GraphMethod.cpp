@@ -171,11 +171,14 @@ bool Dijkstra(Graph* graph, char option, int vertex, ofstream *fout)
 		if (i == vertex)
 			continue;
 		*fout << "[" << i << "] ";
-		if (parent[i] > 0)
+		for (int j = i; j > 0; j = parent[j])
+			stack.push(j);
+		if (stack.empty() || stack.top() != vertex)
+			*fout << 'x';
+		else
 		{
-			*fout << vertex;
-			for (int j = i; j != vertex; j = parent[j])
-				stack.push(j);
+			*fout << stack.top();
+			stack.pop();
 			while (!stack.empty())
 			{
 				*fout << "->" << stack.top();
@@ -183,8 +186,6 @@ bool Dijkstra(Graph* graph, char option, int vertex, ofstream *fout)
 			}
 			*fout << "(" << dist[i] << ")";
 		}
-		else
-			*fout << "x";
 		*fout << endl;
 	}
 	*fout << "=====================" << endl << endl;
