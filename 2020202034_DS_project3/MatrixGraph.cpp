@@ -22,30 +22,32 @@ MatrixGraph::~MatrixGraph()
     delete[] m_Mat;
 }
 
-int MatrixGraph::getWeight(int from_v, int to_v)
+int MatrixGraph::getWeight(int from_v, int to_v, char option)
 {
 	if (m_Mat[from_v - 1][to_v - 1])
 		return m_Mat[from_v - 1][to_v - 1];
-    else if (m_Mat[to_v - 1][from_v - 1])
-        return m_Mat[to_v - 1][from_v - 1];
-	else
-		return 987654321;
+	if (option == 'N')
+	{
+		if (m_Mat[to_v - 1][from_v - 1])
+        	return m_Mat[to_v - 1][from_v - 1];
+	}
+	if (from_v == to_v)
+		return 0;
+	return 987654321;
 }
 
-int MatrixGraph::getWeightDirect(int from_v, int to_v)
-{
-    if (m_Mat[from_v - 1][to_v - 1])
-		return m_Mat[from_v - 1][to_v - 1];
-	else
-		return 987654321;
-}
-
-void MatrixGraph::getAdjacentEdges(int vertex, map<int, int>* m)
+void MatrixGraph::getAdjacentEdges(int vertex, map<int, int>* m, char option)
 {	
+    if (option != 'Y')
+		getIncomingEdges(vertex, m);
+	if (option != 'I') // option 'I' is for incoming edge
+		getAdjacentEdgesDirect(vertex, m); // get Outgoing edges
+}
+
+void MatrixGraph::getIncomingEdges(int vertex, map<int, int>* m)
+{
     for (int i = 0; i < m_Size; i++)
     {
-        if (m_Mat[vertex - 1][i])
-            m->insert(map<int, int>::value_type(i + 1, m_Mat[vertex - 1][i]));
         if (m_Mat[i][vertex - 1])
             m->insert(map<int, int>::value_type(i + 1, m_Mat[vertex - 1][i]));
     }

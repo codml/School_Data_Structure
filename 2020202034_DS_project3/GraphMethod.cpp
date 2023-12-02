@@ -27,50 +27,28 @@ bool BFS(Graph* graph, char option, int vertex, ofstream *fout)
 	fill(visited, visited + graph->getSize() + 1, false);
 	visited[vertex] = true;
 	q.push(vertex);
-	switch (option)
+	if (option == 'Y')
+		*fout << "Directed ";
+	else
+		*fout << "Undirected ";
+	*fout << "Graph BFS result" << endl;
+	*fout << "startvertex: " << vertex << endl;
+	*fout << vertex;
+	while (!q.empty())
 	{
-		case 'Y':
-			*fout << "Directed Graph BFS result" << endl;
-			*fout << "startvertex: " << vertex << endl;
-			*fout << vertex;
-			while (!q.empty())
+		vertex = q.front();
+		q.pop();
+		graph->getAdjacentEdges(vertex, &m, option);
+		for (auto itr = m.begin(); itr != m.end(); itr++)
+		{
+			if (!visited[itr->first])
 			{
-				vertex = q.front();
-				q.pop();
-				graph->getAdjacentEdgesDirect(vertex, &m);
-				for (auto itr = m.begin(); itr != m.end(); itr++)
-				{
-					if (!visited[itr->first])
-					{
-						*fout << "->" << itr->first;
-						q.push(itr->first);
-						visited[itr->first] = true;
-					}
-				}
-				m.clear();
+				*fout << "->" << itr->first;
+				q.push(itr->first);
+				visited[itr->first] = true;
 			}
-			break;
-		case 'N':
-			*fout << "Undirected Graph BFS result" << endl;
-			*fout << "startvertex: " << vertex << endl;
-			*fout << vertex;
-			while (!q.empty())
-			{
-				vertex = q.front();
-				q.pop();
-				graph->getAdjacentEdges(vertex, &m);
-				for (auto itr = m.begin(); itr != m.end(); itr++)
-				{
-					if (!visited[itr->first])
-					{
-						*fout << "->" << itr->first;
-						q.push(itr->first);
-						visited[itr->first] = true;
-					}
-				}
-				m.clear();
-			}
-			break;
+		}
+		m.clear();
 	}
 	*fout << endl << "=====================" << endl << endl;
 	delete []visited;
@@ -94,54 +72,30 @@ bool DFS(Graph* graph, char option, int vertex, ofstream *fout)
 	fill(visited, visited + graph->getSize() + 1, false);
 	visited[vertex] = true;
 	s.push(vertex);
-	switch (option)
+	if (option == 'Y')
+		*fout << "Directed ";
+	else
+		*fout << "Undirected ";
+	*fout << "Graph DFS result" << endl;
+	*fout << "startvertex: " << vertex << endl;
+	*fout << vertex;
+	while (!s.empty())
 	{
-		case 'Y':
-			*fout << "Directed Graph DFS result" << endl;
-			*fout << "startvertex: " << vertex << endl;
-			*fout << vertex;
-			while (!s.empty())
+		vertex = s.top();
+		s.pop();
+		graph->getAdjacentEdges(vertex, &m, option);
+		for (auto itr = m.begin(); itr != m.end(); itr++)
+		{
+			if (!visited[itr->first])
 			{
-				vertex = s.top();
-				s.pop();
-				graph->getAdjacentEdgesDirect(vertex, &m);
-				for (auto itr = m.begin(); itr != m.end(); itr++)
-				{
-					if (!visited[itr->first])
-					{
-						s.push(vertex);
-						*fout << "->" << itr->first;
-						s.push(itr->first);
-						visited[itr->first] = true;
-						break;
-					}
-				}
-				m.clear();
+				s.push(vertex);
+				*fout << "->" << itr->first;
+				s.push(itr->first);
+				visited[itr->first] = true;
+				break;
 			}
-			break;
-		case 'N':
-			*fout << "Undirected Graph DFS result" << endl;
-			*fout << "startvertex: " << vertex << endl;
-			*fout << vertex;
-			while (!s.empty())
-			{
-				vertex = s.top();
-				s.pop();
-				graph->getAdjacentEdges(vertex, &m);
-				for (auto itr = m.begin(); itr != m.end(); itr++)
-				{
-					if (!visited[itr->first])
-					{
-						s.push(vertex);
-						*fout << "->" << itr->first;
-						s.push(itr->first);
-						visited[itr->first] = true;
-						break;
-					}
-				}
-				m.clear();
-			}
-			break;
+		}
+		m.clear();
 	}
 	*fout << endl << "=====================" << endl << endl;
 	delete []visited;
@@ -172,24 +126,16 @@ bool Dijkstra(Graph* graph, char option, int vertex, ofstream *fout)
 	parent = new int[graph->getSize() + 1];
 	fill(s, s + graph->getSize() + 1, false);
 	fill(parent, parent + graph->getSize() + 1, -1);
-	if (option == 'Y')
-		graph->getAdjacentEdgesDirect(vertex, &temp);
-	else
-		graph->getAdjacentEdges(vertex, &temp);
+	graph->getAdjacentEdges(vertex, &temp, option);
 	for (auto itr = temp.begin(); itr != temp.end(); itr++)
 		parent[itr->first] = vertex; // set parent
 	for (int i = 1; i <= graph->getSize(); i++)
-	{
-		if (option == 'Y')
-			dist[i] = graph->getWeightDirect(vertex, i);
-		else
-			dist[i] = graph->getWeight(vertex, i);
-	}
+		dist[i] = graph->getWeight(vertex, i, option);
 	s[vertex] = true;
 	dist[vertex] = 0;
 	for(int i = 0; i < graph->getSize() - 1; i++)
 	{
-		dis = INT32_MAX;
+		dis = 2147483648;
 		for (int j = 1; j <= graph->getSize(); j++)
 		{
 			if (!s[j] && dis > dist[j])
@@ -203,23 +149,11 @@ bool Dijkstra(Graph* graph, char option, int vertex, ofstream *fout)
 		{
 			if (s[j] == false)
 			{
-				if (option == 'Y')
+				if (dist[u] + graph->getWeight(u, j, option) < dist[j])
 				{
-					if (dist[u] + graph->getWeightDirect(u, j) < dist[j])
-					{
-						dist[j] = dist[u] + graph->getWeightDirect(u, j);
-						parent[j] = u;
-					}
-				}
-				else
-				{
-					if (dist[u] + graph->getWeight(u, j) < dist[j])
-					{
-						dist[j] = dist[u] + graph->getWeight(u, j);
-						parent[j] = u;
-					}
-				}
-				
+					dist[j] = dist[u] + graph->getWeight(u, j, option);
+					parent[j] = u;
+				}				
 			}
 		}
 	}
@@ -258,9 +192,88 @@ bool Dijkstra(Graph* graph, char option, int vertex, ofstream *fout)
 	return true;
 }
 
-bool Bellmanford(Graph* graph, char option, int s_vertex, int e_vertex) 
+bool Bellmanford(Graph* graph, char option, int s_vertex, int e_vertex, ofstream *fout) 
 {
-   
+	int *dist;
+	int *parent;
+	map <int, int> temp;
+	stack <int> stack;
+
+	if (!graph)
+		return false;
+	if (s_vertex < 1 || s_vertex > graph->getSize()
+		|| e_vertex < 1 || e_vertex > graph->getSize())
+		return false;
+	if (option != 'Y' && option != 'N')
+		return false;
+	dist = new int [graph->getSize() + 1];
+	parent = new int [graph->getSize() + 1];
+	fill(parent, parent + graph->getSize() + 1, -1);
+	graph->getAdjacentEdges(s_vertex, &temp, option);
+	for (auto itr = temp.begin(); itr != temp.end(); itr++)
+		parent[itr->first] = s_vertex;
+	for (int i = 1; i <= graph->getSize(); i++)
+		dist[i] = graph->getWeight(s_vertex, i, option);
+	dist[s_vertex] = 0;
+	for (int i = 2; i < graph->getSize(); i++)
+	{
+		for (int j = 1; j <= graph->getSize(); j++)
+		{
+			temp.clear();
+			graph->getAdjacentEdges(j, &temp, 'I');
+			if (j == s_vertex || temp.empty())
+				continue;
+			for (int k = 1; k <= graph->getSize(); k++)
+			{
+				if (dist[k] + graph->getWeight(k, j, option) < dist[j])
+				{
+					dist[j] = dist[k] + graph->getWeight(k, j, option);
+					parent[j] = k;
+				}
+			}
+		}
+	}
+	for (int j = 1; j <= graph->getSize(); j++)
+	{
+		temp.clear();
+		graph->getAdjacentEdges(j, &temp, 'I');
+		if (j == s_vertex || temp.empty())
+			continue;
+		for (int k = 1; k <= graph->getSize(); k++)
+		{
+			if (dist[k] + graph->getWeight(k, j, option) < dist[j])
+			{
+				delete [] dist;
+				delete [] parent;
+				return false;
+			}
+		}
+	}
+	if (parent[e_vertex] < 0)
+	{
+		delete [] dist;
+		delete [] parent;
+		return false;
+	}
+	*fout << "========Bellman-Ford========" << endl;
+	if (option == 'Y')
+		*fout << "Directed ";
+	else
+		*fout << "Undirected ";
+	*fout << "Graph Bellman-Ford result" << endl;
+	*fout << s_vertex;
+	for (int i = e_vertex; i != s_vertex; i = parent[i])
+		stack.push(i);
+	while (!stack.empty())
+	{
+		*fout << "->" << stack.top();
+		stack.pop();
+	}
+	*fout << endl << "cost: " << dist[e_vertex] << endl;
+	*fout << "=====================" << endl << endl;
+	delete [] dist;
+	delete [] parent;
+	return true;
 }
 
 bool FLOYD(Graph* graph, char option)

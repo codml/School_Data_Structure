@@ -214,7 +214,7 @@ bool Manager::mKRUSKAL()
 
 bool Manager::mBELLMANFORD(char option, int s_vertex, int e_vertex) 
 {
-	return true;
+	return Bellmanford(graph, option, s_vertex, e_vertex, &fout);
 }
 
 bool Manager::mFLOYD(char option)

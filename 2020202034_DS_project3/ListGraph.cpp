@@ -13,30 +13,34 @@ ListGraph::~ListGraph()
 	delete[] m_List;
 }
 
-int ListGraph::getWeight(int from_v, int to_v)
+int ListGraph::getWeight(int from_v, int to_v, char option)
 {
 	if (m_List[from_v - 1].find(to_v) != m_List[from_v - 1].end())
 		return m_List[from_v - 1].at(to_v);
-	else if (m_List[to_v - 1].find(from_v) != m_List[to_v - 1].end())
-		return m_List[to_v - 1].at(from_v);
-	else
-		return 987654321;
+	if (option == 'N')
+	{
+		if (m_List[to_v - 1].find(from_v) != m_List[to_v - 1].end())
+			return m_List[to_v - 1].at(from_v);
+	}
+	if (from_v == to_v)
+		return 0;
+	return 987654321;
 }
 
-int ListGraph::getWeightDirect(int from_v, int to_v)
-{
-	if (m_List[from_v - 1].find(to_v) != m_List[from_v - 1].end())
-		return m_List[from_v - 1].at(to_v);
-	else
-		return 987654321;
+void ListGraph::getAdjacentEdges(int vertex, map<int, int>* m, char option)
+{ // Definition of getAdjacentEdges(No Direction == Undirected)
+	if (option != 'Y')
+		getIncomingEdges(vertex, m);
+	if (option != 'I') // option 'I' is for incoming edge
+		getAdjacentEdgesDirect(vertex, m); // get Outgoing edges
 }
 
-void ListGraph::getAdjacentEdges(int vertex, map<int, int>* m)	 //Definition of getAdjacentEdges(No Direction == Undirected)
+void ListGraph::getIncomingEdges(int vertex, map<int, int> *m)
 {
 	for (int i = 0; i < m_Size; i++)
 	{
 		if (vertex - 1 == i)
-			m->insert(m_List[i].begin(), m_List[i].end());
+			continue;
 		else
 		{
 			if (m_List[i].find(vertex) != m_List[i].end())
