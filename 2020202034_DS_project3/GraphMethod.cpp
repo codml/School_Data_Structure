@@ -195,7 +195,7 @@ bool Kruskal(Graph* graph, ofstream *fout)
 		E.pop_back();
 		if (Find(parent, v) != Find(parent, w))
 		{
-			Union(parent, v, w);
+			Union(parent, Find(parent, v), Find(parent, w));
 			T[v].insert(map<int, int>::value_type(w, weight));
 			t_size++;
 			cost += weight;
@@ -339,7 +339,10 @@ bool Bellmanford(Graph* graph, char option, int s_vertex, int e_vertex, ofstream
 		for (int j = 1; j <= graph->getSize(); j++)
 		{
 			temp.clear();
-			graph->getAdjacentEdges(j, &temp, 'I');
+			if (option == 'N')
+				graph->getAdjacentEdges(j, &temp, 'N');
+			else
+				graph->getAdjacentEdges(j, &temp, 'I');
 			if (j == s_vertex || temp.empty())
 				continue;
 			for (int k = 1; k <= graph->getSize(); k++)
@@ -355,7 +358,10 @@ bool Bellmanford(Graph* graph, char option, int s_vertex, int e_vertex, ofstream
 	for (int j = 1; j <= graph->getSize(); j++)
 	{
 		temp.clear();
-		graph->getAdjacentEdges(j, &temp, 'I');
+		if (option == 'N')
+			graph->getAdjacentEdges(j, &temp, 'N');
+		else
+			graph->getAdjacentEdges(j, &temp, 'I');
 		if (j == s_vertex || temp.empty())
 			continue;
 		for (int k = 1; k <= graph->getSize(); k++)
