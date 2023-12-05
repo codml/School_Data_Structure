@@ -469,10 +469,90 @@ bool FLOYD(Graph* graph, char option, ofstream *fout)
 	return true;
 }
 
-bool KWANGWOON(Graph* graph, int vertex) {
-	vector<int> *segment_tree;
+int init(int node, int start, int end, vector<int> &_arr, vector<int> &_seg) {
 
+	if (start == end) return _seg[node] = _arr[start];
+	int mid = (start + end) / 2;
+	init(node * 2, start, mid, _arr, _seg);
+	init(node * 2 + 1, mid + 1, end, _arr, _seg);
+	_seg[node] = _seg[node * 2] + _seg[node * 2 + 1];
+}
+
+void update(int node, int start, int end, int target, int diff_value, vector<int>& _arr, vector<int>& _seg) {
+	if (target < start || target > end) return;
+	
+	_seg[node] += diff_value;
+
+	if (start != end) {
+		int mid = (start + end) / 2;
+		update(node * 2, start, mid, target, diff_value, _arr, _seg);
+		update(node * 2 + 1, mid + 1, end, target, diff_value, _arr, _seg);
+	}
+}
+
+int sum(int node, int start, int end, int left, int right, vector<int>& _arr, vector<int>& _seg) {
+	if (left > end || right < start) return 0;
+
+	if (left <= start && end <= right) return _seg[node];
+
+	int mid = (start + end) / 2;
+	return sum(node * 2, start, mid, left, right, _arr, _seg) + sum(node * 2 + 1, mid + 1, end, left, right, _arr, _seg);
+}
+
+bool KWANGWOON(Graph* graph, int vertex, ofstream *fout) { // vertex must be 1???
+	vector<int> *segment_tree;
+	vector<int> *kw_graph;
+	int num, before_vertex;
+
+	if (graph->getType())
+		return false;
+	kw_graph = graph->getKw_graph();
 	segment_tree = new vector<int> [graph->getSize() + 1];
+	for (int i = 1; i < graph->getSize() + 1; i++)
+	{
+		segment_tree[i].resize(kw_graph[i].size() * 4);
+		init(1, 0, kw_graph[i].size() - 1, kw_graph[i], segment_tree[i]);
+	}
+	*fout << vertex;
+	while (num = sum(1, 0, kw_graph[vertex].size() - 1, 0, kw_graph[vertex].size() - 1,
+		kw_graph[vertex], segment_tree[vertex]))
+	{
+		before_vertex = vertex;
+		if (num % 2) // biggest vertex
+		{
+			for (int i = kw_graph[vertex].size() - 1; i >= 0; i--)
+			{
+				if (sum(1, 0, kw_graph[vertex].size() - 1, i, i,
+					kw_graph[vertex], segment_tree[vertex]))
+				{
+					vertex = kw_graph[vertex][i];
+					break;
+				}
+			}
+		}
+		else // smallest vertex
+		{
+			for (int i = 0; i < kw_graph[vertex].size(); i++)
+			{
+				if (sum(1, 0, kw_graph[vertex].size() - 1, i, i,
+					kw_graph[vertex], segment_tree[vertex]))
+				{
+					vertex = kw_graph[vertex][i];
+					break;
+				}
+			}
+		}
+		*fout << "->" << vertex;
+		for (int i = 0; i < kw_graph[vertex].size(); i++)
+		{
+			if (kw_graph[vertex][i] == before_vertex)
+			{
+				update(1, 0, kw_graph[vertex].size() - 1, i, 0, kw_graph[vertex], segment_tree[vertex]);
+				break;
+			}
+		}
+	}
+	*fout << endl << endl;
 	delete [] segment_tree;
 	return true;
 }

@@ -231,7 +231,7 @@ bool Manager::mFLOYD(char option)
 }
 
 bool Manager::mKwoonWoon(int vertex) {
-	return true;
+	return KWANGWOON(graph, 1, &fout);
 }
 
 void Manager::printErrorCode(int n)
