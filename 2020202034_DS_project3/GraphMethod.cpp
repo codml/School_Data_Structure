@@ -470,5 +470,9 @@ bool FLOYD(Graph* graph, char option, ofstream *fout)
 }
 
 bool KWANGWOON(Graph* graph, int vertex) {
+	vector<int> *segment_tree;
 
+	segment_tree = new vector<int> [graph->getSize() + 1];
+	delete [] segment_tree;
+	return true;
 }
