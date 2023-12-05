@@ -11,6 +11,8 @@ ListGraph::ListGraph(bool type, int size) : Graph(type, size)
 ListGraph::~ListGraph()	
 {
 	delete[] m_List;
+	if (kw_graph)
+		delete[] kw_graph;
 }
 
 int ListGraph::getWeight(int from_v, int to_v, char option)
@@ -73,4 +75,24 @@ bool ListGraph::printGraph(ofstream *fout)	//Definition of print Graph
 	}
 	*fout << "=====================" << endl << endl;
 	return true;
+}
+
+void ListGraph::setKw_graph(void)
+{
+	map <int, int> m;
+
+	kw_graph = new vector<int>[m_Size + 1];
+	for (int i = 1; i < m_Size + 1; i++)
+	{
+		getAdjacentEdges(i, &m, 'N');
+		for (auto itr = m.begin(); itr != m.end(); itr++)
+			kw_graph[i].push_back(itr->first);
+		sort(kw_graph[i].begin(), kw_graph[i].end());
+		m.clear();
+	}
+}
+
+vector<int>* ListGraph::getKw_graph(void)
+{
+	return kw_graph;
 }

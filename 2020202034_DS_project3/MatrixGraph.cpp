@@ -91,3 +91,13 @@ bool MatrixGraph::printGraph(ofstream *fout)
     *fout << "=====================" << endl << endl;
     return true;
 }
+
+void setKw_graph(void)
+{
+
+}
+
+vector<int>* getKw_graph(void)
+{
+    return nullptr;
+}

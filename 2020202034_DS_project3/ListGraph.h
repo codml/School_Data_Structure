@@ -7,7 +7,7 @@ class ListGraph : public Graph{
 private:
 	map < int, int >* m_List;
 	vector<int>* kw_graph;
-	
+
 public:	
 	ListGraph(bool type, int size);
 	~ListGraph();
@@ -18,6 +18,9 @@ public:
 	void getAdjacentEdgesDirect(int vertex, map<int, int>* m);
 	void insertEdge(int from, int to, int weight);	
 	bool printGraph(ofstream *fout);
+
+	void setKw_graph(void);
+	vector<int>* getKw_graph(void);
 
 };
 

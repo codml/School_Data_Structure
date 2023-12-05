@@ -37,6 +37,9 @@ public:
 	virtual void getAdjacentEdgesDirect(int vertex, map<int, int>* m) = 0;	
 	virtual void insertEdge(int from, int to, int weight) = 0;				
 	virtual	bool printGraph(ofstream *fout) = 0;
+
+	virtual void setKw_graph(void) = 0;
+	virtual vector<int>* getKw_graph(void) = 0;
 };
 
 #endif

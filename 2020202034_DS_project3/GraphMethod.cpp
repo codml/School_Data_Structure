@@ -218,7 +218,7 @@ bool Kruskal(Graph* graph, ofstream *fout)
 		*fout << endl;
 	}
 	*fout << "cost: " << cost << endl;
-	*fout << "=====================" << endl;
+	*fout << "=====================" << endl << endl;
 	delete []parent;
 	delete []T;
 	return true;
