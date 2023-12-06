@@ -424,7 +424,10 @@ bool FLOYD(Graph* graph, char option, ofstream *fout)
 		for (int i = 1; i <= graph->getSize(); i++)
 		{
 			for (int j = 1; j <= graph->getSize(); j++)
-				dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
+			{
+				if (dist[i][k] != 987654321 && dist[k][j] != 987654321)
+					dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
+			}
 		}
 	}
 	for (int i = 1; i < graph->getSize() + 1; i++)
@@ -454,7 +457,7 @@ bool FLOYD(Graph* graph, char option, ofstream *fout)
         {
             fout->width(3);
             fout->fill(' ');
-			if (dist[i][j] > 500000000) // need to fix
+			if (dist[i][j] >= 987654321) // need to fix
 				*fout << 'x';
 			else
             	*fout << dist[i][j];
@@ -514,6 +517,8 @@ bool KWANGWOON(Graph* graph, int vertex, ofstream *fout) { // vertex must be 1??
 		segment_tree[i].resize(kw_graph[i].size() * 4);
 		init(1, 0, kw_graph[i].size() - 1, segment_tree[i]);
 	}
+	*fout << "========KWANGWOON========" << endl;
+	*fout << "startvertex: " << vertex << endl;
 	*fout << vertex;
 	while (num = sum(1, 0, kw_graph[vertex].size() - 1, 0, kw_graph[vertex].size() - 1, 
 		segment_tree[vertex]))
@@ -554,7 +559,7 @@ bool KWANGWOON(Graph* graph, int vertex, ofstream *fout) { // vertex must be 1??
 			}
 		}
 	}
-	*fout << endl << endl;
+	*fout << endl << "=====================" << endl << endl;
 	delete [] kw_graph;
 	delete [] segment_tree;
 	return true;
