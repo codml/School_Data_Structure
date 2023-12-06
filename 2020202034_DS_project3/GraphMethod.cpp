@@ -523,7 +523,7 @@ bool KWANGWOON(Graph* graph, int vertex, ofstream *fout) { // vertex must be 1??
 		{
 			for (int i = kw_graph[vertex].size() - 1; i >= 0; i--)
 			{
-				if (sum(1, 0, kw_graph[vertex].size() - 1, i, i,segment_tree[vertex]))
+				if (sum(1, 0, kw_graph[vertex].size() - 1, i, i, segment_tree[vertex]))
 				{
 					vertex = kw_graph[vertex][i];
 					break;
@@ -548,7 +548,7 @@ bool KWANGWOON(Graph* graph, int vertex, ofstream *fout) { // vertex must be 1??
 			{
 				if (kw_graph[i][j] == before_vertex)
 				{
-					update(1, 0, kw_graph[i].size() - 1, j, 0, segment_tree[i]);
+					update(1, 0, kw_graph[i].size() - 1, j, -1, segment_tree[i]);
 					break;
 				}
 			}
