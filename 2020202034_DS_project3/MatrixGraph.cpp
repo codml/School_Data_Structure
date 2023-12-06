@@ -97,7 +97,7 @@ void MatrixGraph::setKw_graph(void)
 
 }
 
-vector<int>* MatrixGraph::getKw_graph(void)
+void MatrixGraph::getKw_graph(vector<int> &v, int i)
 {
-
+    
 }

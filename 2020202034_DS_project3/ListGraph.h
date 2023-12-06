@@ -20,7 +20,7 @@ public:
 	bool printGraph(ofstream *fout);
 
 	void setKw_graph(void);
-	vector<int>* getKw_graph(void);
+	void getKw_graph(vector<int> &v, int i);
 
 };
 

@@ -157,6 +157,7 @@ bool Manager::LOAD(const char* filename)
 			ss.clear();
 			v.clear();
 		}
+		graph->setKw_graph();
 	}
 	else if (buf1 == "M")
 	{

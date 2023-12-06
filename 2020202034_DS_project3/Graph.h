@@ -39,7 +39,7 @@ public:
 	virtual	bool printGraph(ofstream *fout) = 0;
 
 	virtual void setKw_graph(void) = 0;
-	virtual vector<int>* getKw_graph(void) = 0;
+	virtual void getKw_graph(vector<int> &v, int i) = 0;
 };
 
 #endif

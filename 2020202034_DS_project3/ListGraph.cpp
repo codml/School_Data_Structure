@@ -92,7 +92,7 @@ void ListGraph::setKw_graph(void)
 	}
 }
 
-vector<int>* ListGraph::getKw_graph(void)
+void ListGraph::getKw_graph(vector<int> &v, int i)
 {
-	return kw_graph;
+	v.assign(kw_graph[i].begin(), kw_graph[i].end());
 }
