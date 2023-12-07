@@ -407,9 +407,7 @@ bool FLOYD(Graph* graph, char option, ofstream *fout)
 	map <int, int> temp;
 	stack <int> stack;
 
-	if (!graph)
-		return false;
-	if (option != 'Y' && option != 'N')
+	if (!graph || (option != 'Y' && option != 'N'))
 		return false;
 	dist = new int *[graph->getSize() + 1];
 	for (int i = 1; i < graph->getSize() + 1; i++)
@@ -505,7 +503,7 @@ bool KWANGWOON(Graph* graph, int vertex, ofstream *fout) { // vertex must be 1??
 	vector<int> *segment_tree;
 	int num, before_vertex, update_vertex;
 
-	if (graph->getType() || vertex != 1)
+	if (!graph || graph->getType() || vertex != 1)
 		return false;
 	segment_tree = new vector<int> [graph->getSize() + 1];
 	for (int i = 1; i < graph->getSize() + 1; i++)
