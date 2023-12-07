@@ -38,8 +38,9 @@ public:
 	virtual void insertEdge(int from, int to, int weight) = 0;				
 	virtual	bool printGraph(ofstream *fout) = 0;
 
-	virtual void setKw_graph(void) = 0;
-	virtual void getKw_graph(vector<int> &v, int i) = 0;
+	virtual void setKw_graph() = 0;
+	virtual int getKw_graph_size(int i) = 0;
+	virtual int getKw_graph_node(int i, int idx) = 0;
 };
 
 #endif

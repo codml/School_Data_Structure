@@ -18,8 +18,9 @@ public:
 	void insertEdge(int from, int to, int weight);
 	bool printGraph(ofstream *fout);
 
-	void setKw_graph(void);
-	void getKw_graph(vector<int> &v, int i);
+	void setKw_graph();
+	int getKw_graph_size(int i);
+	int getKw_graph_node(int i, int idx);
 };
 
 #endif
