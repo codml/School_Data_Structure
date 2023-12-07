@@ -20,7 +20,7 @@ class Graph{
 protected:
 	bool m_Type;
 	int m_Size;
-	bool m_Neg;
+	bool m_Neg; // m_Neg = true -> graph has negative edge
 public:
 	Graph(bool type, int size);
 	virtual ~Graph();

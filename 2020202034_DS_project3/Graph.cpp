@@ -4,7 +4,7 @@ Graph::Graph(bool type, int size)
 {
 	m_Type = type;
 	m_Size = size;
-	m_Neg = false;
+	m_Neg = false; // default = false
 }
 
 Graph::~Graph()	
