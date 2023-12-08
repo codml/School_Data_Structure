@@ -484,33 +484,33 @@ bool FLOYD(Graph* graph, char option, ofstream *fout)
 }
 
 int init(int node, int start, int end, vector<int> &_seg) {
-	if (start == end) return _seg[node] = 1;
+	if (start == end) return _seg[node] = 1; // leaf node
 	int mid = (start + end) / 2;
 	init(node * 2, start, mid, _seg);
-	init(node * 2 + 1, mid + 1, end, _seg);
-	_seg[node] = _seg[node * 2] + _seg[node * 2 + 1];
+	init(node * 2 + 1, mid + 1, end, _seg); // recursive to left, right child
+	_seg[node] = _seg[node * 2] + _seg[node * 2 + 1]; // sum of left, right child
 }
 
 void update(int node, int start, int end, int target, int diff_value, vector<int>& _seg) {
-	if (target < start || target > end) return;
+	if (target < start || target > end) return; // out of range
 	
-	_seg[node] += diff_value;
+	_seg[node] += diff_value; // update value
 
 	if (start != end) {
 		int mid = (start + end) / 2;
-		update(node * 2, start, mid, target, diff_value, _seg);
-		update(node * 2 + 1, mid + 1, end, target, diff_value,_seg);
+		update(node * 2, start, mid, target, diff_value, _seg); // left child
+		update(node * 2 + 1, mid + 1, end, target, diff_value,_seg); // right child
 	}
 }
 
 int sum(int node, int start, int end, int left, int right, vector<int>& _seg) {
-	if (left > end || right < start) return 0;
+	if (left > end || right < start) return 0; // out of range
 
-	if (left <= start && end <= right) return _seg[node];
+	if (left <= start && end <= right) return _seg[node]; // in range
 
 	int mid = (start + end) / 2;
 	return sum(node * 2, start, mid, left, right, _seg) + sum(node * 2 + 1, mid + 1, end, left, right, _seg);
-}
+} // recursive
 
 bool KWANGWOON(Graph* graph, int vertex, ofstream *fout) { // vertex must be 1
 	vector<int> *segment_tree;
