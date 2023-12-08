@@ -4,7 +4,7 @@
 
 ListGraph::ListGraph(bool type, int size) : Graph(type, size)
 {
-	m_List = new map<int, int> [size];
+	m_List = new map<int, int> [size]; // memory allocations
     kw_graph = 0;
 }
 
@@ -12,21 +12,21 @@ ListGraph::~ListGraph()
 {
 	delete[] m_List;
 	if (kw_graph)
-		delete[] kw_graph;
+		delete[] kw_graph; // free memory
 }
 
-int ListGraph::getWeight(int from_v, int to_v, char option)
+int ListGraph::getWeight(int from_v, int to_v, char option) // return weight
 {
 	if (m_List[from_v - 1].find(to_v) != m_List[from_v - 1].end())
-		return m_List[from_v - 1].at(to_v);
-	if (option == 'N')
+		return m_List[from_v - 1].at(to_v); // for digraph
+	if (option == 'N') // for undirected graph
 	{
 		if (m_List[to_v - 1].find(from_v) != m_List[to_v - 1].end())
 			return m_List[to_v - 1].at(from_v);
 	}
 	if (from_v == to_v)
-		return 0;
-	return 987654321;
+		return 0; // loop
+	return 987654321; // disconnected
 }
 
 void ListGraph::getAdjacentEdges(int vertex, map<int, int>* m)
@@ -39,7 +39,7 @@ void ListGraph::getIncomingEdges(int vertex, map<int, int> *m)
 {
 	for (int i = 0; i < m_Size; i++)
 	{
-		if (vertex - 1 == i)
+		if (vertex - 1 == i) // only incoming edges
 			continue;
 		else
 		{
@@ -82,20 +82,20 @@ void ListGraph::setKw_graph(void)
 	kw_graph = new vector<int>[m_Size + 1];
 	for (int i = 1; i < m_Size + 1; i++)
 	{
-		getAdjacentEdges(i, &m);
+		getAdjacentEdges(i, &m); // delete direction
 		for (auto itr = m.begin(); itr != m.end(); itr++)
 			kw_graph[i].push_back(itr->first);
-		sort(kw_graph[i].begin(), kw_graph[i].end());
+		sort(kw_graph[i].begin(), kw_graph[i].end()); // sort by vertex number
 		m.clear();
 	}
 }
 
-int ListGraph::getKw_graph_size(int i)
+int ListGraph::getKw_graph_size(int i) // return kw_graph's size
 {
 	return kw_graph[i].size();
 }
 
-int ListGraph::getKw_graph_node(int i, int idx)
+int ListGraph::getKw_graph_node(int i, int idx) // return node number
 {
 	return kw_graph[i][idx];
 }

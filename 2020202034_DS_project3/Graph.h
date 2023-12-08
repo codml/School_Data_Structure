@@ -28,10 +28,10 @@ public:
 	bool getType();	
 	int getSize();
 
-	bool getNeg();
+	bool getNeg(); // return member variables
 	void setNeg(bool tf);
 
-	virtual int getWeight(int from_v, int to_v, char option) = 0;
+	virtual int getWeight(int from_v, int to_v, char option) = 0; // pure virtual function: abstract data type
 	virtual void getAdjacentEdges(int vertex, map<int, int>* m) = 0;	
 	virtual void getIncomingEdges(int vertex, map<int, int>* m) = 0;	
 	virtual void getAdjacentEdgesDirect(int vertex, map<int, int>* m) = 0;	
