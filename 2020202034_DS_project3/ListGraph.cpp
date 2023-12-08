@@ -29,12 +29,10 @@ int ListGraph::getWeight(int from_v, int to_v, char option)
 	return 987654321;
 }
 
-void ListGraph::getAdjacentEdges(int vertex, map<int, int>* m, char option)
+void ListGraph::getAdjacentEdges(int vertex, map<int, int>* m)
 { // Definition of getAdjacentEdges(No Direction == Undirected)
-	if (option != 'Y')
-		getIncomingEdges(vertex, m);
-	if (option != 'I') // option 'I' is for incoming edge
-		getAdjacentEdgesDirect(vertex, m); // get Outgoing edges
+	getIncomingEdges(vertex, m);
+	getAdjacentEdgesDirect(vertex, m); // get Outgoing edges
 }
 
 void ListGraph::getIncomingEdges(int vertex, map<int, int> *m)
@@ -84,7 +82,7 @@ void ListGraph::setKw_graph(void)
 	kw_graph = new vector<int>[m_Size + 1];
 	for (int i = 1; i < m_Size + 1; i++)
 	{
-		getAdjacentEdges(i, &m, 'N');
+		getAdjacentEdges(i, &m);
 		for (auto itr = m.begin(); itr != m.end(); itr++)
 			kw_graph[i].push_back(itr->first);
 		sort(kw_graph[i].begin(), kw_graph[i].end());

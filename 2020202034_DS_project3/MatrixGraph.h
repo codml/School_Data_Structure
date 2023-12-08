@@ -12,7 +12,7 @@ public:
 	~MatrixGraph();
 		
 	int getWeight(int from_v, int to_v, char option);
-	void getAdjacentEdges(int vertex, map<int, int>* m, char option);
+	void getAdjacentEdges(int vertex, map<int, int>* m);
 	void getIncomingEdges(int vertex, map<int, int>* m);
 	void getAdjacentEdgesDirect(int vertex, map<int, int>* m);
 	void insertEdge(int from, int to, int weight);

@@ -38,7 +38,10 @@ bool BFS(Graph* graph, char option, int vertex, ofstream *fout)
 	{
 		vertex = q.front();
 		q.pop();
-		graph->getAdjacentEdges(vertex, &m, option);
+		if (option == 'Y')
+			graph->getAdjacentEdgesDirect(vertex, &m);
+		else
+			graph->getAdjacentEdges(vertex, &m);
 		for (auto itr = m.begin(); itr != m.end(); itr++)
 		{
 			if (!visited[itr->first])
@@ -83,7 +86,10 @@ bool DFS(Graph* graph, char option, int vertex, ofstream *fout)
 	{
 		vertex = s.top();
 		s.pop();
-		graph->getAdjacentEdges(vertex, &m, option);
+		if (option == 'Y')
+			graph->getAdjacentEdgesDirect(vertex, &m);
+		else
+			graph->getAdjacentEdges(vertex, &m);
 		for (auto itr = m.begin(); itr != m.end(); itr++)
 		{
 			if (!visited[itr->first])
@@ -176,7 +182,7 @@ bool Kruskal(Graph* graph, ofstream *fout)
 	T = new map<int, int> [graph->getSize() + 1];
 	for (int i = 1; i <= graph->getSize(); i++)
 	{
-		graph->getAdjacentEdges(i, &temp, 'Y');
+		graph->getAdjacentEdgesDirect(i, &temp);
 		for (auto itr = temp.begin(); itr != temp.end(); itr++)
 			E.push_back(make_pair(itr->second, make_pair(i, itr->first)));
 		temp.clear();
@@ -197,6 +203,7 @@ bool Kruskal(Graph* graph, ofstream *fout)
 		{
 			Union(parent, Find(parent, v), Find(parent, w));
 			T[v].insert(map<int, int>::value_type(w, weight));
+			T[w].insert(map<int, int>::value_type(v, weight));
 			t_size++;
 			cost += weight;
 		}
@@ -245,7 +252,10 @@ bool Dijkstra(Graph* graph, char option, int vertex, ofstream *fout)
 	parent = new int[graph->getSize() + 1];
 	fill(s, s + graph->getSize() + 1, false);
 	fill(parent, parent + graph->getSize() + 1, -1);
-	graph->getAdjacentEdges(vertex, &temp, option);
+	if (option == 'Y')
+		graph->getAdjacentEdgesDirect(vertex, &temp);
+	else
+		graph->getAdjacentEdges(vertex, &temp);
 	for (auto itr = temp.begin(); itr != temp.end(); itr++)
 		parent[itr->first] = vertex; // set parent
 	for (int i = 1; i <= graph->getSize(); i++)
@@ -329,7 +339,10 @@ bool Bellmanford(Graph* graph, char option, int s_vertex, int e_vertex, ofstream
 	dist = new int [graph->getSize() + 1];
 	parent = new int [graph->getSize() + 1];
 	fill(parent, parent + graph->getSize() + 1, -1);
-	graph->getAdjacentEdges(s_vertex, &temp, option);
+	if (option == 'Y')
+		graph->getAdjacentEdgesDirect(s_vertex, &temp);
+	else
+		graph->getAdjacentEdges(s_vertex, &temp);
 	for (auto itr = temp.begin(); itr != temp.end(); itr++)
 		parent[itr->first] = s_vertex;
 	for (int i = 1; i <= graph->getSize(); i++)
@@ -340,9 +353,9 @@ bool Bellmanford(Graph* graph, char option, int s_vertex, int e_vertex, ofstream
 		{
 			temp.clear();
 			if (option == 'N')
-				graph->getAdjacentEdges(j, &temp, 'N');
+				graph->getAdjacentEdges(j, &temp);
 			else
-				graph->getAdjacentEdges(j, &temp, 'I');
+				graph->getIncomingEdges(j, &temp);
 			if (j == s_vertex || temp.empty())
 				continue;
 			for (int k = 1; k <= graph->getSize(); k++)
@@ -359,9 +372,9 @@ bool Bellmanford(Graph* graph, char option, int s_vertex, int e_vertex, ofstream
 	{
 		temp.clear();
 		if (option == 'N')
-			graph->getAdjacentEdges(j, &temp, 'N');
+			graph->getAdjacentEdges(j, &temp);
 		else
-			graph->getAdjacentEdges(j, &temp, 'I');
+			graph->getIncomingEdges(j, &temp);
 		if (j == s_vertex || temp.empty())
 			continue;
 		for (int k = 1; k <= graph->getSize(); k++)

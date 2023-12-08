@@ -36,12 +36,10 @@ int MatrixGraph::getWeight(int from_v, int to_v, char option)
 	return 987654321;
 }
 
-void MatrixGraph::getAdjacentEdges(int vertex, map<int, int>* m, char option)
+void MatrixGraph::getAdjacentEdges(int vertex, map<int, int>* m)
 {	
-    if (option != 'Y')
-		getIncomingEdges(vertex, m);
-	if (option != 'I') // option 'I' is for incoming edge
-		getAdjacentEdgesDirect(vertex, m); // get Outgoing edges
+    getIncomingEdges(vertex, m);
+    getAdjacentEdgesDirect(vertex, m); // get Outgoing edges
 }
 
 void MatrixGraph::getIncomingEdges(int vertex, map<int, int>* m)

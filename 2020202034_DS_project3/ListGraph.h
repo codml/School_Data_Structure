@@ -13,9 +13,9 @@ public:
 	~ListGraph();
 		
 	int getWeight(int from_v, int to_v, char option); // return weight
-	void getAdjacentEdges(int vertex, map<int, int>* m, char option); // option 'I' -> incoming
-	void getIncomingEdges(int vertex, map<int, int>* m);	
-	void getAdjacentEdgesDirect(int vertex, map<int, int>* m);
+	void getAdjacentEdges(int vertex, map<int, int>* m); // for undirected graph
+	void getIncomingEdges(int vertex, map<int, int>* m); // for incoming edge in digraph
+	void getAdjacentEdgesDirect(int vertex, map<int, int>* m); // for digraph
 	void insertEdge(int from, int to, int weight);	
 	bool printGraph(ofstream *fout);
 
