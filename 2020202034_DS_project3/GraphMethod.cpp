@@ -459,14 +459,14 @@ bool FLOYD(Graph* graph, char option, ofstream *fout)
 	*fout << "Graph FLOYD result" << endl;
 	*fout << "    ";
     for (int i = 1; i < graph->getSize() + 1; i++)
-        *fout << '[' << i << "] ";
+		*fout << "    " << '[' << i << ']';
     *fout << endl;
     for (int i = 1; i < graph->getSize() + 1; i++)
     {
         *fout << '[' << i << "] ";
         for (int j = 1; j < graph->getSize() + 1; j++)
         {
-            fout->width(3);
+            fout->width(6);
             fout->fill(' ');
 			if (dist[i][j] >= 987654321) // need to fix
 				*fout << 'x';

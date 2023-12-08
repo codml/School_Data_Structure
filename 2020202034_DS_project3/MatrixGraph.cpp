@@ -72,14 +72,14 @@ bool MatrixGraph::printGraph(ofstream *fout)
 	*fout << "========PRINT========" << endl;
     *fout << "    ";
     for (int i = 0; i < m_Size; i++)
-        *fout << '[' << i + 1 << "] ";
+        *fout << "    " << '[' << i + 1 << ']';
     *fout << endl;
     for (int i = 0; i < m_Size; i++)
     {
         *fout << '[' << i + 1 << "] ";
         for (int j = 0; j < m_Size; j++)
         {
-            fout->width(3);
+            fout->width(6);
             fout->fill(' ');
             *fout << m_Mat[i][j];
             *fout << ' ';

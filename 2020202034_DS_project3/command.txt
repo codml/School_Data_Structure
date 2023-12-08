@@ -1,4 +1,4 @@
-LOAD graph_M.txt
+LOAD graph_L.txt
 PRINT
 BFS N 4
 DFS Y 2
