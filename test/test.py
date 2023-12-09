@@ -8,6 +8,6 @@ for i in range(1, 16):
 	for j in range(i + 1, 16):
 		randnum = rd.randint(0, 9)
 		if randnum >= 5:
-			rand = rd.randint(-10, 100)
+			rand = rd.randint(-100, 100)
 			f.write('%d %d\n' % (j, rand))
 f.close()
