@@ -141,8 +141,8 @@ int partition(vector <pair<int, pair <int, int> > > &v, int low, int high)
 	int pivot = v[low].first;
 
 	do {
-		do i++; while (v[i].first > pivot); // left from pivot > pivot
-		do j--; while (v[j].first < pivot); // right from pivot < pivot
+		do i++; while (v[i].first > pivot && i < high); // left from pivot > pivot
+		do j--; while (v[j].first < pivot && j > low + 1); // right from pivot < pivot
 		if (i < j) swap(v[i], v[j]); // descending order
 	} while (i < j);
 	swap(v[low], v[j]);
