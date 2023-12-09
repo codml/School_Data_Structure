@@ -124,13 +124,18 @@ bool Manager::LOAD(const char* filename)
 	fg.open(filename);
 	if (!fg) // fail to open file
 		return false;
-	if (load) // already load
-		delete graph;
 	if (!getline(fg, buf1)) // check empty file
 	{
 		fg.close();
 		return false;
 	}
+	if (buf1 != "L" && buf1 != "M") // option is neither "L" nor "M"
+	{
+		fg.close();
+		return false;
+	}
+	if (load) // already load
+		delete graph;
 	if (buf1 == "L") // list graph
 	{
 		getline(fg, buf1); // read graph size
@@ -159,7 +164,7 @@ bool Manager::LOAD(const char* filename)
 		}
 		graph->setKw_graph();
 	}
-	else if (buf1 == "M") // matrix graph
+	else // matrix graph
 	{
 		getline(fg, buf1);
 		graph = new MatrixGraph(1, stoi(buf1));
@@ -179,11 +184,6 @@ bool Manager::LOAD(const char* filename)
 			v.clear();
 			ss.clear();
 		}
-	}
-	else // option is neither "L" nor "M"
-	{
-		fg.close();
-		return false;
 	}
 	fg.close();
 	load = 1;

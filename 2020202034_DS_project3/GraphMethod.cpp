@@ -406,7 +406,11 @@ bool Bellmanford(Graph* graph, char option, int s_vertex, int e_vertex, ofstream
 			*fout << "->" << stack.top();
 			stack.pop();
 		}
-		*fout << endl << "cost: " << dist[e_vertex] << endl;
+		*fout << endl << "cost: ";
+		if (s_vertex == e_vertex)
+			*fout << 0 << endl;
+		else
+			*fout << dist[e_vertex] << endl;
 	}
 	*fout << "=====================" << endl << endl;
 	delete [] dist;
@@ -428,7 +432,12 @@ bool FLOYD(Graph* graph, char option, ofstream *fout)
 	for (int i = 1; i < graph->getSize() + 1; i++)
 	{
 		for (int j = 1; j < graph->getSize() + 1; j++)
-			dist[i][j] = graph->getWeight(i, j, option); // initiate dist
+		{
+			if (i == j && graph->getWeight(i, j, option) > 0)
+				dist[i][j] = 0;
+			else
+				dist[i][j] = graph->getWeight(i, j, option); // initiate dist
+		}
 	}
 	for (int k = 1; k <= graph->getSize(); k++) // usable vertex number
 	{
