@@ -69,9 +69,9 @@ void Manager::run(const char* command_txt){
 		}
 		else if (v.at(0) == "KWANGWOON") // kwangwoon
 		{
-			if (v.size() != 2)
+			if (v.size() != 1)
 				printErrorCode(500);
-			else if (!mKwoonWoon(stoi(v.at(1))))
+			else if (!mKwoonWoon(1))
 				printErrorCode(500);
 		}
 		else if (v.at(0) == "KRUSKAL") // kruskal
@@ -232,7 +232,7 @@ bool Manager::mFLOYD(char option) // Floyd
 }
 
 bool Manager::mKwoonWoon(int vertex) { // Kwangwoon
-	return KWANGWOON(graph, 1, &fout);
+	return KWANGWOON(graph, vertex, &fout);
 }
 
 void Manager::printErrorCode(int n)
