@@ -1,10 +1,10 @@
 import random as rd
 import numpy as np
 
-size = 10
+size = 12
 p = 8 # 0 ~ 9
-minimum = 1
-maximum = 5
+minimum = -7
+maximum = 30
 graph = np.zeros([size, size])
 
 f = open("graph_L.txt", 'w')
