@@ -1,14 +1,14 @@
 import random as rd
 import numpy as np
 
-size = 10
-p = 8 # 0 ~ 9
-minimum = -10
+size = 6
+p = 7 # 0 ~ 9
+minimum = -3
 maximum = 10
 graph = np.zeros([size, size])
 
-f = open("graph_L_neg_cycle.txt", 'w')
-g = open("graph_M_neg_cycle.txt", 'w')
+f = open("graph_L.txt", 'w')
+g = open("graph_M.txt", 'w')
 f.write('L\n')
 f.write('%d\n' % size)
 g.write('M\n')
