@@ -375,7 +375,7 @@ bool Bellmanford(Graph* graph, char option, int s_vertex, int e_vertex, ofstream
 			graph->getAdjacentEdges(j, &temp);
 		else
 			graph->getIncomingEdges(j, &temp);
-		if (j == s_vertex || temp.empty())
+		if (temp.empty())
 			continue;
 		for (int k = 1; k <= graph->getSize(); k++)
 		{
