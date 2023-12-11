@@ -2,7 +2,7 @@ import random as rd
 import numpy as np
 
 size = 6
-p = 7 # 0 ~ 9
+p = 6 # 0 ~ 9
 minimum = -3
 maximum = 10
 graph = np.zeros([size, size])
