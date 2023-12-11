@@ -313,6 +313,8 @@ bool Dijkstra(Graph* graph, char option, int vertex, ofstream *fout)
 			*fout << "(" << dist[i] << ")";
 		}
 		*fout << endl;
+		while (!stack.empty())
+			stack.pop(); // empty stack
 	}
 	*fout << "=====================" << endl << endl;
 	delete [] s;
